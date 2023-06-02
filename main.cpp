@@ -1,8 +1,7 @@
 #include <iostream>
 
 
-int main(){
-     int y;
-
-    return 0;
+int main(){ 
+//vaiii
+    return 0;   
 }
