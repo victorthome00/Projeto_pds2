@@ -9,9 +9,9 @@ public:
 //adicionar imagem em produto 
     Produtos(std::string nome_produto, float valor, int quantidade, 
              std::string descricao, std::string codigo_produto);
-    
-    void alterar_quantidade(std::string codigo, int x);
-    float alterar_valor(float valor_novo, std::string codigo);
+
+    void alterar_quantidade(std::string codigo_produto, int x);
+    float alterar_valor(float valor_novo, std::string codigo_produto);
     float desconto(float valor, float porcentagem);
 
 };
