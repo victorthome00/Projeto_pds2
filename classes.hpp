@@ -4,16 +4,27 @@
 
 
 
-class Produtos{
+class Produto{
 public:
 //adicionar imagem em produto 
-    Produtos(std::string nome_produto, float valor, int quantidade, 
-             std::string descricao, std::string codigo_produto);
+    Produto(std::string nome_produto, float valor, int quantidade, 
+             std::string descricao, std::string codigo_produto){
+                this->nome_produto = nome_produto;
+                this->valor = valor;
+                this->quantidade = quantidade;
+                this->descricao = descricao;
+                this->codigo_produto;
+             }
     
     void alterar_quantidade(std::string codigo, int x);
-    float alterar_valor(float valor_novo, std::string codigo);
-    float desconto(float valor, float porcentagem);
-
+    float alterar_valor(std::string codigo, float valor_novo);
+    float desconto(std::string codigo, float porcentagem);
+private:
+    std::string nome_produto;
+    float valor;
+    int quantidade;
+    std::string descricao;
+    std::string codigo_produto;
 };
 
 
@@ -44,5 +55,6 @@ public:
     Loja(std::string login, std::string senha, std::string endereco,
          std::string codigo_usuario);
 };
+
 
 #endif
