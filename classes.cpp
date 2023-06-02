@@ -1,43 +1,28 @@
 #include "classes.hpp"
 #include <string>
-
-class Produtos
-{
-public:
-    // adicionar imagem em produto
-    Produtos(std::string nome_produto, float valor, int quantidade,
-             std::string descricao, std::string codigo_produto);
-
-    void alterar_quantidade(std::string codigo, int x);
-    float alterar_valor(float valor_novo, std::string codigo);
-    float desconto(float valor, float porcentagem);
-};
-
-// adicionar produtos ao usuario e alterar filhas
-class Usuario
-{
-public:
-    Usuario(std::string login, std::string senha, std::string endereco,
-            std::string codigo_usuario);
-
-    std::string login() const;
-    std::string senha() const;
-    virtual std::string endereco() const;
-    virtual ~Usuario();
-};
-
-class Cliente : public Usuario
-{
-public:
-    Cliente(std::string login, std::string senha, std::string endereco,
-            std::string codigo_usuario);
-
-private:
-};
-
-class Loja : public Usuario
-{
-public:
-    Loja(std::string login, std::string senha, std::string endereco,
-         std::string codigo_usuario);
-};
+#include <vector>
+std::vector <Produto> listaProdutos;
+void Produto::alterar_quantidade(std::string codigo, int x){
+     for (int i = 0; i < listaProdutos.size(); i++) {
+        if (listaProdutos[i].codigo_produto == codigo) {
+            listaProdutos[i].quantidade = x;
+            return;
+        }
+    }
+}
+float Produto::alterar_valor(std::string codigo, float valor_novo){
+    for (int i = 0; i < listaProdutos.size(); i++) {
+        if (listaProdutos[i].codigo_produto == codigo) {
+            listaProdutos[i].valor = valor_novo;
+            return;
+        }
+    }
+}
+float Produto::desconto(std::string codigo, float porcentagem){
+    for (int i = 0; i < listaProdutos.size(); i++) {
+        if (listaProdutos[i].codigo_produto == codigo) {
+            listaProdutos[i].valor = valor - porcentagem*valor;
+            return;
+        }
+    }
+}
