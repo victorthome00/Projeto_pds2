@@ -16,8 +16,8 @@ public:
                 this->codigo_produto;
              }
     
-    void alterar_quantidade(std::string codigo, int x);
-    float alterar_valor(std::string codigo, float valor_novo);
+    void alterar_quantidade(std::string codigo, int &x);
+    float alterar_valor(std::string codigo, float &valor_novo);
     float desconto(std::string codigo, float porcentagem);
 private:
     std::string nome_produto;
