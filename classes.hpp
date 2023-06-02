@@ -13,7 +13,7 @@ public:
                 this->valor = valor;
                 this->quantidade = quantidade;
                 this->descricao = descricao;
-                this->codigo_produto;
+                this->codigo_produto = codigo_produto;
              }
     
     void alterar_quantidade(std::string codigo, int &x);
