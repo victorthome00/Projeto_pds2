@@ -1,8 +1,16 @@
 #include <iostream>
-
+#include "classes.cpp"
 
 int main(){ 
-//vaiii
-//A principio, isso vai mudar!!
+std::vector <Produto> listaProdutos;
+Produto p1("Televisao", 2999.99, 32, "Muito Grande", "1213as");
+Produto p2("Galaxy s10", 1899.99, 77, "Moderno", "1582cs");
+Produto p3("Geladeira", 3454.00, 23, "Muito gelada", "2630fg");
+Produto p4("Aspirador de po", 340.00, 45, "Aspira po", "2456aa");
+listaProdutos.push_back(p1);
+listaProdutos.push_back(p2);
+listaProdutos.push_back(p3);
+listaProdutos.push_back(p4);
+
     return 0;   
 }

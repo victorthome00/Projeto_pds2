@@ -9,22 +9,22 @@ public:
 //adicionar imagem em produto 
     Produto(std::string nome_produto, float valor, int quantidade, 
              std::string descricao, std::string codigo_produto){
-                this->nome_produto = nome_produto;
-                this->valor = valor;
-                this->quantidade = quantidade;
-                this->descricao = descricao;
-                this->codigo_produto = codigo_produto;
+                this->_nome_produto = nome_produto;
+                this->_valor = valor;
+                this->_quantidade = quantidade;
+                this->_descricao = descricao;
+                this->_codigo_produto = codigo_produto;
              }
     
-    void alterar_quantidade(std::string codigo, int &x);
-    float alterar_valor(std::string codigo, float &valor_novo);
-    float desconto(std::string codigo, float porcentagem);
+    void alterar_quantidade(std::string codigo, int &x, std::vector<Produto> &vetor);
+    float alterar_valor(std::string codigo, float &valor_novo, std::vector<Produto> &vetor);
+    float desconto(std::string codigo, float porcentagem, std::vector<Produto> &vetor);
 private:
-    std::string nome_produto;
-    float valor;
-    int quantidade;
-    std::string descricao;
-    std::string codigo_produto;
+    std::string _nome_produto;
+    float _valor;
+    int _quantidade;
+    std::string _descricao;
+    std::string _codigo_produto;
 };
 
 
