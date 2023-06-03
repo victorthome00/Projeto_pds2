@@ -31,12 +31,13 @@ class Estoque{
 public:
 
 
+
 private:
 };
 
 
 // adicionar produtos ao usuario e alterar filhas
-/*class Usuario{
+class Usuario{
 public:
     Usuario(std::string login, std::string senha, std::string endereco,
             std::string codigo_usuario);
@@ -71,5 +72,5 @@ void exibir_carrinho();
 private:
 std::vector <std::pair<Produto, int>> _sacola;
 };
-*/
+
 #endif
