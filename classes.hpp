@@ -1,19 +1,38 @@
 #ifndef CLASSES_H
 #define CLASSES_H
 #include <string>
+#include <vector>
+#include <utility>
 
 
-
-class Produtos{
+class Produto{
 public:
 //adicionar imagem em produto 
-    Produtos(std::string nome_produto, float valor, int quantidade, 
-             std::string descricao, std::string codigo_produto);
+    Produto(std::string nome_produto, float valor, 
+             std::string descricao, std::string codigo_produto){
+                this->_nome_produto = nome_produto;
+                this->_valor = valor;
+                this->_descricao = descricao;
+                this->_codigo_produto = codigo_produto;
+             }
+    void alterar_valor(float valor_novo);
+    void desconto(float porcentagem);
+    std::string get_codigo();
+    std::string get_nome();
+    float get_valor();
+    std::string get_descricao();
+private:
+    std::string _nome_produto;
+    float _valor;
+    std::string _descricao;
+    std::string _codigo_produto;
+};
+class Estoque{
+public:
 
-    void alterar_quantidade(std::string codigo_produto, int x);
-    float alterar_valor(float valor_novo, std::string codigo_produto);
-    float desconto(float valor, float porcentagem);
 
+
+private:
 };
 
 
@@ -45,8 +64,18 @@ public:
          std::string codigo_usuario);
 };
 
+class Carrinho_de_compra{
+public:
+void adicionar_item(std::string codigo, int quantidade, std::vector <Produto> &vetor);
+void remover_item(std::string codigo, int quantidade, std::vector <Produto> &vetor);
+void exibir_carrinho();
+private:
+std::vector <std::pair<Produto, int>> _sacola;
+};
+
 class Pagamento{
     public: 
       Pagamento(std::string modo_pagamento, std::string endereco, std::string numero_pedido, Carrinho Produtos);
 };
+
 #endif
