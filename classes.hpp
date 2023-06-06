@@ -73,4 +73,9 @@ private:
 std::vector <std::pair<Produto, int>> _sacola;
 };
 
+class Pagamento{
+    public: 
+      Pagamento(std::string modo_pagamento, std::string endereco, std::string numero_pedido, Carrinho Produtos);
+};
+
 #endif
