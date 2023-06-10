@@ -74,8 +74,19 @@ std::vector <std::pair<Produto, int>> _sacola;
 };
 
 class Pagamento{
-    public: 
-      Pagamento(std::string modo_pagamento, std::string endereco, std::string numero_pedido, Carrinho Produtos);
+    private:
+      Carrinho_de_compra _cliente;
+      std::string _modo_pagamento;
+    public:
+      Pagamento(Carrinho_de_compra cliente, std::string modo_pagamento){
+        this-> _cliente = cliente; 
+        this-> _modo_pagamento = modo_pagamento;
+      } 
+        void pagar();
+        std::string gerar_codigo_PIX();
+        bool eValido(int cardNumber[16]);
+        void get_modo_pagamento();
+
 };
 
 #endif
