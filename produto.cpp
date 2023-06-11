@@ -28,3 +28,15 @@ float Produto::get_valor(){
 std::string Produto::get_descricao(){
     return _descricao;
 }
+
+bool Estoque::incluir_estoque(Produto produto){
+    if(estoque_nome.empty()){
+        estoque_codigo.insert(it_codigo, std::pair<std::string, Produto>(produto._codigo_produto, produto));
+        estoque_nome.insert(it_nome,std::pair<std::string, Produto>(produto._nome_produto, produto));
+        estoque_quantidade.insert(it_quantidade,std::pair<int, Produto>(produto._quantidade,produto));
+        estoque_valor.insert(it_valor, std::pair<int, Produto>(produto._valor, produto));
+        return true;
+    }
+
+    return false;
+}
