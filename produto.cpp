@@ -29,6 +29,10 @@ std::string Produto::get_descricao(){
     return _descricao;
 }
 
+int Produto::get_quantidade(){
+    return _quantidade;
+}
+
 Produto::Produto(std::string nome_produto, float valor, std::string descricao, std::string codigo_produto, int quantidade){
         _nome_produto = nome_produto;
         _valor = valor;

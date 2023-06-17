@@ -33,7 +33,7 @@ class Estoque{
 public:
     friend class Produto;
     bool incluir_estoque(Produto produto);
-private:
+protected:
     //map pq cada nome deve ser único e ordenado por nome
     std::map<std::string, Produto>estoque_nome;
     //multmap pq podem existir vários produtos com o mesmo preço
