@@ -5,6 +5,41 @@
 #include <ctime>
 #include <cctype> 
 
+void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade, Estoque aux){
+    Produto escolha = aux.estoque_codigo[codigo];
+    int j = escolha.get_quantidade();
+    if( j <= quantidade){
+        _sacola.push_back(std::make_pair(escolha, quantidade));
+    }
+    else{
+        std::cout << "Poxa, não temos essa quantidade no estoque!" << std::endl;
+    }
+}
+
+void Carrinho_de_compra::remover_item(std::string codigo, int quantidade){
+    int i = 0;
+do{
+  if(_sacola[i].first.get_codigo() == codigo){
+    _sacola[i].second = _sacola[i].second - quantidade;
+    i = -1;
+  }  
+    else{
+        i++;
+    }
+}while(i != -1);
+
+
+}
+
+void Carrinho_de_compra::exibir_carrinho(){
+for (const auto& par : _sacola) {
+        Produto produto = par.first;
+        int quantidade = par.second;
+
+        std::cout << "Nome: " << produto.get_nome() << ", Preço: " << produto.get_valor() << ", Quantidade: " << quantidade << std::endl;
+    }
+}
+
 void Pagamento::get_modo_pagamento(){
     std::cout << "Escreva seu modo de pagamento(Débito, Crédito ou PIX):" << std::endl;
     std::string forma_pagamento;

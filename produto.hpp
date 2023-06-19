@@ -7,13 +7,14 @@
 #include <set>
 
 //essa declaração está aqui pra tornar ela amiga da classse produto
-class estoque;
+class Estoque;
 class Produto{
 public:
 //permite que a classe estoque tenha acesso à classe produto
     friend class Estoque;
 //adicionar imagem em produto 
-    void produto(std::string nome_produto, float valor, std::string descricao, std::string codigo_produto, int quantidade);
+    Produto(std::string nome_produto, float valor, std::string descricao, std::string codigo_produto, int quantidade);
+    Produto();
     void alterar_valor(float valor_novo);
     void desconto(float porcentagem);
     std::string get_codigo();
@@ -32,7 +33,7 @@ class Estoque{
 public:
     friend class Produto;
     bool incluir_estoque(Produto produto);
-private:
+protected:
     //map pq cada nome deve ser único e ordenado por nome
     std::map<std::string, Produto>estoque_nome;
     //multmap pq podem existir vários produtos com o mesmo preço
