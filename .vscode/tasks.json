@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Compilar Projeto",
+        "type": "shell",
+        "command": "g++",
+        "args": [
+          "produto.cpp",
+          "carrinho.cpp",
+          "-o",
+          "output.exe"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      }
+    ]
+  }

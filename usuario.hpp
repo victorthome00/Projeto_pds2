@@ -1,23 +1,10 @@
-#ifndef CLASSES_H
-#define CLASSES_H
+#ifndef USUARIO_H
+#define USUARIO_H
 #include <string>
+#include <vector>
+#include <utility>
+#include <map>
 
-
-
-class Produtos{
-public:
-//adicionar imagem em produto 
-    Produtos(std::string nome_produto, float valor, int quantidade, 
-             std::string descricao, std::string codigo_produto);
-
-    void alterar_quantidade(std::string codigo_produto, int x);
-    float alterar_valor(float valor_novo, std::string codigo_produto);
-    float desconto(float valor, float porcentagem);
-
-};
-
-
-// adicionar produtos ao usuario e alterar filhas
 class Usuario{
 public:
     Usuario(std::string login, std::string senha, std::string endereco,
