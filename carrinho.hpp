@@ -8,7 +8,6 @@
 
 class Carrinho_de_compra{
 public:
-
 void adicionar_item(std::string codigo, int quantidade, Estoque aux);
 void remover_item(std::string codigo, int quantidade);
 void exibir_carrinho();
