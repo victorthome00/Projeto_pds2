@@ -32,7 +32,7 @@ private:
 class Estoque{
 public:
     friend class Produto;
-    friend class Carrinho_de_compra;
+    friend class Carrinho_de_Compra;
     bool incluir_estoque(Produto produto);
     bool remover_produto(const std::string& codigo);
 protected:
