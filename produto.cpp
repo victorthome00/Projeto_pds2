@@ -34,20 +34,24 @@ int Produto::get_quantidade(){
 }
 
 Produto::Produto(std::string nome_produto, float valor, std::string descricao, std::string codigo_produto, int quantidade){
-        _nome_produto = nome_produto;
-        _valor = valor;
-        _descricao = descricao;
-        _codigo_produto = codigo_produto;
-        _quantidade = quantidade;
-    }
+    _nome_produto = nome_produto;
+    _valor = valor;
+    _descricao = descricao;
+    _codigo_produto = codigo_produto;
+    _quantidade = quantidade;
+}
 bool Estoque::incluir_estoque(Produto produto){
-    if(estoque_nome.empty()){
-        estoque_codigo.insert(it_codigo, std::pair<std::string, Produto>(produto._codigo_produto, produto));
-        estoque_nome.insert(it_nome,std::pair<std::string, Produto>(produto._nome_produto, produto));
-        estoque_quantidade.insert(it_quantidade,std::pair<int, Produto>(produto._quantidade,produto));
-        estoque_valor.insert(it_valor, std::pair<int, Produto>(produto._valor, produto));
-        return true;
+    // Verificar se o produto já existe no estoque pelo código
+    if (estoque_codigo.find(produto._codigo_produto) != estoque_codigo.end()) {
+        std::cout<<"Produto já existe"<<std::endl;
+        return false; // Produto já existe no estoque
     }
-
-    return false;
+    
+    // Adicionar o produto ao estoque
+    estoque_nome.insert(std::make_pair(produto._nome_produto, produto));
+    estoque_valor.insert(std::make_pair(produto._valor, produto));
+    estoque_codigo.insert(std::make_pair(produto._codigo_produto, produto));
+    estoque_quantidade.insert(std::make_pair(produto._quantidade, produto));
+    std::cout<<"Produto inserido com Sucesso"<<std::endl;
+    return true; // Produto incluído com sucesso no estoque
 }
