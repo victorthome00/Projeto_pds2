@@ -33,7 +33,14 @@ class Estoque{
 public:
     friend class Produto;
     bool incluir_estoque(Produto produto);
+    bool remover_produto(const std::string& codigo);
 protected:
+    class _comparaProduto{
+        public:
+        bool operator()(const Produto &p_a,const Produto &p_b){
+            return p_a._nome_produto<p_b._nome_produto;
+        }
+    };
     //map pq cada nome deve ser único e ordenado por nome
     std::map<std::string, Produto>estoque_nome;
     //multmap pq podem existir vários produtos com o mesmo preço
@@ -43,10 +50,6 @@ protected:
     //multimap pq podem existir vários intens com a mesma quantidade de unidades
     std::multimap<int, Produto>estoque_quantidade;
 
-    std::map<std::string, Produto>::iterator it_nome = estoque_nome.begin();
-    std::multimap<float, Produto>::iterator it_valor = estoque_valor.begin();
-    std::map<std::string, Produto>::iterator it_codigo = estoque_codigo.begin();
-    std::multimap<int, Produto>::iterator it_quantidade = estoque_quantidade.begin();
 };
 
 #endif
