@@ -33,6 +33,7 @@ class Estoque{
 public:
     friend class Produto;
     bool incluir_estoque(Produto produto);
+    bool remover_produto(const std::string& codigo);
 protected:
     class _comparaProduto{
         public:
