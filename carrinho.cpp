@@ -88,7 +88,7 @@ void Pagamento::pagar(){
 }
 
 
- bool Pagamento::eValido(int *cardNumber) {
+ bool Pagamento::eValido(int cardNumber[16]) {
     /*int cardNumber[16];
     std::cout << "Digite os números com um espaçamento entre eles:" << std::endl;
     for(int j=0; j!=16; j++){
