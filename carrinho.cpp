@@ -33,11 +33,23 @@ do{
 
 void Carrinho_de_compra::exibir_carrinho(){
 for (const auto& par : _sacola) {
-        Produto produto = par.first;
+        Produto produto = par.first;    
         int quantidade = par.second;
 
         std::cout << "Nome: " << produto.get_nome() << ", Preço: " << produto.get_valor() << ", Quantidade: " << quantidade << std::endl;
     }
+    std::cout << std::endl << std::endl;
+    std::cout << "                                            Preço total: " << calcular_valor() << std::endl;
+}
+
+float Carrinho_de_compra::calcular_valor(){
+float aux = 0;
+for(const auto& par : _sacola){
+    Produto atual = par.first;
+    int quantidade = par.second;
+    aux = aux + atual.get_valor()*quantidade;
+}
+    return aux;
 }
 
 void Pagamento::get_modo_pagamento(){

@@ -12,6 +12,7 @@ friend class Estoque;
 void adicionar_item(std::string codigo, int quantidade, Estoque aux);
 void remover_item(std::string codigo, int quantidade);
 void exibir_carrinho();
+float calcular_valor();
 private:
 std::vector <std::pair<Produto, int>> _sacola;
 };
