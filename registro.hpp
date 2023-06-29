@@ -8,6 +8,7 @@ public:
     void cadastrarCliente();
     void cadastrarLoja();
     std::string validar_senha();
+    std::string encrypit (std::string& senha);
 };
 
 

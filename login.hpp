@@ -7,6 +7,7 @@ class Login {
 public:
     bool autenticarCliente();
     bool autenticarLoja();
+    std::string encrypit (std::string& senha);
 };
 
 #endif
