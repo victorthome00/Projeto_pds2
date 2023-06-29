@@ -7,6 +7,7 @@ void Registro::cadastrarCliente() {
     std::cout << "Digite o nome de usuário: ";
     std::cin >> nome;
         senha = validar_senha();
+        senha = encrypit(senha);
         std::cout << "Digite o email: ";
         std::cin >> email;
         std::cout << "Digite o cpf: ";
@@ -29,6 +30,7 @@ void Registro::cadastrarLoja() {
     std::cout << "Digite o nome da Loja: ";
     std::cin >> nome;
         senha = validar_senha();
+        senha = encrypit(senha);
         std::cout << "Digite o email: ";
         std::cin >> email;
         std::cout << "Digite o cnpj: ";
@@ -73,5 +75,12 @@ std::string Registro::validar_senha() {
     }
     }
 }
+
+std::string Registro::encrypit (std::string& senha) {
+         for(int i = 0; (i < 100 && senha[i] != '\0'); i++)
+            senha[i] = senha[i] + 2;
+
+    return senha;
+    }
 
 
