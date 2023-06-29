@@ -4,6 +4,7 @@
 #include <vector>
 #include <ctime>
 #include <cctype> 
+#include <sstream>
 
 void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade, Estoque aux){
     Produto escolha = aux.estoque_codigo[codigo];
@@ -33,11 +34,23 @@ do{
 
 void Carrinho_de_compra::exibir_carrinho(){
 for (const auto& par : _sacola) {
-        Produto produto = par.first;
+        Produto produto = par.first;    
         int quantidade = par.second;
 
         std::cout << "Nome: " << produto.get_nome() << ", Preço: " << produto.get_valor() << ", Quantidade: " << quantidade << std::endl;
     }
+    std::cout << std::endl << std::endl;
+    std::cout << "                                            Preço total: " << calcular_valor() << std::endl;
+}
+
+float Carrinho_de_compra::calcular_valor(){
+float aux = 0;
+for(const auto& par : _sacola){
+    Produto atual = par.first;
+    int quantidade = par.second;
+    aux = aux + atual.get_valor()*quantidade;
+}
+    return aux;
 }
 
 void Pagamento::get_modo_pagamento(){
@@ -50,7 +63,7 @@ void Pagamento::get_modo_pagamento(){
         x = 1;
         _modo_pagamento = "Debito";
     }
-    else if(forma_pagamento == "Crédito" || forma_pagamento == "Credito" || forma_pagamento == "credito" || forma_pagamento == "débito"){
+    else if(forma_pagamento == "Crédito" || forma_pagamento == "Credito" || forma_pagamento == "credito" || forma_pagamento == "crédito"){
         x = 1;
         _modo_pagamento = "Credito";
     }
@@ -61,20 +74,28 @@ void Pagamento::get_modo_pagamento(){
     else{
         std::cout << "Erro! Digite um método de pagamento válido!" << std::endl;
      }
-     }while(x=0);
+     }while(x==0);
 }
 
 void Pagamento::pagar(){
      if(_modo_pagamento == "Credito" || _modo_pagamento == "Debito"){
-        int cardNumber[16];
+        //int cardNumber[16];
+        std::string numero;
         do{
-            std::cout << "Digite os números do seu cartão com um espaçamento entre eles: ";
-            for(int j=0; j!=16; j++){
-            std::cin >> cardNumber[j];}
-        }while(!Pagamento::eValido(cardNumber));
+            std::cout << "Digite os números do seu cartão: ";
+            //for(int j=0; j!=16; j++){
+            //std::cin >> cardNumber[j];}
+            std::getline(std::cin, numero);
+            if(Pagamento::verificar_cartao(numero) == 1){
+              std::cout << "Erro! Digite apenas números!" << std::endl;
+            }
+            else if(Pagamento::verificar_cartao(numero) == 2){
+              std::cout << "Erro! Digite todos os 16 números do cartão!" << std::endl;
+            }
+        }while(Pagamento::verificar_cartao(numero) != 0);
         std::cout << "Parabéns! Compra realizada com sucesso!" << std::endl;
     }
-    if(_modo_pagamento == "Pix"){
+     if(_modo_pagamento == "Pix"){
         std::cout << "O codigo de PIX é: " << gerar_codigo_PIX() << std::endl;
         char aux1;
         std::cout << "Digite 's' quando finalizar o pix. " << std::endl;
@@ -88,28 +109,28 @@ void Pagamento::pagar(){
 }
 
 
- bool Pagamento::eValido(int cardNumber[16]) {
+ //bool Pagamento::eValido(int cardNumber[16]) {
     /*int cardNumber[16];
     std::cout << "Digite os números com um espaçamento entre eles:" << std::endl;
     for(int j=0; j!=16; j++){
         std::cin >> cardNumber[j];
     }*/
-    int length = 16;
-    int sum = 0;
-    int parity = length % 2;
-    for (int i = 0; i < length; i++) {
-        if (i % 2 != parity) {
-            sum += cardNumber[i];
-        } else {
-            if (cardNumber[i] > 4) {
-                sum += 2 * cardNumber[i] - 9;
-            } else {
-                sum += 2 * cardNumber[i];
-            }
-        }
-    }
-    return (sum % 10) == 0;
-}
+    //int length = 16;
+    //int sum = 0;
+    //int parity = length % 2;
+    //for (int i = 0; i < length; i++) {
+        //if (i % 2 != parity) {
+            //sum += cardNumber[i];
+        //} else {
+            //if (cardNumber[i] > 4) {
+                //sum += 2 * cardNumber[i] - 9;
+            //} else {
+                //sum += 2 * cardNumber[i];
+            //}
+        //}
+    //}
+    //return (sum % 10) == 0;
+//}
 
 std::string Pagamento::gerar_codigo_PIX(){
     int x = rand() % 10 + 1;
@@ -148,4 +169,23 @@ std::string Pagamento::gerar_codigo_PIX(){
           return "ABC4457Mr007";
           break;
     }
+}
+int Pagamento::verificar_cartao(std::string numeroCartao){
+  std::stringstream x;
+  for(char c : numeroCartao){
+    if(c != ' '){
+      x << c;
+    }
+  }
+  numeroCartao = x.str();
+  for(char c : numeroCartao){
+    if(!std::isdigit(c)){
+      return 1;
+    }
+  }
+  int tamanho = numeroCartao.length();
+  if(tamanho != 16){
+    return 2;
+  }
+  return 0;
 }
