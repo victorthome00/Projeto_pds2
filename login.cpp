@@ -8,8 +8,9 @@ bool Login::autenticarCliente() {
     std::cin >> nome;
     std::cout << "Digite a senha: ";
     std::cin >> senha;
+    senha = encrypit(senha);
 
-    std::ifstream arquivo("usuariosClientes.txt");
+    std::ifstream arquivo("usuariosClientes.txt", std::ios::binary | std::ios::in);
      if (arquivo.is_open()) {
         std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo, cepArquivo;
         while (arquivo >> nomeArquivo >> senhaArquivo >> emailArquivo >> cpfArquivo >> cepArquivo) {
@@ -32,6 +33,7 @@ bool Login::autenticarLoja() {
     std::cin >> nome;
     std::cout << "Digite a senha: ";
     std::cin >> senha;
+    senha = encrypit(senha);
 
     std::ifstream arquivo("usuariosLoja.txt");
     if (arquivo.is_open()) {
@@ -47,3 +49,9 @@ bool Login::autenticarLoja() {
 
     return false;
 }
+
+std::string Login::encrypit (std::string& senha) {
+         for(int i = 0; (i < 100 && senha[i] != '\0'); i++)
+            senha[i] = senha[i] + 2; //the key for encryption is 3 that is added to ASCII value
+    return senha;
+    }
