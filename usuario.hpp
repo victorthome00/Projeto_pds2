@@ -25,7 +25,6 @@ protected:
     std::string nome_usuario() const;
 };
 
-
 class Cliente : public Usuario{
 public:
     friend class Carrinho;
@@ -43,7 +42,6 @@ private:
     std::string endereco() const;
 };
 
-
 class Loja : public Usuario{
 public:
     friend class Estoque;
@@ -60,5 +58,35 @@ private:
     std::string senha() const;
     std::string endereco() const;
 };
+
+struct TreeNode {
+  int value;
+  TreeNode* left;
+  TreeNode* right;
+};
+
+struct TreeType {
+  TreeNode* root;
+
+  void insert(TreeNode* tree, int item);
+
+  void insertItem(int value) {
+    insert(root, value);
+  }
+};
+
+void TreeType::insert(TreeNode* tree, int number) {
+  if (tree == NULL) {
+    tree = new TreeNode;
+    tree->left = NULL;
+    tree->right = NULL;
+    tree->value = number;
+    cout << "DONE";
+  } else if (number < tree->value) {
+    insert(tree->left, number);
+  } else {
+    insert(tree->right, number);
+  }
+}
 
 #endif
