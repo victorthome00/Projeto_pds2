@@ -15,7 +15,7 @@ public:
     void trocar_senha(std::string nova_senha);
     void trocar_end(std::string novo_end);
     void trocar_nome(std::string novo_nome);
-    virtual void gerador_codigo() = 0;
+    virtual std::string gerador_codigo() = 0;
     virtual ~Usuario();
 
 protected:
@@ -34,7 +34,7 @@ public:
     void trocar_senha(std::string nova_senha);
     void trocar_end(std::string novo_end);
     void trocar_nome(std::string novo_nome);
-    void gerador_codigo();
+    std::string gerador_codigo();
 
 private:
     std::string login() const;
@@ -52,7 +52,7 @@ public:
     void trocar_senha(std::string nova_senha);
     void trocar_end(std::string novo_end);
     void trocar_nome(std::string novo_nome);
-    void gerador_cogido();
+    vstd::string gerador_cogido();
 
 private:
     std::string login() const;
