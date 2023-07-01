@@ -10,12 +10,13 @@ bool Login::autenticarCliente() {
     std::cin >> senha;
     senha = encrypit(senha);
 
-    std::ifstream arquivo("usuariosClientes.txt", std::ios::binary | std::ios::in);
+    std::ifstream arquivo("usuariosCliente.txt", std::ios::binary | std::ios::in);
      if (arquivo.is_open()) {
         std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo, cepArquivo;
         while (arquivo >> nomeArquivo >> senhaArquivo >> emailArquivo >> cpfArquivo >> cepArquivo) {
             if (nome == nomeArquivo && senha == senhaArquivo) {
                 arquivo.close();
+                std::cout << "Login do cliente realizado com sucesso!" << std::endl;
                 return true;
                 }
         
@@ -23,7 +24,7 @@ bool Login::autenticarCliente() {
         }
         arquivo.close();
     
-
+    std::cout << "Falha na realização do login da loja!" << std::endl;
     return false;
 }
 
@@ -35,18 +36,19 @@ bool Login::autenticarLoja() {
     std::cin >> senha;
     senha = encrypit(senha);
 
-    std::ifstream arquivo("usuariosLoja.txt");
+    std::ifstream arquivo("usuariosLojas.txt");
     if (arquivo.is_open()) {
         std::string nomeArquivo, senhaArquivo, emailArquivo, cnpjArquivo, cepArquivo;
         while (arquivo >> nomeArquivo >> senhaArquivo >> emailArquivo >> cnpjArquivo >> cepArquivo) {
             if (nome == nomeArquivo && senha == senhaArquivo) {
                 arquivo.close();
+                std::cout << "Login da loja realizado com sucesso!" << std::endl;
                 return true;
             }
         }
         arquivo.close();
     }
-
+    std::cout << "Falha na realização do login do cliente!" << std::endl;
     return false;
 }
 
