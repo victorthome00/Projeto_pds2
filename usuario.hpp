@@ -58,4 +58,8 @@ private:
     std::string endereco() const;
 };
 
+void usuario_main(){
+    
+}
+
 #endif

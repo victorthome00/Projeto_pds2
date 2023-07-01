@@ -10,6 +10,7 @@ bool Login::autenticarCliente() {
     std::cin >> senha;
     senha = encrypit(senha);
 
+
     std::ifstream arquivo("usuariosCliente.txt", std::ios::binary | std::ios::in);
      if (arquivo.is_open()) {
         std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo, cepArquivo;
@@ -21,10 +22,12 @@ bool Login::autenticarCliente() {
                 }
         
             }
-        }
-        arquivo.close();
-    
+   }
+
+    arquivo.close();
     std::cout << "Falha na realização do login da loja!" << std::endl;
+
+
     return false;
 }
 
@@ -53,7 +56,7 @@ bool Login::autenticarLoja() {
 }
 
 std::string Login::encrypit (std::string& senha) {
-         for(int i = 0; (i < 100 && senha[i] != '\0'); i++)
-            senha[i] = senha[i] + 2; //the key for encryption is 3 that is added to ASCII value
+    for(int i = 0; (i < 100 && senha[i] != '\0'); i++)
+    senha[i] = senha[i] + 2; //the key for encryption is 3 that is added to ASCII value
     return senha;
-    }
+}
