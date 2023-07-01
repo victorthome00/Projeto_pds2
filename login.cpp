@@ -24,7 +24,7 @@ bool Login::autenticarCliente() {
         }
         arquivo.close();
     
-    std::cout << "Falha na realização do login da loja!" << std::endl;
+    std::cout << "Falha na realização do login do cliente!" << std::endl;
     return false;
 }
 
