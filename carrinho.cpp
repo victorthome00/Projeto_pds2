@@ -5,6 +5,9 @@
 #include <ctime>
 #include <cctype> 
 #include <sstream>
+#include <chrono>
+#include <thread>
+
 
 void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade, Estoque aux){
     Produto escolha = aux.estoque_codigo[codigo];
@@ -22,6 +25,9 @@ void Carrinho_de_compra::remover_item(std::string codigo, int quantidade){
 do{
   if(_sacola[i].first.get_codigo() == codigo){
     _sacola[i].second = _sacola[i].second - quantidade;
+    if(sacola[i].second == 0){
+      vector.erase(sacola[i]);
+    }
     i = -1;
   }  
     else{
@@ -188,4 +194,39 @@ int Pagamento::verificar_cartao(std::string numeroCartao){
     return 2;
   }
   return 0;
+}
+
+void Entrega::coletar_endereco(){
+  int i = 0, j = 0;
+  do{
+    std::cout << "Digite o seu cep: " << std::endl;
+    std::getline(std::cin, _cep);
+    for(char c : _cep){
+      j++;
+      if(std::isdigit(c)){
+        i = -1;
+        _cep = nullptr;
+        std::cout << "Cep invalido! " << std::endl;
+      }
+    }
+    if(j != 8){
+      std::cout << "Cep invalido! " << std::endl;
+      i = -1;
+      j = 0;
+    }
+  }while(i = -1);
+
+}
+
+void Entrega::entregar(){
+  std::cout << "Preparando o seu pedido!" << std::endl;
+    std::chrono::seconds duracao(3);
+    std::this_thread::sleep_for(duracao);
+    std::cout << "Pedido a caminho!" << std::endl;
+    std::this_thread::sleep_for(duracao);
+    std::cout << "Pedido entregue no cep " << _cep << std::endl;
+}
+
+void Entrega::set_cep(std::string cep){
+    _cep = cep;
 }
