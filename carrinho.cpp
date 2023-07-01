@@ -46,7 +46,7 @@ for (const auto& par : _sacola) {
         std::cout << "Nome: " << produto.get_nome() << ", Preço: " << produto.get_valor() << ", Quantidade: " << quantidade << std::endl;
     }
     std::cout << std::endl << std::endl;
-    std::cout << "                                            Preço total: " << calcular_valor() << std::endl;
+    std::cout << "Preço total: " << calcular_valor() << std::endl;
 }
 
 float Carrinho_de_compra::calcular_valor(){
@@ -60,12 +60,14 @@ for(const auto& par : _sacola){
 }
 
 void Pagamento::get_modo_pagamento(){
-    std::cout << "Escreva seu modo de pagamento(Débito, Crédito ou PIX):" << std::endl;
+    
     std::string forma_pagamento;
     ;
     int x = 0;
     std::getline (std::cin, forma_pagamento);
-    do{if(forma_pagamento == "Débito" || forma_pagamento == "Debito" || forma_pagamento == "debito" || forma_pagamento == "débito"){
+    do{
+      std::cout << "Escreva seu modo de pagamento(Débito, Crédito ou PIX):" << std::endl;
+      if(forma_pagamento == "Débito" || forma_pagamento == "Debito" || forma_pagamento == "debito" || forma_pagamento == "débito"){
         x = 1;
         _modo_pagamento = "Debito";
     }
@@ -104,8 +106,8 @@ void Pagamento::pagar(){
      if(_modo_pagamento == "Pix"){
         std::cout << "O codigo de PIX é: " << gerar_codigo_PIX() << std::endl;
         char aux1;
-        std::cout << "Digite 's' quando finalizar o pix. " << std::endl;
         do{ 
+        std::cout << "Digite 's' quando finalizar o pix. " << std::endl;
         std::cin >> aux1;
         std::cin.ignore();
         }while(aux1!= 's');
