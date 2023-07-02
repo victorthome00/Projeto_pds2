@@ -38,7 +38,7 @@ public:
     bool exibir_estoque_nome();
     bool exibir_estoque_valor();
     bool exibir_estoque_codigo();
-    bool exibir_estoque_qunatidade();
+    bool exibir_estoque_quantidade();
     bool exibir_produto_nome(std::string nome);
     bool exibir_produto_codigo(std::string codigo);
 protected:

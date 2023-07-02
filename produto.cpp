@@ -134,7 +134,7 @@ bool Estoque::exibir_estoque_codigo() {
     return true;
 }
 
-bool Estoque::exibir_estoque_qunatidade() {
+bool Estoque::exibir_estoque_quantidade() {
     if (estoque_quantidade.empty()) {
         std::cout << "Estoque vazio." << std::endl;
         return false;
