@@ -41,7 +41,6 @@
 */
 
 
-
 int main(){
     std::string comando;
     std::cout<<"Digite 'encerrar' a qualquer momento para encerrar a sessão"<<est::endl;
