@@ -5,6 +5,9 @@
 #include <ctime>
 #include <cctype> 
 #include <sstream>
+#include <chrono>
+#include <thread>
+
 
 void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade, Estoque aux){
     Produto escolha = aux.estoque_codigo[codigo];
@@ -22,6 +25,9 @@ void Carrinho_de_compra::remover_item(std::string codigo, int quantidade){
 do{
   if(_sacola[i].first.get_codigo() == codigo){
     _sacola[i].second = _sacola[i].second - quantidade;
+    if(sacola[i].second == 0){
+      vector.erase(sacola[i]);
+    }
     i = -1;
   }  
     else{
@@ -40,7 +46,7 @@ for (const auto& par : _sacola) {
         std::cout << "Nome: " << produto.get_nome() << ", Preço: " << produto.get_valor() << ", Quantidade: " << quantidade << std::endl;
     }
     std::cout << std::endl << std::endl;
-    std::cout << "                                            Preço total: " << calcular_valor() << std::endl;
+    std::cout << "Preço total: " << calcular_valor() << std::endl;
 }
 
 float Carrinho_de_compra::calcular_valor(){
@@ -54,12 +60,14 @@ for(const auto& par : _sacola){
 }
 
 void Pagamento::get_modo_pagamento(){
-    std::cout << "Escreva seu modo de pagamento(Débito, Crédito ou PIX):" << std::endl;
+    
     std::string forma_pagamento;
     ;
     int x = 0;
     std::getline (std::cin, forma_pagamento);
-    do{if(forma_pagamento == "Débito" || forma_pagamento == "Debito" || forma_pagamento == "debito" || forma_pagamento == "débito"){
+    do{
+      std::cout << "Escreva seu modo de pagamento(Débito, Crédito ou PIX):" << std::endl;
+      if(forma_pagamento == "Débito" || forma_pagamento == "Debito" || forma_pagamento == "debito" || forma_pagamento == "débito"){
         x = 1;
         _modo_pagamento = "Debito";
     }
@@ -98,8 +106,8 @@ void Pagamento::pagar(){
      if(_modo_pagamento == "Pix"){
         std::cout << "O codigo de PIX é: " << gerar_codigo_PIX() << std::endl;
         char aux1;
-        std::cout << "Digite 's' quando finalizar o pix. " << std::endl;
         do{ 
+        std::cout << "Digite 's' quando finalizar o pix. " << std::endl;
         std::cin >> aux1;
         std::cin.ignore();
         }while(aux1!= 's');
@@ -188,4 +196,39 @@ int Pagamento::verificar_cartao(std::string numeroCartao){
     return 2;
   }
   return 0;
+}
+
+void Entrega::coletar_endereco(){
+  int i = 0, j = 0;
+  do{
+    std::cout << "Digite o seu cep: " << std::endl;
+    std::getline(std::cin, _cep);
+    for(char c : _cep){
+      j++;
+      if(std::isdigit(c)){
+        i = -1;
+        _cep = nullptr;
+        std::cout << "Cep invalido! " << std::endl;
+      }
+    }
+    if(j != 8){
+      std::cout << "Cep invalido! " << std::endl;
+      i = -1;
+      j = 0;
+    }
+  }while(i = -1);
+
+}
+
+void Entrega::entregar(){
+  std::cout << "Preparando o seu pedido!" << std::endl;
+    std::chrono::seconds duracao(3);
+    std::this_thread::sleep_for(duracao);
+    std::cout << "Pedido a caminho!" << std::endl;
+    std::this_thread::sleep_for(duracao);
+    std::cout << "Pedido entregue no cep " << _cep << std::endl;
+}
+
+void Entrega::set_cep(std::string cep){
+    _cep = cep;
 }

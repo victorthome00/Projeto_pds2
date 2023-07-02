@@ -35,4 +35,13 @@ class Pagamento{
         int verificar_cartao(std::string numeroCartao);
 };
 
+class Entrega{
+  public:
+      void coletar_endereco();
+      void entregar();
+      void set_cep(std::string cep);
+  private: 
+      std::string _cep;
+
+};
 #endif
