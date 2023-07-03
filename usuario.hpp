@@ -34,7 +34,8 @@ private:
     std::string endereco() const;
 };
 
-void cliente_main(){}
-void loja_main(){}
+void cliente_main();
+
+void loja_main();
 
 #endif

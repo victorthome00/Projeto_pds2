@@ -45,7 +45,7 @@ int main(){
     std::string comando;
     std::cout<<"Digite 'encerrar' a qualquer momento para encerrar a sessão"<<est::endl;
     do{
-        std::cout<<"Digite 1 para cliente"<<"\n"<<"Digite 2 para Gerente"<<std::endl;
+        std::cout<<"Digite 1 para cliente"<<"\n"<<"Digite 2 para Lojista"<<std::endl;
         std::cin>>comando;
         std::cout<<'\n'<<std::endl;
         if(comando == "1"){
