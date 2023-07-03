@@ -1,20 +1,19 @@
 #include "usuario.hpp"
 #include <fstream>
 
-
 void cliente_main(){
     std::string comando_secundario;
-    while(comando_secundario != ("Sair" || "sair")){
+    while(comando_secundario != "Sair" || comando_secundario != "sair"){
         std::cout << "1: Produtos \n2: Usuário \n3: Carrinho \n4: Compras" << std::endl;
         std::cout << "Digite o número referente ao que gostaria de prosseguir" << std::endl;
         std::cin >> comando_secundario;
         std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
         switch(comando_secundario){
-            case "1":
+            case 1:
             //adicionar arquivo dos produtos
                 std::ifstream arquivo();
                 break;
-            case "2":
+            case 2:
                 std::ifstream arquivo("usuariosCliente.txt", std::ios::binary | std::ios::in);
                 if (arquivo.is_open())
                 {
@@ -33,10 +32,10 @@ void cliente_main(){
                     }   
                 }
                 break;
-            case "3":
+            case 3:
             //adicionar arquivo do carrinho    
                 break;
-            case "4":
+            case 4:
             //adicionar historico de compras
                 break;
             default:
