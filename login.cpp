@@ -9,25 +9,19 @@ bool Login::autenticarCliente() {
     std::cout << "Digite a senha: ";
     std::cin >> senha;
     senha = encrypit(senha);
-
-
     std::ifstream arquivo("usuariosCliente.txt", std::ios::binary | std::ios::in);
-     if (arquivo.is_open()) {
+    if (arquivo.is_open()) {
         std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo, cepArquivo;
         while (arquivo >> nomeArquivo >> senhaArquivo >> emailArquivo >> cpfArquivo >> cepArquivo) {
             if (nome == nomeArquivo && senha == senhaArquivo) {
                 arquivo.close();
                 std::cout << "Login do cliente realizado com sucesso!" << std::endl;
                 return true;
-                }
-        
             }
-   }
-
+        }
+    }
     arquivo.close();
     std::cout << "Falha na realização do login do cliente!" << std::endl;
-
-
     return false;
 }
 

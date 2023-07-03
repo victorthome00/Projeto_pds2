@@ -26,22 +26,22 @@ void Registro::cadastrarCliente() {
 
 void Registro::cadastrarLoja() {
     std::string nome, senha, email, cnpj;
-        nome = validar_loja();
-        senha = validar_senha();
-        senha = encrypit(senha);
-        std::cout << "Digite o email: ";
-        std::cin >> email;
-        cnpj = validar_cnpj();
-    
-          std::ofstream arquivo("usuariosLoja.txt", std::ios::app);
-          if (arquivo.is_open()) {
-             arquivo << nome << " " << senha << " " << email << " " << cnpj << std::endl;
-             arquivo.close();
-             std::cout << "Usuário cadastrado com sucesso!" << std::endl;
-     }    else {
-             std::cout << "Erro ao abrir o arquivo." << std::endl;
+    nome = validar_loja();
+    senha = validar_senha();
+    senha = encrypit(senha);
+    std::cout << "Digite o email: ";
+    std::cin >> email;
+    cnpj = validar_cnpj();
+
+    std::ofstream arquivo("usuariosLoja.txt", std::ios::app);
+    if (arquivo.is_open()) {
+        arquivo << nome << " " << senha << " " << email << " " << cnpj << std::endl;
+        arquivo.close();
+        std::cout << "Usuário cadastrado com sucesso!" << std::endl;
+    }    
+    else {
+        std::cout << "Erro ao abrir o arquivo." << std::endl;
     }
-    
 }
 
 
@@ -73,9 +73,9 @@ std::string Registro::validar_senha() {
 
 
 std::string Registro::encrypit (std::string& senha) {
-         for(int i = 0; (i < 100 && senha[i] != '\0'); i++)
-            senha[i] = senha[i] + 2;
-
+    for(int i = 0; (i < 100 && senha[i] != '\0'); i++){
+        senha[i] = senha[i] + 2;
+    }
     return senha;
 }
 
@@ -188,6 +188,5 @@ std::string Registro::validar_loja() {
         }
         std::cout << "Usuário já existe" << std::endl;
         arquivo.close();
-        }
-
     }
+}

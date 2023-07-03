@@ -1,70 +1,68 @@
-#include "registro.hpp"
-#include "login.hpp"
+#include "carrinho.cpp"
+#include "login.cpp"
+#include "produto.cpp"
+#include "registro.cpp"
+#include "usuario.cpp"
 #include <iostream>
 
-/*int main() {
-    Registro registro;
-    Login login;
-
-    int opcao;
-    std::cout << "1 - Cadastrar Cliente" << std::endl;
-    std::cout << "2 - Cadastrar Loja" << std::endl;
-    std::cout << "3 - Fazer login do Cliente" << std::endl;
-    std::cout << "4 - Fazer login da Loja" << std::endl;
-    std::cout << "Escolha uma opção: "<<std::endl;
-    std::cin >> opcao;
-
-    if (opcao == 1) {
-        registro.cadastrarCliente();
-    } else if(opcao == 2) {
-        registro.cadastrarLoja();
-    }
-    else if (opcao == 3) {
-        if (login.autenticarCliente()) {
-            std::cout << "Login realizado com sucesso!" << std::endl;
-        } else {
-            std::cout << "Falha na autenticação." << std::endl;
+std::string trata_string(std::string &str){
+    for (char c : str) {
+        if (!std::isalpha(c)) {
+            return str;
         }
+        c = std::tolower(c);
     }
-    else if (opcao == 4) {
-        if (login.autenticarLoja()) {
-            std::cout << "Login realizado com sucesso!" << std::endl;
-        } else {
-            std::cout << "Falha na autenticação." << std::endl;
-        }
-    } else {
-        std::cout << "Opção inválida." << std::endl;
-    }
-
-    return 0;
+    return str;
 }
-*/
-
 
 int main(){
-    std::string comando;
-    std::cout<<"Digite 'encerrar' a qualquer momento para encerrar a sessão"<<est::endl;
+    std::string comando,comando_auxiliar;
+    std::cout<<"Digite 'encerrar' a qualquer momento para encerrar a sessão"<<std::endl;
     do{
-        std::cout<<"Digite 1 para cliente"<<"\n"<<"Digite 2 para Gerente"<<std::endl;
+
+        std::cout<<"Digite 'cliente' caso deseje entrar como cliente"<<"\n"<<"Digite 'gerente' para gerenciar seus produtos disponiveis"<<std::endl;
+=======
+        std::cout<<"Digite 1 para cliente"<<"\n"<<"Digite 2 para Lojista"<<std::endl;
+
         std::cin>>comando;
         std::cout<<'\n'<<std::endl;
-        if(comando == "1"){
-            //fazer login
-            Login::autenticarCliente();
-            //fazer cadastro
+        comando = trata_string(comando); // apenas para padronizar eventuais desvios de letras maiúsculas ou minúsculas
+        if(comando == "cliente"){
+            std::cout<<"já possui cadastro?"<<std::endl;
+            std::cin>>comando_auxiliar;
+            comando_auxiliar = trata_string(comando_auxiliar);
+            if (comando_auxiliar == "sim" || comando_auxiliar == "s"){
+                Login log;
+                do{
+                    log.autenticarCliente();
+                } while (!log.autenticarCliente());
+                
+            }
+            if(comando_auxiliar == "não" || comando_auxiliar == "n" || comando_auxiliar == "nao"){
+                Registro novo_cliente;
+                novo_cliente.cadastrarCliente();
+            }
             //chamar página cliente
         }
-        if(comando == "2"){
-            //fazer login
-            Login::autenticarLoja();
-            //fazer cadastro
+        if(comando == "gerente"){
+            std::cout<<"já possui cadastro?"<<std::endl;
+            std::cin>>comando_auxiliar;
+            comando_auxiliar = trata_string(comando_auxiliar);
+            if (comando_auxiliar == "sim" || comando_auxiliar == "s"){
+                Login log;
+                do{
+                    log.autenticarLoja();
+                } while (!log.autenticarLoja());
+                
+            }
+            if(comando_auxiliar == "não" || comando_auxiliar == "n" || comando_auxiliar == "nao"){
+                Registro novo_cliente;
+                novo_cliente.cadastrarLoja();
+            }
             //chamar página loja
         }
         else{
             std::cout<<"ERRO\ncomando não reconhecido"<<std::endl;
         }
     } while (comando != "encerrar");
-    
-
 }
-
