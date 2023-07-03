@@ -2,22 +2,20 @@
 #include <iostream>
 #include <fstream>
 
+
+
 void Registro::cadastrarCliente() {
-    std::string nome, senha, email, cpf, cep;;
-    std::cout << "Digite o nome de usuário: ";
-    std::cin >> nome;
+    std::string nome, senha, email, cpf;
+        nome = validar_usuario();
         senha = validar_senha();
         senha = encrypit(senha);
         std::cout << "Digite o email: ";
         std::cin >> email;
-        std::cout << "Digite o cpf: ";
-        std::cin >> cpf;
-        std::cout << "Digite o cep: ";
-        std::cin >> cep;
+        cpf = validar_cpf();
 
     std::ofstream arquivo("usuariosClientes.txt", std::ios::app);
     if (arquivo.is_open()) {
-        arquivo << nome << " " << senha << " " << email << " " << cpf << " " << cep << std::endl;
+        arquivo << nome << " " << senha << " " << email << " " << cpf << std::endl;
         arquivo.close();
         std::cout << "Usuário cadastrado com sucesso!" << std::endl;
     } else {
@@ -25,34 +23,32 @@ void Registro::cadastrarCliente() {
     }
 }
 
+
 void Registro::cadastrarLoja() {
-    std::string nome, senha, email, cep, cnpj;
-    std::cout << "Digite o nome da Loja: ";
-    std::cin >> nome;
+    std::string nome, senha, email, cnpj;
+        nome = validar_loja();
         senha = validar_senha();
         senha = encrypit(senha);
         std::cout << "Digite o email: ";
         std::cin >> email;
-        std::cout << "Digite o cnpj: ";
-        std::cin >> cnpj;
-        std::cout << "Digite o cep: ";
-        std::cin >> cep;
+        cnpj = validar_cnpj();
     
           std::ofstream arquivo("usuariosLoja.txt", std::ios::app);
           if (arquivo.is_open()) {
-             arquivo << nome << " " << senha << " " << email << " " << cnpj << " " << cep << std::endl;
+             arquivo << nome << " " << senha << " " << email << " " << cnpj << std::endl;
              arquivo.close();
              std::cout << "Usuário cadastrado com sucesso!" << std::endl;
      }    else {
              std::cout << "Erro ao abrir o arquivo." << std::endl;
     }
-    }
+    
+}
 
 
 std::string Registro::validar_senha() {
     std::string senha;
     int contnumber;
-    std::cout << "Digite Senha: ";
+    std::cout << "Digite uma senha válida: ";
 
     while (true) {
      std::cin >> senha;
@@ -64,7 +60,6 @@ std::string Registro::validar_senha() {
         if (contnumber >= 2) {
             for (char c : senha){
                  if (isupper(c)) {
-                  std::cout << "Senha Validada" << std::endl;
                   return senha;
                   break;
                 }
@@ -76,11 +71,123 @@ std::string Registro::validar_senha() {
     }
 }
 
+
 std::string Registro::encrypit (std::string& senha) {
          for(int i = 0; (i < 100 && senha[i] != '\0'); i++)
             senha[i] = senha[i] + 2;
 
     return senha;
+}
+
+
+std::string Registro::validar_cpf(){
+  int i, j;
+  std::string cpf;
+
+  while (true) {
+    i = 0;
+    j = 0;
+    std::cout << "Digite um CPF válido: ";
+    std::cin >> cpf;
+
+    for(char c : cpf){
+        i++;
+
+        if(std::isdigit(c)){
+         j++;
+        }
     }
 
+    if (i == 11 && j == i) {
+        
+        return cpf;
+        break;
+    }
+    std::cout << "CPF inválido, necessário ter 11 dígitos" << std::endl;
+}
 
+}
+
+
+std::string Registro::validar_cnpj(){
+  int i, j;
+  std::string cnpj;
+
+  while (true) {
+    i = 0;
+    j = 0;
+    std::cout << "Digite um CNPJ válido: ";
+    std::cin >> cnpj;
+
+    for(char c : cnpj){
+        i++;
+
+        if(std::isdigit(c)){
+         j++;
+        }
+    }
+
+    if (i == 14 && j == i) {
+        
+        return cnpj;
+        break;
+    }
+    std::cout << "CPF inválido, necessário ter 14 dígitos" << std::endl;
+}
+}
+
+std::string Registro::validar_usuario() {
+    std::string nome;
+    int cont;
+
+    while (true){
+        std::ifstream arquivo("usuariosClientes.txt", std::ios::in);
+        cont = 0;
+        std::cout << "Digite um usuário: ";
+        std::cin >> nome;
+        if (arquivo.is_open()) {
+        std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo;
+        while (arquivo >> nomeArquivo >> senhaArquivo >> emailArquivo >> cpfArquivo) {
+            if (nome == nomeArquivo) {
+                ++cont;
+            }
+        }
+        }
+        if (cont == 0) {
+            arquivo.close();
+            return nome;
+            break;
+        }
+        std::cout << "Usuário já existe" << std::endl;
+        arquivo.close();
+        }
+
+    }
+
+std::string Registro::validar_loja() {
+    std::string nome;
+    int cont;
+
+    while (true){
+        std::ifstream arquivo("usuariosLoja.txt", std::ios::in);
+        cont = 0;
+        std::cout << "Digite um usuário: ";
+        std::cin >> nome;
+        if (arquivo.is_open()) {
+        std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo;
+        while (arquivo >> nomeArquivo >> senhaArquivo >> emailArquivo >> cpfArquivo) {
+            if (nome == nomeArquivo) {
+                ++cont;
+            }
+        }
+        }
+        if (cont == 0) {
+            arquivo.close();
+            return nome;
+            break;
+        }
+        std::cout << "Usuário já existe" << std::endl;
+        arquivo.close();
+        }
+
+    }

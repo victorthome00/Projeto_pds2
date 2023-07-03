@@ -199,6 +199,46 @@ int Pagamento::verificar_cartao(std::string numeroCartao){
 }
 
 void Entrega::coletar_endereco(){
+  int i, j;
+  std::string cep;
+
+  while (true) {
+    i = 0;
+    j = 0;
+    std::cout << "Digite um CEP válido: ";
+    std::cin >> cep;
+
+    for(char c : cep){
+        i++;
+
+        if(std::isdigit(c)){
+         j++;
+        }
+    }
+
+    if (i == 8 && j == i) {
+        
+       // return 0;
+        break;
+    }
+    std::cout << "CEP inválido, necessário ter 8 dígitos" << std::endl;
+ }
+}
+
+void Entrega::entregar(){
+  std::cout << "Preparando o seu pedido!" << std::endl;
+    std::chrono::seconds duracao(3);
+    std::this_thread::sleep_for(duracao);
+    std::cout << "Pedido a caminho!" << std::endl;
+    std::this_thread::sleep_for(duracao);
+    std::cout << "Pedido entregue no cep " << _cep << std::endl;
+}
+
+void Entrega::set_cep(std::string cep){
+    _cep = cep;
+}
+
+/*void Entrega::coletar_endereco(){
   int i = 0, j = 0;
   do{
     std::cout << "Digite o seu cep: " << std::endl;
@@ -218,17 +258,4 @@ void Entrega::coletar_endereco(){
     }
   }while(i = -1);
 
-}
-
-void Entrega::entregar(){
-  std::cout << "Preparando o seu pedido!" << std::endl;
-    std::chrono::seconds duracao(3);
-    std::this_thread::sleep_for(duracao);
-    std::cout << "Pedido a caminho!" << std::endl;
-    std::this_thread::sleep_for(duracao);
-    std::cout << "Pedido entregue no cep " << _cep << std::endl;
-}
-
-void Entrega::set_cep(std::string cep){
-    _cep = cep;
-}
+}*/
