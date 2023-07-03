@@ -19,7 +19,11 @@ int main(){
     std::string comando,comando_auxiliar;
     std::cout<<"Digite 'encerrar' a qualquer momento para encerrar a sessão"<<std::endl;
     do{
+
         std::cout<<"Digite 'cliente' caso deseje entrar como cliente"<<"\n"<<"Digite 'gerente' para gerenciar seus produtos disponiveis"<<std::endl;
+=======
+        std::cout<<"Digite 1 para cliente"<<"\n"<<"Digite 2 para Lojista"<<std::endl;
+
         std::cin>>comando;
         std::cout<<'\n'<<std::endl;
         comando = trata_string(comando); // apenas para padronizar eventuais desvios de letras maiúsculas ou minúsculas
