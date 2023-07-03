@@ -85,6 +85,32 @@ void Pagamento::get_modo_pagamento(){
 }
 //seleciona o metodo escolhido
 void Pagamento::pagar(){
+  if(_modo_pagamento == "Credito" || _modo_pagamento == "Debito"){
+    //int cardNumber[16];
+    std::string numero;
+    do{
+      std::cout << "Digite os números do seu cartão: ";
+      //for(int j=0; j!=16; j++){
+      //std::cin >> cardNumber[j];}
+      std::getline(std::cin, numero);
+      if(Pagamento::verificar_cartao(numero) == 1){
+        std::cout << "Erro! Digite apenas números!" << std::endl;
+      }
+      else if(Pagamento::verificar_cartao(numero) == 2){
+        std::cout << "Erro! Digite todos os 16 números do cartão!" << std::endl;
+      }
+    }while(Pagamento::verificar_cartao(numero) != 0);
+    std::cout << "Parabéns! Compra realizada com sucesso!" << std::endl;
+  }
+  if(_modo_pagamento == "Pix"){
+    std::cout << "O codigo de PIX é: " << gerar_codigo_PIX() << std::endl;
+    char aux1;
+    do{ 
+    std::cout << "Digite 's' quando finalizar o pix. " << std::endl;
+    std::cin >> aux1;
+    std::cin.ignore();
+    }while(aux1!= 's');
+=======
      if(_modo_pagamento == "Credito" || _modo_pagamento == "Debito"){
         std::string numero;
         do{
@@ -108,48 +134,48 @@ void Pagamento::pagar(){
         std::cin.ignore();
         }while(aux1!= 's');
 
-        std::cout << "Parabéns! Compra realizada com sucesso" << std::endl;
- }
+    std::cout << "Parabéns! Compra realizada com sucesso" << std::endl;
+  }
 }
 //principal metodo da classe
 
 std::string Pagamento::gerar_codigo_PIX(){
-    int x = rand() % 10 + 1;
-    switch(x){
-        case 1:
-          return "123A#&906YL0";
-          break;
-        case 2:
-          return "432Ua$876Op%";
-          break;
-        case 3:
-          return "@#456dE&90YY";
-          break;
-        case 4:
-          return "087LPa5&@k99";
-          break;
-        case 5:
-          return "27MAR6Tn2023";
-          break;
-        case 6:
-          return "Ma546&&#ok21";
-          break;
-        case 7:
-          return "LU44I87GI0@#";
-          break;
-        case 8:
-          return "Y4N7@99&mm03";
-          break;
-        case 9:
-          return "AABB0987Aur3";
-          break;
-        case 10:
-          return "125A#&906YL0";
-          break;
-        default:
-          return "ABC4457Mr007";
-          break;
-    }
+  int x = rand() % 10 + 1;
+  switch(x){
+      case 1:
+        return "123A#&906YL0";
+        break;
+      case 2:
+        return "432Ua$876Op%";
+        break;
+      case 3:
+        return "@#456dE&90YY";
+        break;
+      case 4:
+        return "087LPa5&@k99";
+        break;
+      case 5:
+        return "27MAR6Tn2023";
+        break;
+      case 6:
+        return "Ma546&&#ok21";
+        break;
+      case 7:
+        return "LU44I87GI0@#";
+        break;
+      case 8:
+        return "Y4N7@99&mm03";
+        break;
+      case 9:
+        return "AABB0987Aur3";
+        break;
+      case 10:
+        return "125A#&906YL0";
+        break;
+      default:
+        return "ABC4457Mr007";
+        break;
+  }
 }
 //gera PIX aleatorios (podem ser adicionados mais a vontade - so aumentar o rand)
 int Pagamento::verificar_cartao(std::string numeroCartao){

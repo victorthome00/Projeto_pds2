@@ -9,5 +9,4 @@ public:
     bool autenticarLoja();
     std::string encrypit (std::string& senha);
 };
-
 #endif
