@@ -63,9 +63,9 @@ void Pagamento::get_modo_pagamento(){
     
     std::string forma_pagamento;
     int x = 0;
-    std::getline (std::cin, forma_pagamento);
     do{
       std::cout << "Escreva seu modo de pagamento(Débito, Crédito ou PIX):" << std::endl;
+      std::getline (std::cin, forma_pagamento);
       if(forma_pagamento == "Débito" || forma_pagamento == "Debito" || forma_pagamento == "debito" || forma_pagamento == "débito"){
         x = 1;
         _modo_pagamento = "Debito";
@@ -110,30 +110,6 @@ void Pagamento::pagar(){
     std::cin >> aux1;
     std::cin.ignore();
     }while(aux1!= 's');
-=======
-     if(_modo_pagamento == "Credito" || _modo_pagamento == "Debito"){
-        std::string numero;
-        do{
-            std::cout << "Digite os números do seu cartão: ";
-            std::getline(std::cin, numero);
-            if(Pagamento::verificar_cartao(numero) == 1){
-              std::cout << "Erro! Digite apenas números!" << std::endl;
-            }
-            else if(Pagamento::verificar_cartao(numero) == 2){
-              std::cout << "Erro! Digite todos os 16 números do cartão!" << std::endl;
-            }
-        }while(Pagamento::verificar_cartao(numero) != 0);
-        std::cout << "Parabéns! Compra realizada com sucesso!" << std::endl;
-    }
-     if(_modo_pagamento == "Pix"){
-        std::cout << "O codigo de PIX é: " << gerar_codigo_PIX() << std::endl;
-        char aux1;
-        do{ 
-        std::cout << "Digite 's' quando finalizar o pix. " << std::endl;
-        std::cin >> aux1;
-        std::cin.ignore();
-        }while(aux1!= 's');
-
     std::cout << "Parabéns! Compra realizada com sucesso" << std::endl;
   }
 }
