@@ -1,8 +1,13 @@
 #include "registro.hpp"
 #include <iostream>
+#define NDEBUG
 #include <fstream>
+#include <string.h>
 
 
+const char *Exception::what() const noexcept {
+    return "Nome inválido!";
+}
 
 void Registro::cadastrarCliente() {
     std::string nome, senha, email, cpf;
@@ -26,32 +31,43 @@ void Registro::cadastrarCliente() {
 
 void Registro::cadastrarLoja() {
     std::string nome, senha, email, cnpj;
-    nome = validar_loja();
-    senha = validar_senha();
-    senha = encrypit(senha);
-    std::cout << "Digite o email: ";
-    std::cin >> email;
-    cnpj = validar_cnpj();
-
-    std::ofstream arquivo("usuariosLoja.txt", std::ios::app);
-    if (arquivo.is_open()) {
-        arquivo << nome << " " << senha << " " << email << " " << cnpj << std::endl;
-        arquivo.close();
-        std::cout << "Usuário cadastrado com sucesso!" << std::endl;
-    }    
-    else {
-        std::cout << "Erro ao abrir o arquivo." << std::endl;
+        nome = validar_loja();
+        senha = validar_senha();
+        senha = encrypit(senha);
+        std::cout << "Digite o email: ";
+        std::cin >> email;
+        cnpj = validar_cnpj();
+    
+          std::ofstream arquivo("usuariosLoja.txt", std::ios::app);
+          if (arquivo.is_open()) {
+             arquivo << nome << " " << senha << " " << email << " " << cnpj << std::endl;
+             arquivo.close();
+             std::cout << "Usuário cadastrado com sucesso!" << std::endl;
+     }    else {
+             std::cout << "Erro ao abrir o arquivo." << std::endl;
     }
+    
 }
 
 
 std::string Registro::validar_senha() {
     std::string senha;
     int contnumber;
-    std::cout << "Digite uma senha válida: ";
+    std::cout << '\n';
+    std::cout << "Digite uma senha válida contendo os requisitos:" << std::endl;
+    std::cout << "- No mínimo 4 algarismos" << std::endl;
+    std::cout << "- No mínimo 2 digitos" << std::endl;
+    std::cout << "- No mínimo 1 letra maiúscula" << std::endl;
+
+    while (true){
+        std::cin >> senha;
+        if(senha.size() >= 4) break;
+
+        std::cout << "Digite uma senha com no mínimo 4 algarismos: ";
+    }
 
     while (true) {
-     std::cin >> senha;
+     
      contnumber = 0;
         for (char c : senha)    {
             if (std::isdigit (c)) contnumber++;
@@ -65,17 +81,30 @@ std::string Registro::validar_senha() {
                 }
             }
             std::cout << "Senha inválida, digite ao menos uma letra maiúscula" << std::endl;
+            std::cin >> senha;
     }    else {
         std::cout << "Senha inválida, digite ao menos dois dígitos" << std::endl;
+        std::cin >> senha;
     }
     }
 }
 
 
 std::string Registro::encrypit (std::string& senha) {
-    for(int i = 0; (i < 100 && senha[i] != '\0'); i++){
-        senha[i] = senha[i] + 2;
+    unsigned digit = 0;
+    unsigned upper = 0;
+
+    for(char c : senha) {
+        if (isdigit(c)) digit++;
+            if(isupper(c)) upper++;
     }
+        if (digit < 2 || upper == 0) throw Exception();
+
+         for(int i = 0; (i < 100 && senha[i] != '\0'); i++){
+            senha[i] = senha[i] + 2;
+         }
+
+    if (senha.size() <= 3) throw std::underflow_error("Senha de tamanho inválido");
     return senha;
 }
 
@@ -188,5 +217,6 @@ std::string Registro::validar_loja() {
         }
         std::cout << "Usuário já existe" << std::endl;
         arquivo.close();
+        }
+
     }
-}
