@@ -30,7 +30,6 @@ class Pagamento{
       } 
         void pagar();
         std::string gerar_codigo_PIX();
-        //bool eValido(int cardNumber[16]);
         void get_modo_pagamento();
         int verificar_cartao(std::string numeroCartao);
 };
