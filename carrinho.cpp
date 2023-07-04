@@ -12,7 +12,7 @@
 void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade, Estoque aux){
     Produto escolha = aux.estoque_codigo[codigo];
     int j = escolha.get_quantidade();
-    if( j <= quantidade){
+    if( j >= quantidade){
         _sacola.push_back(std::make_pair(escolha, quantidade));
     }
     else{
@@ -21,19 +21,15 @@ void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade, Esto
 }
 
 void Carrinho_de_compra::remover_item(std::string codigo, int quantidade){
-    int i = 0;
-do{
-  if(_sacola[i].first.get_codigo() == codigo){
-    _sacola[i].second = _sacola[i].second - quantidade;
-    if(sacola[i].second == 0){
-      vector.erase(sacola[i]);
+  for (auto it = _sacola.begin(); it != _sacola.end(); ++it) {
+        if (it->first.get_codigo() == codigo) {
+            it->second -= quantidade;
+            if (it->second <= 0) {
+                _sacola.erase(it);
+                break;
+            }
+        }
     }
-    i = -1;
-  }  
-    else{
-        i++;
-    }
-}while(i != -1);
 
 
 }
@@ -110,6 +106,7 @@ void Pagamento::pagar(){
     std::cin >> aux1;
     std::cin.ignore();
     }while(aux1!= 's');
+
     std::cout << "Parabéns! Compra realizada com sucesso" << std::endl;
   }
 }

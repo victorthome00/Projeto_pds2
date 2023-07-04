@@ -21,7 +21,6 @@ int main(){
     do{
 
         std::cout<<"Digite 'cliente' caso deseje entrar como cliente"<<"\n"<<"Digite 'gerente' para gerenciar seus produtos disponiveis"<<std::endl;
-=======
         std::cout<<"Digite 1 para cliente"<<"\n"<<"Digite 2 para Lojista"<<std::endl;
 
         std::cin>>comando;
