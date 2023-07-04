@@ -5,14 +5,13 @@
 #include <ctime>
 #include <cctype> 
 #include <sstream>
-#include <chrono>
-#include <thread>
+#include <unistd.h>
 
 
 void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade, Estoque aux){
     Produto escolha = aux.estoque_codigo[codigo];
     int j = escolha.get_quantidade();
-    if( j <= quantidade){
+    if( j >= quantidade){
         _sacola.push_back(std::make_pair(escolha, quantidade));
     }
     else{
@@ -21,19 +20,15 @@ void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade, Esto
 }
 
 void Carrinho_de_compra::remover_item(std::string codigo, int quantidade){
-    int i = 0;
-do{
-  if(_sacola[i].first.get_codigo() == codigo){
-    _sacola[i].second = _sacola[i].second - quantidade;
-    if(sacola[i].second == 0){
-      vector.erase(sacola[i]);
+  for (auto it = _sacola.begin(); it != _sacola.end(); ++it) {
+        if (it->first.get_codigo() == codigo) {
+            it->second -= quantidade;
+            if (it->second <= 0) {
+                _sacola.erase(it);
+                break;
+            }
+        }
     }
-    i = -1;
-  }  
-    else{
-        i++;
-    }
-}while(i != -1);
 
 
 }
@@ -63,9 +58,9 @@ void Pagamento::get_modo_pagamento(){
     
     std::string forma_pagamento;
     int x = 0;
-    std::getline (std::cin, forma_pagamento);
     do{
       std::cout << "Escreva seu modo de pagamento(Débito, Crédito ou PIX):" << std::endl;
+      std::getline (std::cin, forma_pagamento);
       if(forma_pagamento == "Débito" || forma_pagamento == "Debito" || forma_pagamento == "debito" || forma_pagamento == "débito"){
         x = 1;
         _modo_pagamento = "Debito";
@@ -86,13 +81,22 @@ void Pagamento::get_modo_pagamento(){
 //seleciona o metodo escolhido
 void Pagamento::pagar(){
   if(_modo_pagamento == "Credito" || _modo_pagamento == "Debito"){
-    //int cardNumber[16];
     std::string numero;
     do{
+      char c;
+      do{
       std::cout << "Digite os números do seu cartão: ";
-      //for(int j=0; j!=16; j++){
-      //std::cin >> cardNumber[j];}
       std::getline(std::cin, numero);
+      std::cout << "Os numeros do seu cartao sao: " << numero << std::endl;
+      std::cout << "Digite 's' para confirmar, para reescrever o numero aperte qualquer botao diferente de 's': " << std::endl;
+      std::cin >> c;
+      std::cin.ignore();
+      std::cout << std::endl;
+      if(c == 's' || c == 'S'){
+        c = 's';
+      }
+      }while(c != 's');
+      std::cout << "verificando cartao..." << std::endl;
       if(Pagamento::verificar_cartao(numero) == 1){
         std::cout << "Erro! Digite apenas números!" << std::endl;
       }
@@ -110,37 +114,17 @@ void Pagamento::pagar(){
     std::cin >> aux1;
     std::cin.ignore();
     }while(aux1!= 's');
-=======
-     if(_modo_pagamento == "Credito" || _modo_pagamento == "Debito"){
-        std::string numero;
-        do{
-            std::cout << "Digite os números do seu cartão: ";
-            std::getline(std::cin, numero);
-            if(Pagamento::verificar_cartao(numero) == 1){
-              std::cout << "Erro! Digite apenas números!" << std::endl;
-            }
-            else if(Pagamento::verificar_cartao(numero) == 2){
-              std::cout << "Erro! Digite todos os 16 números do cartão!" << std::endl;
-            }
-        }while(Pagamento::verificar_cartao(numero) != 0);
-        std::cout << "Parabéns! Compra realizada com sucesso!" << std::endl;
-    }
-     if(_modo_pagamento == "Pix"){
-        std::cout << "O codigo de PIX é: " << gerar_codigo_PIX() << std::endl;
-        char aux1;
-        do{ 
-        std::cout << "Digite 's' quando finalizar o pix. " << std::endl;
-        std::cin >> aux1;
-        std::cin.ignore();
-        }while(aux1!= 's');
 
     std::cout << "Parabéns! Compra realizada com sucesso" << std::endl;
   }
 }
+}
+
+
 //principal metodo da classe
 
 std::string Pagamento::gerar_codigo_PIX(){
-  int x = rand() % 10 + 1;
+  int x = rand() % 20 + 1;
   switch(x){
       case 1:
         return "123A#&906YL0";
@@ -171,6 +155,36 @@ std::string Pagamento::gerar_codigo_PIX(){
         break;
       case 10:
         return "125A#&906YL0";
+        break;
+      case 11:
+        return "1LiPa6YaL0ve";
+        break;
+      case 12:
+        return "0623tes2tot4";
+        break;
+      case 13:
+        return "133Li$$de%L0";
+        break;
+      case 14:
+        return "G4v1AAo33%$0";
+        break;
+      case 15:
+        return "Ph1nn**8F39m";
+        break;
+      case 16:
+        return "L]V1c7&&rhH0";
+        break;
+      case 17:
+        return "J3+0j$))0021";
+        break;
+      case 18:
+        return "A1V1cAo33%$0";
+        break;
+      case 19:
+        return "T0ppG88nM4vi";
+        break;
+      case 20:
+        return "LpG88n&&rhH0";
         break;
       default:
         return "ABC4457Mr007";
@@ -227,15 +241,14 @@ void Entrega::coletar_endereco(){
 
 void Entrega::entregar(){
   std::cout << "Preparando o seu pedido!" << std::endl;
-    std::chrono::seconds duracao(3);
-    std::this_thread::sleep_for(duracao);
+    sleep(3);
     std::cout << "Pedido a caminho!" << std::endl;
-    std::this_thread::sleep_for(duracao);
+    sleep(3);
     std::cout << "Pedido entregue no cep " << _cep << std::endl;
 }
 
 void Entrega::set_cep(std::string cep){
-    _cep = cep;
+    this->_cep = cep;
 }
 
 /*void Entrega::coletar_endereco(){
