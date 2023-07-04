@@ -5,8 +5,7 @@
 #include <ctime>
 #include <cctype> 
 #include <sstream>
-#include <chrono>
-#include <thread>
+#include <unistd.h>
 
 
 void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade, Estoque aux){
@@ -132,6 +131,9 @@ void Pagamento::pagar(){
     std::cout << "Parabéns! Compra realizada com sucesso" << std::endl;
   }
 }
+}
+
+
 //principal metodo da classe
 
 std::string Pagamento::gerar_codigo_PIX(){
@@ -222,15 +224,14 @@ void Entrega::coletar_endereco(){
 
 void Entrega::entregar(){
   std::cout << "Preparando o seu pedido!" << std::endl;
-    std::chrono::seconds duracao(3);
-    std::this_thread::sleep_for(duracao);
+    sleep(3);
     std::cout << "Pedido a caminho!" << std::endl;
-    std::this_thread::sleep_for(duracao);
+    sleep(3);
     std::cout << "Pedido entregue no cep " << _cep << std::endl;
 }
 
 void Entrega::set_cep(std::string cep){
-    _cep = cep;
+    this->_cep = cep;
 }
 
 /*void Entrega::coletar_endereco(){
