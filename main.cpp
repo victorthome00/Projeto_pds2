@@ -41,7 +41,7 @@ int main(){
                 Registro novo_cliente;
                 novo_cliente.cadastrarCliente();
             }
-            //chamar página cliente
+            void cliente_main();
         }
         if(comando == "gerente"){
             std::cout<<"já possui cadastro?"<<std::endl;
@@ -58,7 +58,7 @@ int main(){
                 Registro novo_cliente;
                 novo_cliente.cadastrarLoja();
             }
-            //chamar página loja
+            void loja_main();
         }
         else{
             std::cout<<"ERRO\ncomando não reconhecido"<<std::endl;
