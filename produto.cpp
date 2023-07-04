@@ -58,6 +58,7 @@ bool Estoque::incluir_estoque(Produto produto){
         std::cout<<"Produto inserido com sucesso"<<std::endl;
         return true; //Produto inserido com sucesso
     }
+    return true;
 }
 bool Estoque::remover_produto(const std::string& codigo) {
     // Verificar se o produto existe no estoque pelo código
