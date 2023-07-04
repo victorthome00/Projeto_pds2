@@ -33,7 +33,7 @@ int Produto::get_quantidade(){
     return _quantidade;
 }
 
-Produto::Produto(std::string nome_produto, float valor, std::string descricao, std::string codigo_produto, int quantidade){
+void Produto::cadastrar_produto(std::string nome_produto, float valor, std::string descricao, std::string codigo_produto, int quantidade){
     _nome_produto = nome_produto;
     _valor = valor;
     _descricao = descricao;
