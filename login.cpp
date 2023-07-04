@@ -51,6 +51,6 @@ bool Login::autenticarLoja() {
 
 std::string Login::encrypit (std::string& senha) {
     for(int i = 0; (i < 100 && senha[i] != '\0'); i++)
-    senha[i] = senha[i] + 2; //the key for encryption is 3 that is added to ASCII value
+    senha[i] = senha[i] + 2;
     return senha;
 }
