@@ -82,13 +82,22 @@ void Pagamento::get_modo_pagamento(){
 //seleciona o metodo escolhido
 void Pagamento::pagar(){
   if(_modo_pagamento == "Credito" || _modo_pagamento == "Debito"){
-    //int cardNumber[16];
     std::string numero;
     do{
+      char c;
+      do{
       std::cout << "Digite os números do seu cartão: ";
-      //for(int j=0; j!=16; j++){
-      //std::cin >> cardNumber[j];}
       std::getline(std::cin, numero);
+      std::cout << "Os numeros do seu cartao sao: " << numero << std::endl;
+      std::cout << "Digite 's' para confirmar, para reescrever o numero aperte qualquer botao diferente de 's': " << std::endl;
+      std::cin >> c;
+      std::cin.ignore();
+      std::cout << std::endl;
+      if(c == 's' || c == 'S'){
+        c = 's';
+      }
+      }while(c != 's');
+      std::cout << "verificando cartao..." << std::endl;
       if(Pagamento::verificar_cartao(numero) == 1){
         std::cout << "Erro! Digite apenas números!" << std::endl;
       }
@@ -113,7 +122,7 @@ void Pagamento::pagar(){
 //principal metodo da classe
 
 std::string Pagamento::gerar_codigo_PIX(){
-  int x = rand() % 10 + 1;
+  int x = rand() % 20 + 1;
   switch(x){
       case 1:
         return "123A#&906YL0";
@@ -144,6 +153,36 @@ std::string Pagamento::gerar_codigo_PIX(){
         break;
       case 10:
         return "125A#&906YL0";
+        break;
+      case 11:
+        return "1LiPa6YaL0ve";
+        break;
+      case 12:
+        return "0623tes2tot4";
+        break;
+      case 13:
+        return "133Li$$de%L0";
+        break;
+      case 14:
+        return "G4v1AAo33%$0";
+        break;
+      case 15:
+        return "Ph1nn**8F39m";
+        break;
+      case 16:
+        return "L]V1c7&&rhH0";
+        break;
+      case 17:
+        return "J3+0j$))0021";
+        break;
+      case 18:
+        return "A1V1cAo33%$0";
+        break;
+      case 19:
+        return "T0ppG88nM4vi";
+        break;
+      case 20:
+        return "LpG88n&&rhH0";
         break;
       default:
         return "ABC4457Mr007";
