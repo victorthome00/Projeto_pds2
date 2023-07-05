@@ -20,7 +20,7 @@ void Registro::cadastrarCliente() {
 
     std::ofstream arquivo("usuariosClientes.txt", std::ios::app);
     if (arquivo.is_open()) {
-        arquivo << nome << " " << senha << " " << email << " " << cpf << std::endl;
+        arquivo << nome << "\n " << senha << "\n " << email << "\n " << cpf << std::endl;
         arquivo.close();
         std::cout << "Usuario cadastrado com sucesso!" << std::endl;
     } else {
@@ -30,17 +30,19 @@ void Registro::cadastrarCliente() {
 
 
 void Registro::cadastrarLoja() {
-    std::string nome, senha, email, cnpj;
+    std::string nome, senha, email, cnpj, cep;
         nome = validar_loja();
         senha = validar_senha();
         senha = encrypit(senha);
         std::cout << "Digite o email: ";
         std::cin >> email;
         cnpj = validar_cnpj();
+        std::cout << "Digite seu cep:"
+        std::cin >> cep;
     
           std::ofstream arquivo("usuariosLoja.txt", std::ios::app);
           if (arquivo.is_open()) {
-             arquivo << nome << " " << senha << " " << email << " " << cnpj << std::endl;
+             arquivo << nome << "\n " << senha << "\n " << email << "\n " << cnpj << "\n" << cep << std::endl;
              arquivo.close();
              std::cout << "Usuario cadastrado com sucesso!" << std::endl;
      }    else {
