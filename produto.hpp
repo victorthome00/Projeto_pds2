@@ -8,20 +8,37 @@
 
 //essa declaração está aqui pra tornar ela amiga da classse produto
 class Estoque;
-class Produto{
+
+class Produto{      //estoque n tem construtor;
 public:
 //permite que a classe estoque tenha acesso à classe produto
     friend class Estoque;
 //adicionar imagem em produto 
-    Produto(std::string nome_produto, float valor, std::string descricao, std::string codigo_produto, int quantidade);
-    Produto();
-    void alterar_valor(float valor_novo);
-    void desconto(float porcentagem);
-    std::string get_codigo();
-    std::string get_nome();
-    float get_valor();
-    std::string get_descricao();
-    int get_quantidade();
+        Produto(std::string nome_produto, float valor, std::string descricao, std::string codigo_produto, int quantidade){
+        _nome_produto = nome_produto;
+        _valor = valor;
+        _descricao = descricao;
+        _codigo_produto = codigo_produto;
+        _quantidade = quantidade;
+        }
+        Produto() {
+        // Inicializar os membros da classe com valores padrão
+        _nome_produto = "";
+        _valor = 0.0;
+        _descricao = "";
+        _codigo_produto = "";
+        _quantidade = 0;
+        }
+
+        void alterar_valor(float valor_novo);
+        void desconto(float porcentagem);
+
+        std::string get_codigo();
+        std::string get_nome();
+        float get_valor();
+        std::string get_descricao();
+        int get_quantidade();
+
 private:
     std::string _nome_produto;
     float _valor;
@@ -29,18 +46,20 @@ private:
     std::string _codigo_produto;
     int _quantidade;
 };
-class Estoque{
+
+
+class Estoque{   //usa construtor produto--> Produto padrão; carrinho n tem construtor;
 public:
     friend class Produto;
     friend class Carrinho_de_compra;
-    bool incluir_estoque(Produto produto);
-    bool remover_produto(const std::string& codigo);
-    bool exibir_estoque_nome();
-    bool exibir_estoque_valor();
-    bool exibir_estoque_codigo();
-    bool exibir_estoque_quantidade();
-    bool exibir_produto_nome(std::string nome);
-    bool exibir_produto_codigo(std::string codigo);
+        bool incluir_estoque(Produto produto);
+        bool remover_produto(const std::string& codigo);
+        bool exibir_estoque_nome();
+        bool exibir_estoque_valor();
+        bool exibir_estoque_codigo();
+        bool exibir_estoque_quantidade();
+        bool exibir_produto_nome(std::string nome);
+        bool exibir_produto_codigo(std::string codigo);
 protected:
     class _comparaProduto{
         public:
