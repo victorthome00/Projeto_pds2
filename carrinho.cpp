@@ -111,7 +111,7 @@ void Pagamento::pagar(){
     char aux1;
     do{ 
     std::cout << "Digite 's' quando finalizar o pix. " << std::endl;
-    std::cin >> aux1;
+    std::cin >> aux1;     
     std::cin.ignore();
     }while(aux1!= 's');
 
@@ -220,7 +220,9 @@ void Entrega::coletar_endereco(){
     j = 0;
     std::cout << "Digite um CEP válido: ";
     std::cin >> cep;
-
+    if(comando_secundario == "sair"){
+        exit(0);
+    }  
     for(char c : cep){
         i++;
 
