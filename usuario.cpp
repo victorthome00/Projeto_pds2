@@ -14,8 +14,11 @@ std::string trata_string(std::string &str){
     return str;
 }
 
-void cliente_main(){
+void cliente_main(std::string nome){
     std::string comando_secundario;
+    std::vector<std::string> lines;
+    std::string line;
+    int i = 0;
     pagina_principal:
     std::cout << "1: Produtos \n2: Usuário \n3: Carrinho \n"<< std::endl;
     std::cout << "Digite o número referente ao que gostaria de prosseguir" << std::endl;
@@ -32,14 +35,11 @@ void cliente_main(){
         std::ifstream arquivo("usuariosCliente.txt", std::ios::in | std::ios::out);
         if (arquivo.is_open()){
             std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo, cepArquivo;
-            // adicionar nome_verificado no login
-            std::vector<std::string> lines;
-            std::string line;
             while(std::getline(arquivo, line)) {
                 lines.push_back(line);
             }
-            for(int i = 0; i < lines.size(); i++){
-                if(lines[i] == nome_verificado){
+            for(; i < lines.size(); i++){
+                if(lines[i] == nome){
                     nomeArquivo = lines[i];
                     senhaArquivo = lines[i + 1];
                     emailArquivo = lines[i + 2];
@@ -62,8 +62,8 @@ void cliente_main(){
                 if(comando_secundario == "s"){
                     verificar_nome:
                     std::cout << "Qual nome você gostaria?" << std::endl;
-                    std::cin >> nomeArquivo >> std::endl;
-                    std::cout << "O novo nome será " << nomeArquivo << "?" << std::endl;
+                    std::cin >> nomeArquivo;
+                    std::cout << "\nO novo nome será " << nomeArquivo << "?" << std::endl;
                     std::cout << "S/N?\n";
                     std::cin >> comando_secundario;
                     if (comando_secundario == "s"){
@@ -94,8 +94,8 @@ void cliente_main(){
                 if (comando_secundario == "s"){
                 verificar_senha:
                     std::cout << "Qual será a nova senha?" << std::endl;
-                    std::cin >> senhaArquivo >> std::endl;
-                    std::cout << "A nova senha será " << senhaArquivo << "?" << std::endl;
+                    std::cin >> senhaArquivo;
+                    std::cout << "\nA nova senha será " << senhaArquivo << "?" << std::endl;
                     std::cout << "S/N?\n";
                     std::cin >> comando_secundario;
                     if (comando_secundario == "s"){
@@ -126,8 +126,8 @@ void cliente_main(){
                 if (comando_secundario == "s"){
                     verificar_email:
                     std::cout << "Qual o novo email?" << std::endl;
-                    std::cin >> emailArquivo >> std::endl;
-                    std::cout << "O novo email será " << emailArquivo << "?" << std::endl;
+                    std::cin >> emailArquivo;
+                    std::cout << "\nO novo email será " << emailArquivo << "?" << std::endl;
                     std::cout << "S/N?\n";
                     std::cin >> comando_secundario;
                     if (comando_secundario == "s"){
@@ -187,19 +187,24 @@ void cliente_main(){
             if(comando_secundario == "voltar"){
                 goto pagina_principal;
             }*/
-            for (const std::string &element : lines){
-                arquivo << element << std::endl;
-            }
         }
         arquivo.close();
+        std::ofstream file("usuariosCliente.txt");
+        for (const std::string &element : lines){
+            file << element << std::endl;
+        }
+        file.close();
     }
     if(comando_secundario == "3"){
         //adicionar arquivo do carrinho
         Carrinho_de_compra::exibir_carrinho;
     }
 }
-void loja_main(){
+void loja_main(std::string nome){
     std::string comando_secundario;
+    std::vector<std::string> lines;
+    std::string line;
+    int i = 0;
     pagina_principal:
     std::cout << "1: Produtos \n2: Usuário \n"<<std::endl;
     //std::cout<<"3: Vendas" << std::endl;  //função ianda não desenvolvida
@@ -218,14 +223,11 @@ void loja_main(){
         std::ifstream arquivo("usuariosLojas.txt", std::ios::in | std::ios::out);
         if (arquivo.is_open()){
             std::string nomeArquivo, senhaArquivo, emailArquivo, cnpjArquivo, cepArquivo;
-            // adicionar nome_verificado no login
-            std::vector<std::string> lines;
-            std::string line;
             while (std::getline(arquivo, line)){
                 lines.push_back(line);
             }
-            for (int i = 0; i < lines.size(); i++){
-                if (lines[i] == nome_verificado){
+            for (; i < lines.size(); i++){
+                if (lines[i] == nome){
                     nomeArquivo = lines[i];
                     senhaArquivo = lines[i + 1];
                     emailArquivo = lines[i + 2];
@@ -248,8 +250,8 @@ void loja_main(){
                     if(comando_secundario == "s"){
                         verificar_nome:
                         std::cout << "Qual o novo nome da loja?" << std::endl;
-                        std::cin >> nomeArquivo >> std::endl;
-                        std::cout << "O novo nome será " << nomeArquivo << "?" << std::endl;
+                        std::cin >> nomeArquivo;
+                        std::cout << "\nO novo nome será " << nomeArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
                         if (comando_secundario == "s"){
@@ -280,8 +282,8 @@ void loja_main(){
                     if (comando_secundario == "s"){
                     verificar_senha:
                         std::cout << "Qual será a nova senha?" << std::endl;
-                        std::cin >> senhaArquivo >> std::endl;
-                        std::cout << "A nova senha será " << senhaArquivo << "?" << std::endl;
+                        std::cin >> senhaArquivo;
+                        std::cout << "\nA nova senha será " << senhaArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
                         if (comando_secundario == "s"){
@@ -312,8 +314,8 @@ void loja_main(){
                     if(comando_secundario == "s"){
                     verificar_email:
                         std::cout << "Qual o novo email?" << std::endl;
-                        std::cin >> emailArquivo >> std::endl;
-                        std::cout << "O novo email será " << emailArquivo << "?" << std::endl;
+                        std::cin >> emailArquivo;
+                        std::cout << "\nO novo email será " << emailArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
                         if (comando_secundario == "s"){
@@ -344,8 +346,8 @@ void loja_main(){
                     if (comando_secundario == "s"){
                     verificar_cnpj:
                         std::cout << "Qual o novo cnpj?" << std::endl;
-                        std::cin >> cnpjArquivo >> std::endl;
-                        std::cout << "O novo cnpj será " << cnpjArquivo << "?" << std::endl;
+                        std::cin >> cnpjArquivo;
+                        std::cout << "\nO novo cnpj será " << cnpjArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
                         if (comando_secundario == "s"){
@@ -376,8 +378,8 @@ void loja_main(){
                     if (comando_secundario == "s"){
                     verificar_cep:
                         std::cout << "Qual será o novo cep?" << std::endl;
-                        std::cin >> cepArquivo >> std::endl;
-                        std::cout << "O novo cep será " << cepArquivo << "?" << std::endl;
+                        std::cin >> cepArquivo;
+                        std::cout << "\nO novo cep será " << cepArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
                         if (comando_secundario == "s"){
@@ -406,20 +408,23 @@ void loja_main(){
                 std::cout << "Comando inválido." << std::endl;
                 goto visualizacao_perfil;
                 }
-                for (const std::string &element : lines){
-                arquivo << element << std::endl;
-                }
             }
             arquivo.close();
+            std::ofstream file("usuariosLoja.txt");
+            for (const std::string &element : lines){
+                file << element << std::endl;
+            }
+            file.close();
         }
     /*if(comando_secundario == "3"){
         //adicionar arquivo do carrinho    
-    }                                           //funções não definidas ainda
+    }         //funções não definidas ainda
     if(comando_secundario == "4"){
         //adicionar historico de compras
-    }*/
+    */
+    }
     else{
         std::cout << "Comando inválido\n" << "Tente novamente" << std::endl;
         goto pagina_principal;
     }
-}
+    }
