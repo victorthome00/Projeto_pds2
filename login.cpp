@@ -4,7 +4,7 @@
 
 bool Login::autenticarCliente() {
     std::string nome, senha;
-    std::cout << "Digite o nome de usuário: ";
+    std::cout << "Digite o nome de usuario: ";
     std::cin >> nome;
     std::cout << "Digite a senha: ";
     std::cin >> senha;
@@ -21,7 +21,7 @@ bool Login::autenticarCliente() {
         }
     }
     arquivo.close();
-    std::cout << "Falha na realização do login do cliente!" << std::endl;
+    std::cout << "Falha na realizacao do login do cliente!" << std::endl;
     return false;
 }
 
