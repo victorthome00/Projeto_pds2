@@ -14,7 +14,7 @@ std::string trata_string(std::string &str){
     return str;
 }
 
-void cliente_main(){
+void cliente_main(std::string nome){
     std::string comando_secundario;
     pagina_principal:
     std::cout << "1: Produtos \n2: Usuário \n3: Carrinho \n"<< std::endl;
@@ -32,14 +32,13 @@ void cliente_main(){
         std::ifstream arquivo("usuariosCliente.txt", std::ios::in | std::ios::out);
         if (arquivo.is_open()){
             std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo, cepArquivo;
-            // adicionar nome_verificado no login
             std::vector<std::string> lines;
             std::string line;
             while(std::getline(arquivo, line)) {
                 lines.push_back(line);
             }
             for(int i = 0; i < lines.size(); i++){
-                if(lines[i] == nome_verificado){
+                if(lines[i] == nome){
                     nomeArquivo = lines[i];
                     senhaArquivo = lines[i + 1];
                     emailArquivo = lines[i + 2];
@@ -198,7 +197,7 @@ void cliente_main(){
         Carrinho_de_compra::exibir_carrinho;
     }
 }
-void loja_main(){
+void loja_main(std::string nome){
     std::string comando_secundario;
     pagina_principal:
     std::cout << "1: Produtos \n2: Usuário \n"<<std::endl;
@@ -218,14 +217,13 @@ void loja_main(){
         std::ifstream arquivo("usuariosLojas.txt", std::ios::in | std::ios::out);
         if (arquivo.is_open()){
             std::string nomeArquivo, senhaArquivo, emailArquivo, cnpjArquivo, cepArquivo;
-            // adicionar nome_verificado no login
             std::vector<std::string> lines;
             std::string line;
             while (std::getline(arquivo, line)){
                 lines.push_back(line);
             }
             for (int i = 0; i < lines.size(); i++){
-                if (lines[i] == nome_verificado){
+                if (lines[i] == nome){
                     nomeArquivo = lines[i];
                     senhaArquivo = lines[i + 1];
                     emailArquivo = lines[i + 2];
@@ -414,12 +412,13 @@ void loja_main(){
         }
     /*if(comando_secundario == "3"){
         //adicionar arquivo do carrinho    
-    }                                           //funções não definidas ainda
+    }         //funções não definidas ainda
     if(comando_secundario == "4"){
         //adicionar historico de compras
-    }*/
+    */
+    }
     else{
         std::cout << "Comando inválido\n" << "Tente novamente" << std::endl;
         goto pagina_principal;
     }
-}
+    }
