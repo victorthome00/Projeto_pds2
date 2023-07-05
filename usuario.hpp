@@ -6,36 +6,8 @@
 #include <map>
 #include <iostream>
 
+void cliente_main(std::string nome);
 
-
-class Cliente{
-public:
-    void trocar_senha(std::string nova_senha);
-    void trocar_end(std::string novo_end);
-    void trocar_nome(std::string novo_nome);
-
-private:
-    std::string login() const;
-    std::string nome_usuario() const;
-    std::string senha() const;
-    std::string endereco() const;
-};
-
-class Loja{
-public:
-    void trocar_senha(std::string nova_senha);
-    void trocar_end(std::string novo_end);
-    void trocar_nome(std::string novo_nome);
-
-private:
-    std::string login() const;
-    std::string nome_usuario() const;
-    std::string senha() const;
-    std::string endereco() const;
-};
-
-void cliente_main();
-
-void loja_main();
+void loja_main(std::string nome);
 
 #endif
