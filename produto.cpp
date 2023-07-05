@@ -32,11 +32,22 @@ std::string Produto::get_descricao(){
 int Produto::get_quantidade(){
     return _quantidade;
 }
+void Produto::adicionar_quantidade(int a){
+    _quantidade += a;
+}
 
+void Produto::remover_quantidade(int a){
+    if(a >= _quantidade){
+        _quantidade = 0;
+}
+    else{
+        _quantidade -= a;
+    }
+}
 bool Estoque::incluir_estoque(Produto produto){
     // Verificar se o produto já existe no estoque pelo código
     if (estoque_codigo.find(produto._codigo_produto) != estoque_codigo.end()) {
-        std::cout<<"Produto já existe"<<std::endl;
+        std::cout<<"Produto ja existe"<<std::endl;
         return false; // Produto já existe no estoque
     }
     
@@ -56,7 +67,7 @@ bool Estoque::remover_produto(const std::string& codigo) {
     // Verificar se o produto existe no estoque pelo código
     auto it = estoque_codigo.find(codigo);
     if (it == estoque_codigo.end()) {
-        std::cout << "Produto não existe" << std::endl;
+        std::cout << "Produto nao existe" << std::endl;
         return false; // Produto não encontrado no estoque
     }
     
@@ -81,7 +92,7 @@ bool Estoque::exibir_estoque_nome() {
         std::cout << "Nome: " << item.first << std::endl;
         std::cout << "Valor: R$" << item.second._valor << std::endl;
         std::cout << "Descrição: " << item.second._descricao << std::endl;
-        std::cout << "Código: " << item.second._codigo_produto << std::endl;
+        std::cout << "Codigo: " << item.second._codigo_produto << std::endl;
         std::cout << "Quantidade: " << item.second._quantidade << std::endl;
         std::cout << "---------------------" << std::endl;
     }
@@ -99,8 +110,8 @@ bool Estoque::exibir_estoque_valor() {
     for (const auto& item : estoque_valor) {
         std::cout << "Valor: R$" << item.first << std::endl;
         std::cout << "Nome: " << item.second._nome_produto << std::endl;
-        std::cout << "Descrição: " << item.second._descricao << std::endl;
-        std::cout << "Código: " << item.second._codigo_produto << std::endl;
+        std::cout << "Descricao: " << item.second._descricao << std::endl;
+        std::cout << "Codigo: " << item.second._codigo_produto << std::endl;
         std::cout << "Quantidade: " << item.second._quantidade << std::endl;
         std::cout << "---------------------" << std::endl;
     }
@@ -114,12 +125,12 @@ bool Estoque::exibir_estoque_codigo() {
         return false;
     }
 
-    std::cout << "Estoque por código:" << std::endl;
+    std::cout << "Estoque por codigo:" << std::endl;
     for (const auto& item : estoque_codigo) {
-        std::cout << "Código: " << item.first << std::endl;
+        std::cout << "Codigo: " << item.first << std::endl;
         std::cout << "Nome: " << item.second._nome_produto << std::endl;
         std::cout << "Valor: R$" << item.second._valor << std::endl;
-        std::cout << "Descrição: " << item.second._descricao << std::endl;
+        std::cout << "Descricao: " << item.second._descricao << std::endl;
         std::cout << "Quantidade: " << item.second._quantidade << std::endl;
         std::cout << "---------------------" << std::endl;
     }
@@ -138,8 +149,8 @@ bool Estoque::exibir_estoque_quantidade() {
         std::cout << "Quantidade: " << item.first << std::endl;
         std::cout << "Nome: " << item.second._nome_produto << std::endl;
         std::cout << "Valor: R$" << item.second._valor << std::endl;
-        std::cout << "Descrição: " << item.second._descricao << std::endl;
-        std::cout << "Código: " << item.second._codigo_produto << std::endl;
+        std::cout << "Descricao: " << item.second._descricao << std::endl;
+        std::cout << "Codigo: " << item.second._codigo_produto << std::endl;
         std::cout << "---------------------" << std::endl;
     }
 
@@ -153,8 +164,8 @@ bool Estoque::exibir_produto_nome(std::string nome) {
         if (item.second._nome_produto == nome) {
             std::cout << "Nome: " << item.first << std::endl;
             std::cout << "Valor: R$" << item.second._valor << std::endl;
-            std::cout << "Descrição: " << item.second._descricao << std::endl;
-            std::cout << "Código: " << item.second._codigo_produto << std::endl;
+            std::cout << "Descricao: " << item.second._descricao << std::endl;
+            std::cout << "Codigo: " << item.second._codigo_produto << std::endl;
             std::cout << "Quantidade: " << item.second._quantidade << std::endl;
             std::cout << "---------------------" << std::endl;
             encontrado = true;
@@ -162,7 +173,7 @@ bool Estoque::exibir_produto_nome(std::string nome) {
     }
 
     if (!encontrado) {
-        std::cout << "Produto não encontrado." << std::endl;
+        std::cout << "Produto nao encontrado." << std::endl;
     }
 
     return encontrado;
@@ -171,14 +182,14 @@ bool Estoque::exibir_produto_nome(std::string nome) {
 bool Estoque::exibir_produto_codigo(std::string codigo) {
     auto it = estoque_codigo.find(codigo);
     if (it == estoque_codigo.end()) {
-        std::cout << "Produto com código \"" << codigo << "\" não encontrado." << std::endl;
+        std::cout << "Produto com codigo \"" << codigo << "\" nao encontrado." << std::endl;
         return false;
     }
 
-    std::cout << "Produto com código \"" << codigo << "\":" << std::endl;
+    std::cout << "Produto com codigo \"" << codigo << "\":" << std::endl;
     std::cout << "Nome: " << it->second._nome_produto << std::endl;
     std::cout << "Valor: R$" << it->second._valor << std::endl;
-    std::cout << "Descrição: " << it->second._descricao << std::endl;
+    std::cout << "Descricao: " << it->second._descricao << std::endl;
     std::cout << "Quantidade: " << it->second._quantidade << std::endl;
 
     return true;

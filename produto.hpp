@@ -20,7 +20,9 @@ public:
     _codigo_produto = codigo_produto;
     _quantidade = quantidade;
     }
-
+    Produto() : _valor(0.0), _quantidade(0){}
+    void adicionar_quantidade(int a);
+    void remover_quantidade(int a);
     void alterar_valor(float valor_novo);
     void desconto(float porcentagem);
     std::string get_codigo();
