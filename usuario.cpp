@@ -30,7 +30,6 @@ void cliente_main(std::string nome){
     }
     if(comando_secundario == "1"){
         //adicionar arquivo dos produtos
-        std::ifstream arquivo();
     }
     if(comando_secundario == "2"){
         std::ifstream arquivo("usuariosClientes.txt", std::ios::in | std::ios::out);
@@ -53,8 +52,8 @@ void cliente_main(std::string nome){
             std::cout << "\nVoltar" << std::endl;
             std::cin >> comando_secundario;
             comando_secundario = trata_string(comando_secundario);
-            std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-            
+            std::cout << std::string(15, '\n');
+
             if(comando_secundario == "usuario"){
                 alterar_nome:
                 std::cout << "Nome: " << nomeArquivo;
@@ -190,6 +189,10 @@ void cliente_main(std::string nome){
             }*/
         }
         arquivo.close();
+        if (std::remove("usuariosClientes.txt") != 0){
+            std::cout << "Erro no arquivo de usuario" << std::endl;
+            exit(1);
+        }
         std::ofstream file("usuariosClientes.txt");
         for (const std::string &element : lines){
             file << element << std::endl;
@@ -204,7 +207,7 @@ void cliente_main(std::string nome){
 void loja_main(std::string nome){
     std::string comando_secundario;
     std::vector<std::string> lines;
-    std::vector<std::auto> produtos; 
+    std::vector<std::string> produtos; 
     std::string line;
     unsigned i = 0;
     pagina_principal:
@@ -216,12 +219,12 @@ void loja_main(std::string nome){
     if (comando_secundario == "sair"){
         exit(0);
     }
-    std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    std::cout << std::string(15, '\n');
     if(comando_secundario == "1"){
     
     }
     if(comando_secundario == "2"){
-        std::ifstream arquivo("usuariosLojas.txt", std::ios::in | std::ios::out);
+        std::ifstream arquivo("usuariosLoja.txt", std::ios::in | std::ios::out);
         if (arquivo.is_open()){
             std::string nomeArquivo, senhaArquivo, emailArquivo, cnpjArquivo, cepArquivo;
             while (std::getline(arquivo, line)){
@@ -411,7 +414,11 @@ void loja_main(std::string nome){
                 }
             }
             arquivo.close();
-            std::ofstream file("usuariosLojas.txt");
+            if(std::remove("usuariosLoja.txt") != 0){
+               std::cout << "Erro no arquivo de usuario" << std::endl;
+               exit(1);
+            }
+            std::ofstream file("usuariosLoja.txt");
             for (const std::string &element : lines){
                 file << element << std::endl;
             }
