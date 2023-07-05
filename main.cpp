@@ -2,7 +2,7 @@
 #include "login.cpp"
 #include "produto.cpp"
 #include "registro.cpp"
-#include "usuario.cpp"
+#include "paginas.cpp"
 #include <iostream>
 
 int main(){
