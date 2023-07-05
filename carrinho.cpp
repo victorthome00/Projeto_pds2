@@ -20,6 +20,7 @@ void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade, Esto
 }
 
 void Carrinho_de_compra::remover_item(std::string codigo, int quantidade){
+<<<<<<< Updated upstream
   for (auto it = _sacola.begin(); it != _sacola.end(); ++it) {
         if (it->first.get_codigo() == codigo) {
             it->second -= quantidade;
@@ -28,6 +29,14 @@ void Carrinho_de_compra::remover_item(std::string codigo, int quantidade){
                 break;
             }
         }
+=======
+    int i = 0;
+do{
+  if(_sacola[i].first.get_codigo() == codigo){
+    _sacola[i].second = _sacola[i].second - quantidade;
+    if(sacola[i].second == 0){
+      std::vector.erase(sacola[i]);
+>>>>>>> Stashed changes
     }
 
 
