@@ -3,7 +3,7 @@
 #include <fstream>
 
 bool Login::autenticarCliente(std::string nome, std::string senha) {
-    std::string nome, senha;
+    //std::string nome, senha;
     std::cout << "Digite o nome de usuario: ";
     std::cin >> nome;
     std::cout << "Digite a senha: ";
