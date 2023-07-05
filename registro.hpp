@@ -23,6 +23,7 @@ public:
     std::string validar_loja();
     std::string validar_cpf();
     std::string validar_cnpj();
+    std::string validar_cep();
 };
 
 
