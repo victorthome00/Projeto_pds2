@@ -13,8 +13,16 @@ public:
 //permite que a classe estoque tenha acesso à classe produto
     friend class Estoque;
 //adicionar imagem em produto 
-    Produto(std::string nome_produto, float valor, std::string descricao, std::string codigo_produto, int quantidade);
-    Produto();
+    Produto(std::string nome_produto, float valor, std::string descricao, std::string codigo_produto, int quantidade){
+    _nome_produto = nome_produto;
+    _valor = valor;
+    _descricao = descricao;
+    _codigo_produto = codigo_produto;
+    _quantidade = quantidade;
+    }
+    Produto() : _valor(0.0), _quantidade(0){}
+    void adicionar_quantidade(int a);
+    void remover_quantidade(int a);
     void alterar_valor(float valor_novo);
     void desconto(float porcentagem);
     std::string get_codigo();

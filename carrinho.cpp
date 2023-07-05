@@ -15,7 +15,7 @@ void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade, Esto
         _sacola.push_back(std::make_pair(escolha, quantidade));
     }
     else{
-        std::cout << "Poxa, não temos essa quantidade no estoque!" << std::endl;
+        std::cout << "Poxa, nao temos essa quantidade no estoque!" << std::endl;
     }
 }
 
@@ -38,10 +38,10 @@ for (const auto& par : _sacola) {
         Produto produto = par.first;    
         int quantidade = par.second;
 
-        std::cout << "Nome: " << produto.get_nome() << ", Preço: " << produto.get_valor() << ", Quantidade: " << quantidade << std::endl;
+        std::cout << "Nome: " << produto.get_nome() << ", Preco: " << produto.get_valor() << ", Quantidade: " << quantidade << std::endl;
     }
     std::cout << std::endl << std::endl;
-    std::cout << "Preço total: " << calcular_valor() << std::endl;
+    std::cout << "Preco total: " << calcular_valor() << std::endl;
 }
 
 float Carrinho_de_compra::calcular_valor(){
@@ -59,7 +59,7 @@ void Pagamento::get_modo_pagamento(){
     std::string forma_pagamento;
     int x = 0;
     do{
-      std::cout << "Escreva seu modo de pagamento(Débito, Crédito ou PIX):" << std::endl;
+      std::cout << "Escreva seu modo de pagamento(Debito, Credito ou PIX):" << std::endl;
       std::getline (std::cin, forma_pagamento);
       if(forma_pagamento == "Débito" || forma_pagamento == "Debito" || forma_pagamento == "debito" || forma_pagamento == "débito"){
         x = 1;
@@ -74,7 +74,7 @@ void Pagamento::get_modo_pagamento(){
         _modo_pagamento = "PIX";
     }
     else{
-        std::cout << "Erro! Digite um método de pagamento válido!" << std::endl;
+        std::cout << "Erro! Digite um metodo de pagamento valido!" << std::endl;
      }
      }while(x==0);
 }
@@ -85,10 +85,10 @@ void Pagamento::pagar(){
     do{
       char c;
       do{
-      std::cout << "Digite os números do seu cartão: ";
+      std::cout << "Digite os numeros do seu cartao: ";
       std::getline(std::cin, numero);
       std::cout << "Os numeros do seu cartao sao: " << numero << std::endl;
-      std::cout << "Digite 's' para confirmar, para reescrever o numero aperte qualquer botao diferente de 's': " << std::endl;
+      std::cout << "Digite 's' para confirmar, para reescrever o numero digite qualquer botao diferente de 's': " << std::endl;
       std::cin >> c;
       std::cin.ignore();
       std::cout << std::endl;
@@ -98,16 +98,16 @@ void Pagamento::pagar(){
       }while(c != 's');
       std::cout << "verificando cartao..." << std::endl;
       if(Pagamento::verificar_cartao(numero) == 1){
-        std::cout << "Erro! Digite apenas números!" << std::endl;
+        std::cout << "Erro! Digite apenas numeros!" << std::endl;
       }
       else if(Pagamento::verificar_cartao(numero) == 2){
-        std::cout << "Erro! Digite todos os 16 números do cartão!" << std::endl;
+        std::cout << "Erro! Digite todos os 16 numeros do cartao!" << std::endl;
       }
     }while(Pagamento::verificar_cartao(numero) != 0);
-    std::cout << "Parabéns! Compra realizada com sucesso!" << std::endl;
+    std::cout << "Parabens! Compra realizada com sucesso!" << std::endl;
   }
   if(_modo_pagamento == "Pix"){
-    std::cout << "O codigo de PIX é: " << gerar_codigo_PIX() << std::endl;
+    std::cout << "O codigo de PIX e: " << gerar_codigo_PIX() << std::endl;
     char aux1;
     do{ 
     std::cout << "Digite 's' quando finalizar o pix. " << std::endl;
@@ -115,9 +115,8 @@ void Pagamento::pagar(){
     std::cin.ignore();
     }while(aux1!= 's');
 
-    std::cout << "Parabéns! Compra realizada com sucesso" << std::endl;
+    std::cout << "Parabens! Compra realizada com sucesso" << std::endl;
   }
-}
 }
 
 
@@ -219,7 +218,7 @@ void Entrega::coletar_endereco(){
   while (true) {
     i = 0;
     j = 0;
-    std::cout << "Digite um CEP válido: ";
+    std::cout << "Digite um CEP valido: ";
     std::cin >> cep;
 
     for(char c : cep){
@@ -235,7 +234,7 @@ void Entrega::coletar_endereco(){
        // return 0;
         break;
     }
-    std::cout << "CEP inválido, necessário ter 8 dígitos" << std::endl;
+    std::cout << "CEP invalido, necessario ter 8 digitos" << std::endl;
  }
 }
 

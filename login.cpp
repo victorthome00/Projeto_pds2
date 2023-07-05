@@ -4,7 +4,7 @@
 
 bool Login::autenticarCliente() {
     std::string nome, senha;
-    std::cout << "Digite o nome de usuário: ";
+    std::cout << "Digite o nome de usuario: ";
     std::cin >> nome;
     std::cout << "Digite a senha: ";
     std::cin >> senha;
@@ -21,7 +21,7 @@ bool Login::autenticarCliente() {
         }
     }
     arquivo.close();
-    std::cout << "Falha na realização do login do cliente!" << std::endl;
+    std::cout << "Falha na realizacao do login do cliente!" << std::endl;
     return false;
 }
 
@@ -51,6 +51,6 @@ bool Login::autenticarLoja() {
 
 std::string Login::encrypit (std::string& senha) {
     for(int i = 0; (i < 100 && senha[i] != '\0'); i++)
-    senha[i] = senha[i] + 2; //the key for encryption is 3 that is added to ASCII value
+    senha[i] = senha[i] + 2;
     return senha;
 }
