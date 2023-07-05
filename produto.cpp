@@ -45,7 +45,6 @@ void Produto::remover_quantidade(int a){
     }
 }
 bool Estoque::incluir_estoque(Produto produto){
-    // Verificar se o produto já existe no estoque pelo código
     if (estoque_codigo.find(produto._codigo_produto) != estoque_codigo.end()) {
         std::cout<<"Produto ja existe"<<std::endl;
         return false; // Produto já existe no estoque
@@ -194,3 +193,4 @@ bool Estoque::exibir_produto_codigo(std::string codigo) {
 
     return true;
 }
+

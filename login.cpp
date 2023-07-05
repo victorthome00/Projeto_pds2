@@ -9,7 +9,7 @@ bool Login::autenticarCliente(std::string nome, std::string senha) {
     std::cout << "Digite a senha: ";
     std::cin >> senha;
     senha = encrypit(senha);
-    std::ifstream arquivo("usuariosCliente.txt", std::ios::binary | std::ios::in);
+    std::ifstream arquivo("usuariosClientes.txt", std::ios::binary | std::ios::in);
     if (arquivo.is_open()) {
         std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo, cepArquivo;
         while (arquivo >> nomeArquivo >> senhaArquivo >> emailArquivo >> cpfArquivo >> cepArquivo) {
