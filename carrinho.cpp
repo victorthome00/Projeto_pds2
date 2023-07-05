@@ -118,7 +118,6 @@ void Pagamento::pagar(){
     std::cout << "Parabéns! Compra realizada com sucesso" << std::endl;
   }
 }
-}
 
 
 //principal metodo da classe
