@@ -189,10 +189,11 @@ void cliente_main(std::string nome){
             }*/
         }
         arquivo.close();
-        std::ofstream arquivo("usuariosCliente.txt");
+        std::ofstream file("usuariosCliente.txt");
         for (const std::string &element : lines){
-            arquivo << element << std::endl;
+            file << element << std::endl;
         }
+        file.close();
     }
     if(comando_secundario == "3"){
         //adicionar arquivo do carrinho
@@ -345,8 +346,8 @@ void loja_main(std::string nome){
                     if (comando_secundario == "s"){
                     verificar_cnpj:
                         std::cout << "Qual o novo cnpj?" << std::endl;
-                        std::cin >> cnpjArquivo >> std::endl;
-                        std::cout << "O novo cnpj será " << cnpjArquivo << "?" << std::endl;
+                        std::cin >> cnpjArquivo;
+                        std::cout << "\nO novo cnpj será " << cnpjArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
                         if (comando_secundario == "s"){
@@ -409,10 +410,11 @@ void loja_main(std::string nome){
                 }
             }
             arquivo.close();
-            std::ofstream arquivo("usuariosLoja.txt");
+            std::ofstream file("usuariosLoja.txt");
             for (const std::string &element : lines){
-                arquivo << element << std::endl;
+                file << element << std::endl;
             }
+            file.close();
         }
     /*if(comando_secundario == "3"){
         //adicionar arquivo do carrinho    
