@@ -30,10 +30,6 @@ int main(){
                 log.autenticarCliente();
             } while (!log.autenticarCliente());
         }
-        else if(comando_auxiliar == "não" || comando_auxiliar == "n" || comando_auxiliar == "nao"){
-             Registro novo_cliente;
-             novo_cliente.cadastrarCliente();
-        }
         }while(comando_auxiliar != "sim" || comando_auxiliar != "s" || comando_auxiliar != "não" || comando_auxiliar != "n" || comando_auxiliar != "nao");
         cliente_main();
     }

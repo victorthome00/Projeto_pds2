@@ -29,14 +29,13 @@ void cliente_main(){
         std::ifstream arquivo();
     }
     if(comando_secundario == "2"){
-        std::ifstream arquivo("usuariosCliente.txt", std::ios::binary | std::ios::in);
+        std::ifstream arquivo("usuariosCliente.txt", std::ios::in | std::ios::out);
         if (arquivo.is_open()){
             std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo, cepArquivo;
             // adicionar nome_verificado no login
-            int nameLine = 0;
             std::vector<std::string> lines;
             std::string line;
-            while(std::getline(file, line)) {
+            while(std::getline(arquivo, line)) {
                 lines.push_back(line);
             }
             for(int i = 0; i < lines.size(); i++){
@@ -45,7 +44,6 @@ void cliente_main(){
                     senhaArquivo = lines[i + 1];
                     emailArquivo = lines[i + 2];
                     cpfArquivo = lines[i + 3];
-                    cepArquivo = lines[i + 4];
                 }
             }
         visualizacao_perfil:
@@ -61,18 +59,18 @@ void cliente_main(){
                 std::cout << "Nome: " << nomeArquivo;
                 std::cout << "Gostaria de alterar o nome de usuario? \n" << "S/N" << std::endl;
                 std::cin >> comando_secundario;
-                if(comando_secundario == "s" || comando_secundario == "S"){
+                if(comando_secundario == "s"){
                     verificar_nome:
                     std::cout << "Qual nome você gostaria?" << std::endl;
                     std::cin >> nomeArquivo >> std::endl;
                     std::cout << "O novo nome será " << nomeArquivo << "?" << std::endl;
                     std::cout << "S/N?\n";
                     std::cin >> comando_secundario;
-                    if (comando_secundario == "s" || comando_secundario == "S"){
+                    if (comando_secundario == "s"){
                         lines[i] = nomeArquivo;
                         goto visualizacao_perfil;
                     } 
-                    if (comando_secundario == "n" || comando_secundario == "N"){ 
+                    if (comando_secundario == "n"){ 
                         goto verificar_nome;
                     }
                     else{
@@ -80,7 +78,7 @@ void cliente_main(){
                         goto verificar_nome;
                     }
                 }
-                if(comando_secundario == "n" || comando_secundario == "N"){
+                if(comando_secundario == "n"){
                     goto visualizacao_perfil;
                 }
                 else{
@@ -88,23 +86,23 @@ void cliente_main(){
                     goto alterar_nome;
                 }
             }
-            if (comando_secundario == "senha" || comando_secundario == "Senha"){
+            if (comando_secundario == "senha"){
             alterar_senha:
                 std::cout << "Senha: " << senhaArquivo;
                 std::cout << "Gostaria de alterar a sua senha? \n" << "S/N" << std::endl;
                 std::cin >> comando_secundario;
-                if (comando_secundario == "s" || comando_secundario == "S"){
+                if (comando_secundario == "s"){
                 verificar_senha:
                     std::cout << "Qual será a nova senha?" << std::endl;
                     std::cin >> senhaArquivo >> std::endl;
                     std::cout << "A nova senha será " << senhaArquivo << "?" << std::endl;
                     std::cout << "S/N?\n";
                     std::cin >> comando_secundario;
-                    if (comando_secundario == "s" || comando_secundario == "S"){
+                    if (comando_secundario == "s"){
                         lines[i + 1] = senhaArquivo;
                         goto visualizacao_perfil;
                     }
-                    if (comando_secundario == "n" || comando_secundario == "N"){
+                    if (comando_secundario == "n"){
                         goto verificar_senha;
                     }
                     else{
@@ -112,7 +110,7 @@ void cliente_main(){
                         goto verificar_senha;
                     }
                 }
-                if (comando_secundario == "n" || comando_secundario == "N"){
+                if (comando_secundario == "n"){
                     goto visualizacao_perfil;
                 }
                 else{
@@ -120,23 +118,23 @@ void cliente_main(){
                     goto alterar_senha;
                 }
             }
-            if (comando_secundario == "email" || comando_secundario == "Email"){
+            if (comando_secundario == "email"){
             alterar_email:
                 std::cout << "Email: " << emailArquivo;
                 std::cout << "Gostaria de alterar o email? \n" << "S/N" << std::endl;
                 std::cin >> comando_secundario;
-                if (comando_secundario == "s" || comando_secundario == "S"){
+                if (comando_secundario == "s"){
                     verificar_email:
                     std::cout << "Qual o novo email?" << std::endl;
                     std::cin >> emailArquivo >> std::endl;
                     std::cout << "O novo email será " << emailArquivo << "?" << std::endl;
                     std::cout << "S/N?\n";
                     std::cin >> comando_secundario;
-                    if (comando_secundario == "s" || comando_secundario == "S"){
+                    if (comando_secundario == "s"){
                         lines[i + 2] = emailArquivo;
                         goto visualizacao_perfil;
                     }
-                    if (comando_secundario == "n" || comando_secundario == "N"){
+                    if (comando_secundario == "n"){
                         goto verificar_email;
                     }
                     else{
@@ -144,7 +142,7 @@ void cliente_main(){
                         goto verificar_email;
                     }
                 }
-                if (comando_secundario == "n" || comando_secundario == "N"){
+                if (comando_secundario == "n"){
                     goto visualizacao_perfil;
                 }
                 else{
@@ -188,8 +186,11 @@ void cliente_main(){
             }
             if(comando_secundario == "voltar"){
                 goto pagina_principal;
+            }*/
+            for (const std::string &element : lines){
+                arquivo << element << std::endl;
             }
-        }*/
+        }
         arquivo.close();
     }
     if(comando_secundario == "3"){
@@ -199,7 +200,6 @@ void cliente_main(){
 }
 void loja_main(){
     std::string comando_secundario;
-
     pagina_principal:
     std::cout << "1: Produtos \n2: Usuário \n"<<std::endl;
     //std::cout<<"3: Vendas" << std::endl;  //função ianda não desenvolvida
@@ -215,28 +215,55 @@ void loja_main(){
         std::ifstream arquivo();
     }
     if(comando_secundario == "2"){
-        std::ifstream arquivo("usuariosLojas.txt", std::ios::binary | std::ios::in);
+        std::ifstream arquivo("usuariosLojas.txt", std::ios::in | std::ios::out);
         if (arquivo.is_open()){
             std::string nomeArquivo, senhaArquivo, emailArquivo, cnpjArquivo, cepArquivo;
+            // adicionar nome_verificado no login
+            std::vector<std::string> lines;
+            std::string line;
+            while (std::getline(arquivo, line)){
+                lines.push_back(line);
+            }
+            for (int i = 0; i < lines.size(); i++){
+                if (lines[i] == nome_verificado){
+                    nomeArquivo = lines[i];
+                    senhaArquivo = lines[i + 1];
+                    emailArquivo = lines[i + 2];
+                    cnpjArquivo = lines[i + 3];
+                    cepArquivo = lines[i + 4];
+                }
+            }
             visualizacao_perfil:
-            std::cout << "Usuario:\n" << nomeArquivo<< "\n\nEmail:\n" << emailArquivo <<  "\n\nCnpj:\n" <<
-            cnpjArquivo << "\n\nCep\n" << cepArquivo << std::endl;
+            std::cout << "Usuario:\n" << nomeArquivo<< "\n\nSenha:\n" << "******" << "\n\nEmail:\n" << emailArquivo 
+                      << "\n\nCnpj:\n" << cnpjArquivo << "\n\nCep\n" << cepArquivo << std::endl;
             std::cout << "\nVoltar" << std::endl;
             std::cin >> comando_secundario;            
             comando_secundario = trata_string(comando_secundario);
-            if (comando_secundario == "sair"){
-                exit(0);
-            }
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
                 if(comando_secundario == "usuario"){
                     alterar_nome:
                     std::cout << "Loja: " << nomeArquivo;
                     std::cout << "Gostaria de alterar o nome da loja? \n" << "S/N" << std::endl;
                     std::cin >> comando_secundario;
-                    if(comando_secundario == "s" || comando_secundario == "S"){
-                        //adicionar função trocar_nome
-                    }
-                    if(comando_secundario == "n" || comando_secundario == "N"){
+                    if(comando_secundario == "s"){
+                        verificar_nome:
+                        std::cout << "Qual o novo nome da loja?" << std::endl;
+                        std::cin >> nomeArquivo >> std::endl;
+                        std::cout << "O novo nome será " << nomeArquivo << "?" << std::endl;
+                        std::cout << "S/N?\n";
+                        std::cin >> comando_secundario;
+                        if (comando_secundario == "s"){
+                        lines[i] = nomeArquivo;
+                            goto visualizacao_perfil;
+                        }
+                        if (comando_secundario == "n"){
+                            goto verificar_nome;
+                        }
+                        else{
+                            std::cout << "Comando inválido" << std::endl;
+                            goto verificar_nome;
+                        }
+                    if(comando_secundario == "n"){
                         goto visualizacao_perfil;
                     }
                     else{
@@ -244,18 +271,64 @@ void loja_main(){
                         goto alterar_nome;
                     }
                 }
+                if (comando_secundario == "senha"){
+                alterar_senha:
+                    std::cout << "Senha: " << senhaArquivo;
+                    std::cout << "Gostaria de alterar a sua senha? \n"
+                              << "S/N" << std::endl;
+                    std::cin >> comando_secundario;
+                    if (comando_secundario == "s"){
+                    verificar_senha:
+                        std::cout << "Qual será a nova senha?" << std::endl;
+                        std::cin >> senhaArquivo >> std::endl;
+                        std::cout << "A nova senha será " << senhaArquivo << "?" << std::endl;
+                        std::cout << "S/N?\n";
+                        std::cin >> comando_secundario;
+                        if (comando_secundario == "s"){
+                            lines[i + 1] = senhaArquivo;
+                            goto visualizacao_perfil;
+                        }
+                        if (comando_secundario == "n"){
+                            goto verificar_senha;
+                        }
+                        else{
+                            std::cout << "Comando inválido" << std::endl;
+                            goto verificar_senha;
+                        }
+                    }
+                    if (comando_secundario == "n"){
+                        goto visualizacao_perfil;
+                    }
+                    else{
+                        std::cout << "Comando inválido" << std::endl;
+                        goto alterar_senha;
+                    }
+                }
                 if(comando_secundario == "email"){
                     alterar_email:
                     std::cout << "Email: " << emailArquivo;
                     std::cout << "Gostaria de alterar o email? \n" << "S/N" << std::endl;
-                    std::cin >> comando_secundario;
-                    if (comando_secundario == "sair"){
-                        exit(0);
-                    }                    
-                    if(comando_secundario == "s" || comando_secundario == "S"){
-                        // adicionar função trocar_email
+                    std::cin >> comando_secundario;             
+                    if(comando_secundario == "s"){
+                    verificar_email:
+                        std::cout << "Qual o novo email?" << std::endl;
+                        std::cin >> emailArquivo >> std::endl;
+                        std::cout << "O novo email será " << emailArquivo << "?" << std::endl;
+                        std::cout << "S/N?\n";
+                        std::cin >> comando_secundario;
+                        if (comando_secundario == "s"){
+                            lines[i + 2] = emailArquivo;
+                            goto visualizacao_perfil;
+                        }
+                        if (comando_secundario == "n"){
+                            goto verificar_email;
+                        }
+                        else{
+                            std::cout << "Comando inválido" << std::endl;
+                            goto verificar_email;
+                        }
                     }
-                    if(comando_secundario == "n" || comando_secundario == "N"){
+                    if(comando_secundario == "n"){
                         goto visualizacao_perfil;
                     }
                     else{
@@ -263,39 +336,31 @@ void loja_main(){
                         goto alterar_email;
                     }
                 }
-                if(comando_secundario == "cep"){
-                    alterar_cep:
-                    std::cout << "Cep: " << cepArquivo;
-                    std::cout << "Gostaria de alterar o seu CEP? \n" << "S/N" << std::endl;
-                    std::cin >> comando_secundario;
-                    if (comando_secundario == "sair"){
-                        exit(0);
-                    }                    
-                    if (comando_secundario == "s" || comando_secundario == "S"){
-                        // adicionar função trocar_cep
-                    }
-                    if(comando_secundario == "n" || comando_secundario == "N"){
-                        goto visualizacao_perfil;
-                    }
-                    else{
-                        std::cout << "Comando inválido." << std::endl;
-                        goto alterar_cep;
-                    }
-                }
-                if(comando_secundario == "cnpj"){
-                    alterar_cnpj:
+                if (comando_secundario == "cnpj"){
+                alterar_cnpj:
                     std::cout << "Cnpj: " << cnpjArquivo;
                     std::cout << "Gostaria de alterar o seu Cnpj? \n" << "S/N" << std::endl;
                     std::cin >> comando_secundario;
-                    if (comando_secundario == "sair"){
-                        exit(0);
-                    }                    
-                    if(comando_secundario == "s" || comando_secundario == "S")
-                    {
-                        // adicionar função trocar_cnpj
+                    if (comando_secundario == "s"){
+                    verificar_cnpj:
+                        std::cout << "Qual o novo cnpj?" << std::endl;
+                        std::cin >> cnpjArquivo >> std::endl;
+                        std::cout << "O novo cnpj será " << cnpjArquivo << "?" << std::endl;
+                        std::cout << "S/N?\n";
+                        std::cin >> comando_secundario;
+                        if (comando_secundario == "s"){
+                            lines[i + 3] = cnpjArquivo;
+                            goto visualizacao_perfil;
+                        }
+                        if (comando_secundario == "n"){
+                            goto verificar_cnpj;
+                        }
+                        else{
+                            std::cout << "Comando inválido" << std::endl;
+                            goto verificar_cnpj;
+                        }
                     }
-                    if(comando_secundario == "n" || comando_secundario == "N")
-                    {
+                    if (comando_secundario == "n"){
                         goto visualizacao_perfil;
                     }
                     else{
@@ -303,11 +368,47 @@ void loja_main(){
                         goto alterar_cnpj;
                     }
                 }
+                if(comando_secundario == "cep"){
+                    alterar_cep:
+                    std::cout << "Cep: " << cepArquivo;
+                    std::cout << "Gostaria de alterar o seu Cep? \n" << "S/N" << std::endl;
+                    std::cin >> comando_secundario;                
+                    if (comando_secundario == "s"){
+                    verificar_cep:
+                        std::cout << "Qual será o novo cep?" << std::endl;
+                        std::cin >> cepArquivo >> std::endl;
+                        std::cout << "O novo cep será " << cepArquivo << "?" << std::endl;
+                        std::cout << "S/N?\n";
+                        std::cin >> comando_secundario;
+                        if (comando_secundario == "s"){
+                            lines[i + 4] = cepArquivo;
+                            goto visualizacao_perfil;
+                        }
+                        if (comando_secundario == "n"){
+                            goto verificar_cep;
+                        }
+                        else{
+                            std::cout << "Comando inválido" << std::endl;
+                            goto verificar_cep;
+                        }
+                    }
+                    if(comando_secundario == "n"){
+                        goto visualizacao_perfil;
+                    }
+                    else{
+                        std::cout << "Comando inválido." << std::endl;
+                        goto alterar_cep;
+                    }
+                }
                 if(comando_secundario == "voltar"){
                     goto pagina_principal;
-                }
+                } else{
                 std::cout << "Comando inválido." << std::endl;
                 goto visualizacao_perfil;
+                }
+                for (const std::string &element : lines){
+                arquivo << element << std::endl;
+                }
             }
             arquivo.close();
         }
@@ -321,113 +422,4 @@ void loja_main(){
         std::cout << "Comando inválido\n" << "Tente novamente" << std::endl;
         goto pagina_principal;
     }
-    
-
-    while (comando_secundario != "Sair" || comando_secundario != "sair"){
-        pagina_principal:
-        std::cout << "1: Produtos \n2: Usuário \n3: Vendas" << std::endl;
-        std::cout << "Digite o número referente ao que gostaria de prosseguir." << std::endl;
-        std::cin >> comando_secundario;
-        std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-        switch(comando_secundario){
-            case "1":
-            //adicionar arquivo dos produtos
-                std::ifstream arquivo();
-                break;
-            case "2":
-                std::ifstream arquivo("usuariosLojas.txt", std::ios::binary | std::ios::in);
-                if (arquivo.is_open())
-                {
-                    std::string nomeArquivo, senhaArquivo, emailArquivo, cnpjArquivo, cepArquivo;
-                    visualizacao_perfil:
-                    std::cout << "Usuario:\n" << nomeArquivo\n\n << "Email:\n" << emailArquivo\n\n <<  "Cnpj:\n" <<
-                    cnpjArquivo\n\n << "Cep\n" << cepArquivo << std::endl;
-                    std::cout << "\nVoltar" << std::endl;
-                    std::cin >> comando_secundario;
-                    std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-                    switch(comando_secundario){
-                        case "Usuario"  || "usuario":
-                            alterar_nome:
-                            std::cout << "Loja: " << nomeArquivo;
-                            std::cout << "Gostaria de alterar o nome da loja? \n" << "S/N" << std::endl;
-                            std::cin >> comando_secundario;
-                            if(comando_secundario == ("s" || "S")){
-                                //adicionar função trocar_nome
-                            }
-                            else if (comando_secundario == ("n" || "N")){
-                                goto visualizacao_perfil;
-                            }else std::cout << "Comando inválido" << std::endl;
-                            goto alterar_nome;
-                            break;
-                        case "Email" || "email":
-                            alterar_email:
-                            std::cout << "Email: " << emailArquivo;
-                            std::cout << "Gostaria de alterar o email? \n" << "S/N" << std::endl;
-                            std::cin >> comando_secundario;
-                            if (comando_secundario == ("s" || "S"))
-                            {
-                                // adicionar função trocar_email
-                            }
-                            else if (comando_secundario == ("n" || "N"))
-                            {
-                                goto visualizacao_perfil;
-                            }
-                            else
-                                std::cout << "Comando inválido" << std::endl;
-                            goto alterar_email;
-                            break;
-                        case "CEP" || "Cep" || "cep":
-                            alterar_cep:
-                            std::cout << "Cep: " << cepArquivo;
-                            std::cout << "Gostaria de alterar o seu CEP? \n" << "S/N" << std::endl;
-                            std::cin >> comando_secundario;
-                            if (comando_secundario == ("s" || "S"))
-                            {
-                                // adicionar função trocar_cep
-                            }
-                            else if (comando_secundario == ("n" || "N"))
-                            {
-                                goto visualizacao_perfil;
-                            }
-                            else
-                                std::cout << "Comando inválido." << std::endl;
-                            goto alterar_cep;
-                        case "CNPJ" || "Cnpj" || "cnpj":
-                            alterar_cnpj:
-                            std::cout << "Cnpj: " << cnpjArquivo;
-                            std::cout << "Gostaria de alterar o seu Cnpj? \n" << "S/N" << std::endl;
-                            std::cin >> comando_secundario;
-                            if (comando_secundario == ("s" || "S"))
-                            {
-                                // adicionar função trocar_cnpj
-                            }
-                            else if (comando_secundario == ("n" || "N"))
-                            {
-                                goto visualizacao_perfil;
-                            }
-                            else
-                                std::cout << "Comando inválido." << std::endl;
-                            goto alterar_cnpj;
-                        case "Voltar" || "voltar":
-                            goto pagina_principal;
-                        default:
-                            std::cout << "Comando inválido." << std::endl;
-                            goto visualizacao_perfil;
-                    }
-                    arquivo.close();
-                }
-                break;
-            case "3":
-            //adicionar arquivo do carrinho    
-                break;
-            case "4":
-            //adicionar historico de compras
-                break;
-            default:
-                std::cout << "Comando inválido\n" << "Tente novamente" << std::endl;
-                goto pagina_principal;
-
-        } 
-    }    
-
 }
