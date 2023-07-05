@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 
-bool Login::autenticarCliente() {
+bool Login::autenticarCliente(std::string nome, std::string senha) {
     std::string nome, senha;
     std::cout << "Digite o nome de usuario: ";
     std::cin >> nome;
@@ -25,12 +25,7 @@ bool Login::autenticarCliente() {
     return false;
 }
 
-bool Login::autenticarLoja() {
-    std::string nome, senha;
-    std::cout << "Digite o nome da loja: ";
-    std::cin >> nome;
-    std::cout << "Digite a senha: ";
-    std::cin >> senha;
+bool Login::autenticarLoja(std::string nome, std::string senha){
     senha = encrypit(senha);
 
     std::ifstream arquivo("usuariosLojas.txt");
