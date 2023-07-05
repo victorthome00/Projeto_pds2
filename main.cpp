@@ -33,6 +33,44 @@ int main(){
         if(comando_auxiliar == "não" || comando_auxiliar == "n" || comando_auxiliar == "nao"){
             Registro novo_cliente;
             novo_cliente.cadastrarCliente();
+=======
+        std::cin>>comando;
+        std::cout<<'\n'<<std::endl;
+        comando = trata_string(comando); // apenas para padronizar eventuais desvios de letras maiúsculas ou minúsculas
+        if(comando == "cliente"){
+            std::cout<<"já possui cadastro?"<<std::endl;
+            std::cin>>comando_auxiliar;
+            comando_auxiliar = trata_string(comando_auxiliar);
+            if (comando_auxiliar == "sim" || comando_auxiliar == "s"){
+                Login log;
+                do{
+                    log.autenticarCliente();
+                } while (!log.autenticarCliente());
+                
+            }
+            if(comando_auxiliar == "não" || comando_auxiliar == "n" || comando_auxiliar == "nao"){
+                Registro novo_cliente;
+                novo_cliente.cadastrarCliente();
+            }
+            void cliente_main();
+        }
+        if(comando == "gerente"){
+            std::cout<<"já possui cadastro?"<<std::endl;
+            std::cin>>comando_auxiliar;
+            comando_auxiliar = trata_string(comando_auxiliar);
+            if (comando_auxiliar == "sim" || comando_auxiliar == "s"){
+                Login log;
+                do{
+                    log.autenticarLoja();
+                } while (!log.autenticarLoja());
+                
+            }
+            if(comando_auxiliar == "não" || comando_auxiliar == "n" || comando_auxiliar == "nao"){
+                Registro novo_cliente;
+                novo_cliente.cadastrarLoja();
+            }
+            void loja_main();
+
         }
         //chamar página cliente
         cliente_main();
