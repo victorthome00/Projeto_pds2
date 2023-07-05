@@ -18,7 +18,7 @@ void cliente_main(std::string nome){
     std::string comando_secundario;
     std::vector<std::string> lines;
     std::string line;
-    int i = 0;
+    unsigned i = 0;
     pagina_principal:
     std::cout << "1: Produtos \n2: Usuário \n3: Carrinho \n"<< std::endl;
     std::cout << "Digite o número referente ao que gostaria de prosseguir" << std::endl;
@@ -204,7 +204,7 @@ void loja_main(std::string nome){
     std::string comando_secundario;
     std::vector<std::string> lines;
     std::string line;
-    int i = 0;
+    unsigned i = 0;
     pagina_principal:
     std::cout << "1: Produtos \n2: Usuário \n"<<std::endl;
     //std::cout<<"3: Vendas" << std::endl;  //função ianda não desenvolvida
