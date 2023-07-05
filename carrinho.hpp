@@ -6,15 +6,16 @@
 #include <map>
 #include "produto.hpp"
 
-class Carrinho_de_compra{
+class Carrinho_de_compra{   //estoque n tem construtor;
 public:
-friend class Estoque;
-void adicionar_item(std::string codigo, int quantidade, Estoque aux);
-void remover_item(std::string codigo, int quantidade);
-void exibir_carrinho();
-float calcular_valor();
+  friend class Estoque;
+    void adicionar_item(std::string codigo, int quantidade, Estoque aux);
+    void remover_item(std::string codigo, int quantidade);
+    void exibir_carrinho();
+    float calcular_valor();
+
 private:
-std::vector <std::pair<Produto, int>> _sacola;
+  std::vector <std::pair<Produto, int>> _sacola;
 };
 
 class Pagamento{
@@ -22,6 +23,7 @@ class Pagamento{
       Carrinho_de_compra _cliente;
       std::string _modo_pagamento;
       std::string _numeroCartao;
+      
     public:
       Pagamento(Carrinho_de_compra cliente, std::string modo_pagamento, std::string numeroCartao){
         this-> _cliente = cliente; 
