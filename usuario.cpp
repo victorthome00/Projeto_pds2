@@ -103,7 +103,7 @@ void cliente_main(){
     }
     if(comando_secundario == "3"){
         //adicionar arquivo do carrinho
-        Carrinho_de_compra::exibir_carrinho
+        Carrinho_de_compra::exibir_carrinho;
     }
     /*if(comando_secundario == "4"){
         //adicionar historico de compras
