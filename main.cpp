@@ -33,7 +33,6 @@ int main(){
         if(comando_auxiliar == "não" || comando_auxiliar == "n" || comando_auxiliar == "nao"){
             Registro novo_cliente;
             novo_cliente.cadastrarCliente();
-=======
         std::cin>>comando;
         std::cout<<'\n'<<std::endl;
         comando = trata_string(comando); // apenas para padronizar eventuais desvios de letras maiúsculas ou minúsculas
