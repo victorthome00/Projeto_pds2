@@ -15,11 +15,12 @@ std::string trata_string(std::string &str){
 }
 
 void cliente_main(std::string nome){
+    Carrinho_de_compra carrinho;
     std::string comando_secundario;
     std::vector<std::string> lines;
     std::string line;
     unsigned i = 0;
-    pagina_principal:
+    //pagina_principal:
     std::cout << "1: Produtos \n2: Usuário \n3: Carrinho \n"<< std::endl;
     std::cout << "Digite o número referente ao que gostaria de prosseguir" << std::endl;
     std::cin >> comando_secundario;
@@ -197,7 +198,7 @@ void cliente_main(std::string nome){
     }
     if(comando_secundario == "3"){
         //adicionar arquivo do carrinho
-        Carrinho_de_compra::exibir_carrinho;
+        carrinho.exibir_carrinho();
     }
 }
 void loja_main(std::string nome){
