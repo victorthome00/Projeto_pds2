@@ -37,12 +37,12 @@ void Registro::cadastrarLoja() {
         std::cout << "Digite o email: ";
         std::cin >> email;
         cnpj = validar_cnpj();
-        std::cout << "Digite seu cep: ";
-        std::cin >> cep;
+        cep = validar_cep();
+        
     
           std::ofstream arquivo("usuariosLoja.txt", std::ios::app);
           if (arquivo.is_open()) {
-             arquivo << nome << "\n " << senha << "\n " << email << "\n " << cnpj << "\n" << cep << std::endl;
+             arquivo <<nome << "\n " <<senha << "\n " <<email << "\n " <<cnpj << "\n" <<cep << std::endl;
              arquivo.close();
              std::cout << "Usuario cadastrado com sucesso!" << std::endl;
      }    else {
@@ -222,3 +222,31 @@ std::string Registro::validar_loja() {
         }
 
     }
+
+
+std::string Registro::validar_cep(){
+  int i, j;
+  std::string cep;
+
+  while (true) {
+    i = 0;
+    j = 0;
+    std::cout << "Digite um CEP valido: ";
+    std::cin >> cep;
+
+    for(char c : cep){
+        i++;
+
+        if(std::isdigit(c)){
+         j++;
+        }
+    }
+
+    if (i == 8 && j == i) {
+        
+        return cep;
+        break;
+    }
+    std::cout << "CEP invalido, necessario ter 8 digitos" << std::endl;
+ }
+}
