@@ -54,7 +54,7 @@ for(const auto& par : _sacola){
     return aux;
 }
 
-void Pagamento::get_modo_pagamento(){
+std::string Pagamento::get_modo_pagamento(){
     
     std::string forma_pagamento;
     int x = 0;
@@ -77,6 +77,7 @@ void Pagamento::get_modo_pagamento(){
         std::cout << "Erro! Digite um metodo de pagamento valido!" << std::endl;
      }
      }while(x==0);
+     return _modo_pagamento;
 }
 //seleciona o metodo escolhido
 void Pagamento::pagar(){
