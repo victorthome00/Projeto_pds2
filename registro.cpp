@@ -37,7 +37,7 @@ void Registro::cadastrarLoja() {
         std::cout << "Digite o email: ";
         std::cin >> email;
         cnpj = validar_cnpj();
-        std::cout << "Digite seu cep:"
+        std::cout << "Digite seu cep: ";
         std::cin >> cep;
     
           std::ofstream arquivo("usuariosLoja.txt", std::ios::app);
