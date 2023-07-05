@@ -6,7 +6,7 @@
 
 
 const char *Exception::what() const noexcept {
-    return "Nome inválido!";
+    return "Nome invalido!";
 }
 
 void Registro::cadastrarCliente() {
@@ -22,7 +22,7 @@ void Registro::cadastrarCliente() {
     if (arquivo.is_open()) {
         arquivo << nome << " " << senha << " " << email << " " << cpf << std::endl;
         arquivo.close();
-        std::cout << "Usuário cadastrado com sucesso!" << std::endl;
+        std::cout << "Usuario cadastrado com sucesso!" << std::endl;
     } else {
         std::cout << "Erro ao abrir o arquivo." << std::endl;
     }
@@ -42,7 +42,7 @@ void Registro::cadastrarLoja() {
           if (arquivo.is_open()) {
              arquivo << nome << " " << senha << " " << email << " " << cnpj << std::endl;
              arquivo.close();
-             std::cout << "Usuário cadastrado com sucesso!" << std::endl;
+             std::cout << "Usuario cadastrado com sucesso!" << std::endl;
      }    else {
              std::cout << "Erro ao abrir o arquivo." << std::endl;
     }
@@ -54,16 +54,16 @@ std::string Registro::validar_senha() {
     std::string senha;
     int contnumber;
     std::cout << '\n';
-    std::cout << "Digite uma senha válida contendo os requisitos:" << std::endl;
-    std::cout << "- No mínimo 4 algarismos" << std::endl;
-    std::cout << "- No mínimo 2 digitos" << std::endl;
-    std::cout << "- No mínimo 1 letra maiúscula" << std::endl;
+    std::cout << "Digite uma senha valida contendo os requisitos:" << std::endl;
+    std::cout << "- No minimo 4 algarismos" << std::endl;
+    std::cout << "- No minimo 2 digitos" << std::endl;
+    std::cout << "- No minimo 1 letra maiuscula" << std::endl;
 
     while (true){
         std::cin >> senha;
         if(senha.size() >= 4) break;
 
-        std::cout << "Digite uma senha com no mínimo 4 algarismos: ";
+        std::cout << "Digite uma senha com no minimo 4 algarismos: ";
     }
 
     while (true) {
@@ -80,10 +80,10 @@ std::string Registro::validar_senha() {
                   break;
                 }
             }
-            std::cout << "Senha inválida, digite ao menos uma letra maiúscula" << std::endl;
+            std::cout << "Senha invalida, digite ao menos uma letra maiuscula" << std::endl;
             std::cin >> senha;
     }    else {
-        std::cout << "Senha inválida, digite ao menos dois dígitos" << std::endl;
+        std::cout << "Senha invalida, digite ao menos dois digitos" << std::endl;
         std::cin >> senha;
     }
     }
@@ -104,7 +104,7 @@ std::string Registro::encrypit (std::string& senha) {
             senha[i] = senha[i] + 2;
          }
 
-    if (senha.size() <= 3) throw std::underflow_error("Senha de tamanho inválido");
+    if (senha.size() <= 3) throw std::underflow_error("Senha de tamanho invalido");
     return senha;
 }
 
@@ -116,7 +116,7 @@ std::string Registro::validar_cpf(){
   while (true) {
     i = 0;
     j = 0;
-    std::cout << "Digite um CPF válido: ";
+    std::cout << "Digite um CPF valido: ";
     std::cin >> cpf;
 
     for(char c : cpf){
@@ -132,7 +132,7 @@ std::string Registro::validar_cpf(){
         return cpf;
         break;
     }
-    std::cout << "CPF inválido, necessário ter 11 dígitos" << std::endl;
+    std::cout << "CPF invalido, necessario ter 11 digitos" << std::endl;
 }
 
 }
@@ -145,7 +145,7 @@ std::string Registro::validar_cnpj(){
   while (true) {
     i = 0;
     j = 0;
-    std::cout << "Digite um CNPJ válido: ";
+    std::cout << "Digite um CNPJ valido: ";
     std::cin >> cnpj;
 
     for(char c : cnpj){
@@ -161,7 +161,7 @@ std::string Registro::validar_cnpj(){
         return cnpj;
         break;
     }
-    std::cout << "CPF inválido, necessário ter 14 dígitos" << std::endl;
+    std::cout << "CNPJ invalido, necessario ter 14 digitos" << std::endl;
 }
 }
 
@@ -172,7 +172,7 @@ std::string Registro::validar_usuario() {
     while (true){
         std::ifstream arquivo("usuariosClientes.txt", std::ios::in);
         cont = 0;
-        std::cout << "Digite um usuário: ";
+        std::cout << "Digite um usuario: ";
         std::cin >> nome;
         if (arquivo.is_open()) {
         std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo;
@@ -187,7 +187,7 @@ std::string Registro::validar_usuario() {
             return nome;
             break;
         }
-        std::cout << "Usuário já existe" << std::endl;
+        std::cout << "Usuario ja existe" << std::endl;
         arquivo.close();
         }
 
@@ -200,7 +200,7 @@ std::string Registro::validar_loja() {
     while (true){
         std::ifstream arquivo("usuariosLoja.txt", std::ios::in);
         cont = 0;
-        std::cout << "Digite um usuário: ";
+        std::cout << "Digite um usuario: ";
         std::cin >> nome;
         if (arquivo.is_open()) {
         std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo;
@@ -215,7 +215,7 @@ std::string Registro::validar_loja() {
             return nome;
             break;
         }
-        std::cout << "Usuário já existe" << std::endl;
+        std::cout << "Usuario ja existe" << std::endl;
         arquivo.close();
         }
 
