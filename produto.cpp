@@ -32,7 +32,18 @@ std::string Produto::get_descricao(){
 int Produto::get_quantidade(){
     return _quantidade;
 }
+void Produto::adicionar_quantidade(int a){
+    _quantidade += a;
+}
 
+void Produto::remover_quantidade(int a){
+    if(a >= _quantidade){
+        _quantidade = 0;
+}
+    else{
+        _quantidade -= a;
+    }
+}
 bool Estoque::incluir_estoque(Produto produto){
     // Verificar se o produto já existe no estoque pelo código
     if (estoque_codigo.find(produto._codigo_produto) != estoque_codigo.end()) {
