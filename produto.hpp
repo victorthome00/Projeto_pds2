@@ -29,6 +29,8 @@ public:
         _codigo_produto = "";
         _quantidade = 0;
         }
+        void adicionar_quantidade(int a);
+        void remover_quantidade(int a);
 
         void alterar_valor(float valor_novo);
         void desconto(float porcentagem);
