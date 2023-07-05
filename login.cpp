@@ -19,7 +19,6 @@ bool Login::autenticarCliente(std::string nome, std::string senha) {
                 cpfArquivo = linha;
                 
                 senhaArquivo.erase(0, senhaArquivo.find_first_not_of(" \t\r\n"));
-                 
             if (nome == nomeArquivo && senha == senhaArquivo) {
                 arquivo.close();
                 std::cout << "Login do cliente realizado com sucesso!" << std::endl;

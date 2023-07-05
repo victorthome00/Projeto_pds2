@@ -33,10 +33,10 @@ void cliente_main(std::string nome){
         std::ifstream arquivo();
     }
     if(comando_secundario == "2"){
-        std::ifstream arquivo("usuariosCliente.txt", std::ios::in | std::ios::out);
+        std::ifstream arquivo("usuariosClientes.txt", std::ios::in | std::ios::out);
         if (arquivo.is_open()){
             std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo, cepArquivo;
-            while(std::getline(arquivo, line)) {
+            while(std::getline(arquivo, line)){
                 lines.push_back(line);
             }
             for(; i < lines.size(); i++){
@@ -190,20 +190,21 @@ void cliente_main(std::string nome){
             }*/
         }
         arquivo.close();
-        std::ofstream file("usuariosCliente.txt");
+        std::ofstream file("usuariosClientes.txt");
         for (const std::string &element : lines){
             file << element << std::endl;
         }
         file.close();
     }
     if(comando_secundario == "3"){
-        //adicionar arquivo do carrinho
         carrinho.exibir_carrinho();
+
     }
 }
 void loja_main(std::string nome){
     std::string comando_secundario;
     std::vector<std::string> lines;
+    std::vector<std::auto> produtos; 
     std::string line;
     unsigned i = 0;
     pagina_principal:
@@ -217,8 +218,7 @@ void loja_main(std::string nome){
     }
     std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     if(comando_secundario == "1"){
-    //adicionar arquivo dos produtos
-        std::ifstream arquivo();
+    
     }
     if(comando_secundario == "2"){
         std::ifstream arquivo("usuariosLojas.txt", std::ios::in | std::ios::out);
@@ -411,7 +411,7 @@ void loja_main(std::string nome){
                 }
             }
             arquivo.close();
-            std::ofstream file("usuariosLoja.txt");
+            std::ofstream file("usuariosLojas.txt");
             for (const std::string &element : lines){
                 file << element << std::endl;
             }
