@@ -16,7 +16,8 @@ std::string trata_string(std::string &str){
 void cliente_main(){
     std::string comando_secundario;
     pagina_principal:
-    std::cout << "1: Produtos \n2: Usuário \n3: Carrinho \n4: Compras" << std::endl;
+    std::cout << "1: Produtos \n2: Usuário \n3: Carrinho \n"<< std::endl;
+    //std::cout<<"4: Compras" << std::endl;
     std::cout << "Digite o número referente ao que gostaria de prosseguir" << std::endl;
     std::cin >> comando_secundario;
     std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
@@ -61,6 +62,9 @@ void cliente_main(){
                 std::cout << "Email: " << emailArquivo;
                 std::cout << "Gostaria de alterar o email? \n" << "S/N" << std::endl;
                 std::cin >> comando_secundario;
+                if(comando_secundario == "sair"){
+                    exit(0);
+                }   
                 if (comando_secundario == "s" || comando_secundario == "S"){
                     // adicionar função trocar_email
                 }
@@ -77,6 +81,9 @@ void cliente_main(){
                 std::cout << "Cep: " << cepArquivo;
                 std::cout << "Gostaria de alterar o seu CEP? \n" << "S/N" << std::endl;
                 std::cin >> comando_secundario;
+                if(comando_secundario == "sair"){
+                    exit(0);
+                }   
                 if (comando_secundario == "s" || comando_secundario == "S"){
                     // adicionar função trocar_cep
                 }
@@ -96,16 +103,18 @@ void cliente_main(){
     }
     if(comando_secundario == "3"){
         //adicionar arquivo do carrinho
+        Carrinho_de_compra::exibir_carrinho
     }
-    if(comando_secundario == "4"){
-    //adicionar historico de compras
-    }
+    /*if(comando_secundario == "4"){
+        //adicionar historico de compras
+    }*/
 }
 
 void loja_main(){
     std::string comando_secundario;
     pagina_principal:
-    std::cout << "1: Produtos \n2: Usuário \n3: Vendas" << std::endl;
+    std::cout << "1: Produtos \n2: Usuário \n"<<std::endl;
+    //std::cout<<"3: Vendas" << std::endl;  //função ianda não desenvolvida
     std::cout << "Digite o número referente ao que gostaria de prosseguir." << std::endl;
     std::cin >> comando_secundario;
     comando_secundario = trata_string(comando_secundario);
@@ -125,7 +134,7 @@ void loja_main(){
             std::cout << "Usuario:\n" << nomeArquivo<< "\n\nEmail:\n" << emailArquivo <<  "\n\nCnpj:\n" <<
             cnpjArquivo << "\n\nCep\n" << cepArquivo << std::endl;
             std::cout << "\nVoltar" << std::endl;
-            std::cin >> comando_secundario;
+            std::cin >> comando_secundario;            
             comando_secundario = trata_string(comando_secundario);
             if (comando_secundario == "sair"){
                 exit(0);
@@ -152,6 +161,9 @@ void loja_main(){
                     std::cout << "Email: " << emailArquivo;
                     std::cout << "Gostaria de alterar o email? \n" << "S/N" << std::endl;
                     std::cin >> comando_secundario;
+                    if (comando_secundario == "sair"){
+                        exit(0);
+                    }                    
                     if(comando_secundario == "s" || comando_secundario == "S"){
                         // adicionar função trocar_email
                     }
@@ -168,6 +180,9 @@ void loja_main(){
                     std::cout << "Cep: " << cepArquivo;
                     std::cout << "Gostaria de alterar o seu CEP? \n" << "S/N" << std::endl;
                     std::cin >> comando_secundario;
+                    if (comando_secundario == "sair"){
+                        exit(0);
+                    }                    
                     if (comando_secundario == "s" || comando_secundario == "S"){
                         // adicionar função trocar_cep
                     }
@@ -184,6 +199,9 @@ void loja_main(){
                     std::cout << "Cnpj: " << cnpjArquivo;
                     std::cout << "Gostaria de alterar o seu Cnpj? \n" << "S/N" << std::endl;
                     std::cin >> comando_secundario;
+                    if (comando_secundario == "sair"){
+                        exit(0);
+                    }                    
                     if(comando_secundario == "s" || comando_secundario == "S")
                     {
                         // adicionar função trocar_cnpj
@@ -205,12 +223,12 @@ void loja_main(){
             }
             arquivo.close();
         }
-    if(comando_secundario == "3"){
+    /*if(comando_secundario == "3"){
         //adicionar arquivo do carrinho    
-    }
+    }                                           //funções não definidas ainda
     if(comando_secundario == "4"){
         //adicionar historico de compras
-    }
+    }*/
     else{
         std::cout << "Comando inválido\n" << "Tente novamente" << std::endl;
         goto pagina_principal;
