@@ -5,7 +5,6 @@
 #include <utility>
 #include <map>
 #include "produto.hpp"
-
 /// @brief É a classe responsável por cuidar dos itens do carrinho.
 class Carrinho_de_compra{   //estoque n tem construtor;
 public:
@@ -53,7 +52,8 @@ public:
 
 private:
   std::vector <std::pair<Produto, int>> _sacola;
-};
+}; 
+
 
 /// @brief A classe Pagamento efetua e valida o pagamento do cliente.
 class Pagamento{
