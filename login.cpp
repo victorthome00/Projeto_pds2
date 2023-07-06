@@ -67,5 +67,6 @@ std::string Login::encrypit (std::string& senha) {
     for(int i = 0; (i < 100 && senha[i] != '\0'); i++){
         senha[i] = senha[i] + 2;
     }
-    return senha;
+    return senha; //wddadad
 }
+
