@@ -23,7 +23,7 @@ void Registro::cadastrarCliente() {
 
     std::ofstream arquivo("usuariosClientes.txt", std::ios::app);
     if (arquivo.is_open()) {
-        arquivo << nome << "\n" << senha << "\n" << email << "\n" << cpf << std::endl;
+        arquivo <<nome << "\n" <<senha<< "\n" <<email << "\n" <<cpf << std::endl;
         arquivo.close();
         std::cout << "Usuario cadastrado com sucesso!" << std::endl;
     } else {
@@ -46,7 +46,7 @@ void Registro::cadastrarLoja() {
           std::ofstream arquivo("usuariosLoja.txt", std::ios::app);
           arquivo << std::noskipws;
           if (arquivo.is_open()) {
-             arquivo <<nome << "\n " <<senha << "\n " <<email << "\n " <<cnpj << "\n" <<cep << std::endl;
+             arquivo <<nome << "\n" <<senha << "\n" <<email << "\n" <<cnpj << "\n" <<cep << std::endl;
              arquivo.close();
              std::cout << "Usuario cadastrado com sucesso!" << std::endl;
      }    else {

@@ -32,14 +32,14 @@ int main(){
                 Login log;
 
                 while(true){
-                    std::cout << "Digite o nome de usuario: ";
-                    std::cin >> nome;
-                    std::cout << "Digite a senha: ";
-                    std::cin >> senha;
+                    std::cout << "Digite o nome de usuario: " << std::endl;
+                    std::cin >>nome;
+                    std::cout << "Digite a senha: " << std::endl;
+                    std::cin >>senha;
 
-                        if(log.autenticarCliente(nome, senha)){
-                            break;
-                        }
+                    if(log.autenticarCliente(nome,senha)){
+                        break;
+                    }
                     std::cout << "Erro na autenticação" << '\n' << std::endl;
                     
                 }
@@ -73,9 +73,9 @@ int main(){
                 Login log;
 
                 while(true){
-                    std::cout << "Digite o nome da loja: \n";
+                    std::cout << "Digite o nome da loja: ";
                     std::cin >> nome;
-                    std::cout << "Digite a senha:\n ";
+                    std::cout << "Digite a senha: ";
                     std::cin >> senha;
 
                         if(log.autenticarLoja(nome, senha)){

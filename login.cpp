@@ -1,72 +1,104 @@
 #include "login.hpp"
 #include <iostream>
+#include <cstring>
 #include <fstream>
 #include <vector>
 
-bool Login::autenticarCliente(std::string nome, std::string senha) {
+bool Login::autenticarCliente(std::string nome, std::string senha)
+{
     senha = encrypit(senha);
     std::string linha;
+    bool encontrada = false;
+    
     std::ifstream arquivo("usuariosClientes.txt", std::ios::binary | std::ios::in);
-    if (arquivo.is_open()) {
+    if (arquivo.is_open())
+    {
         std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo;
-            while (getline(arquivo, linha)) {
-                nomeArquivo = linha;
-                getline(arquivo, linha);
-                senhaArquivo = linha;
-                getline(arquivo, linha);
-                emailArquivo = linha;
-                getline(arquivo, linha);
-                cpfArquivo = linha;
-                
-                senhaArquivo.erase(0, senhaArquivo.find_first_not_of(" \t\r\n"));
-            if (nome == nomeArquivo && senha == senhaArquivo) {
+        while (std::getline(arquivo, linha)){
+            size_t pos = linha.find(nome);
+
+            if (pos != std::string::npos){
+                encontrada = true;              
+                break;
+            }
+        } 
+        if (encontrada){
+            std::getline(arquivo, linha);
+            senhaArquivo = linha;
+        }
+
+        for(int i  = 0; i < senha.size(); i++){
+            if(senha[i] != senhaArquivo[i]){
+                break;
+            }
+            if(i == senha.size() - 1){
                 arquivo.close();
                 std::cout << "Login do cliente realizado com sucesso!" << std::endl;
-                return true;
+                return true;                
             }
-            }
-        arquivo.close();
-        std::cout << "Falha na realizacao do login do cliente!" << std::endl;
-        std::cout << '\n';
+            
+        }
+
     }
+    arquivo.close();
+    std::cout << "Falha na realizacao do login do cliente!" << std::endl;
+    std::cout << '\n';
+
     return false;
 }
 
-bool Login::autenticarLoja(std::string nome, std::string senha){
+bool Login::autenticarLoja(std::string nome, std::string senha)
+{
     senha = encrypit(senha);
     std::string linha;
+    bool encontrada = false;
+
     std::ifstream arquivo("usuariosLoja.txt", std::ios::binary | std::ios::in);
-    if (arquivo.is_open()) {
-        std::string nomeArquivo, senhaArquivo, emailArquivo, cnpjArquivo, cepArquivo;
-            while (getline(arquivo, linha)) {
-                nomeArquivo = linha;
-                getline(arquivo, linha);
+    if (arquivo.is_open())
+    {
+        std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo;
+        while (std::getline(arquivo, linha))
+        {
+            size_t pos = linha.find(nome);
+
+            if (pos != std::string::npos)
+            {
+                encontrada = true;
+                break;
+            }
+        }
+
+        if (encontrada)
+        {
+            std::getline(arquivo, linha);
+            {
                 senhaArquivo = linha;
-                getline(arquivo, linha);
-                emailArquivo = linha;
-                getline(arquivo, linha);
-                cnpjArquivo = linha;
-                getline(arquivo, linha);
-                cepArquivo = linha;
-                
-                senhaArquivo.erase(0, senhaArquivo.find_first_not_of(" \t\r\n"));
-                 
-            if (nome == nomeArquivo && senha == senhaArquivo) {
+            }
+        }
+
+        for(int i  = 0; i < senha.size(); i++){
+            if(senha[i] != senhaArquivo[i]){
+                break;
+            }
+            if(i == senha.size() - 1){
                 arquivo.close();
                 std::cout << "Login da loja realizado com sucesso!" << std::endl;
-                return true;
+                return true;                
             }
-            }
-    arquivo.close();
-    std::cout << "Falha na realização do login do cliente!" << std::endl;
+            
+        }
     }
+        arquivo.close();
+        std::cout << "Falha na realização do login da loja!" << std::endl;
+    
     return false;
 }
 
-std::string Login::encrypit (std::string& senha) {
-    for(int i = 0; (i < 100 && senha[i] != '\0'); i++){
+std::string Login::encrypit(std::string &senha)
+{
+    for (int i = 0; (i < 100 && senha[i] != '\0'); i++)
+    {
         senha[i] = senha[i] + 2;
     }
-    return senha; //wddadad
+    return senha; // wddadad
 }
-
