@@ -44,6 +44,9 @@ void Produto::remover_quantidade(int a){
         _quantidade -= a;
     }
 }
+void Produto::exibir_produto(){
+    std::cout<< _nome_produto << "\n" << _valor << "\n" << _codigo_produto<< "\n"<< _descricao << "\n" << _quantidade << std::endl;
+}
 bool Estoque::incluir_estoque(Produto produto){
     if (estoque_codigo.find(produto._codigo_produto) != estoque_codigo.end()) {
         std::cout<<"Produto ja existe"<<std::endl;
