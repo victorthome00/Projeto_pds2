@@ -55,33 +55,35 @@ for(const auto& par : _sacola){
 }
 
 std::string Pagamento::get_modo_pagamento(){
-    
+    std::string _modo_pagamento;
     std::string forma_pagamento;
-    int x = 0;
+    int x = 1;
     do{
       std::cout << "Escreva seu modo de pagamento(Debito, Credito ou PIX):" << std::endl;
-      std::getline (std::cin, forma_pagamento);
-      if(forma_pagamento == "Débito" || forma_pagamento == "Debito" || forma_pagamento == "debito" || forma_pagamento == "débito"){
+      std::cin >> forma_pagamento;
+      std::cin.ignore();
+      if(forma_pagamento == "PIX" || forma_pagamento == "Pix" || forma_pagamento == "pix"){
+         x = 1;
+         _modo_pagamento = "PIX";
+    }
+      else if(forma_pagamento == "Débito" || forma_pagamento == "Debito" || forma_pagamento == "debito" || forma_pagamento == "débito"){
         x = 1;
         _modo_pagamento = "Debito";
-    }
-    else if(forma_pagamento == "Crédito" || forma_pagamento == "Credito" || forma_pagamento == "credito" || forma_pagamento == "crédito"){
+    } else if(forma_pagamento == "Crédito" || forma_pagamento == "Credito" || forma_pagamento == "credito" || forma_pagamento == "crédito"){
         x = 1;
         _modo_pagamento = "Credito";
-    }
-    else if(forma_pagamento == "PIX" || forma_pagamento == "Pix" || forma_pagamento == "pix"){
-        x = 1;
-        _modo_pagamento = "PIX";
-    }
-    else{
+    } else{
         std::cout << "Erro! Digite um metodo de pagamento valido!" << std::endl;
+        x = 0;
      }
      }while(x==0);
      return _modo_pagamento;
 }
-//seleciona o metodo escolhido
+
 void Pagamento::pagar(){
-  if(_modo_pagamento == "Credito" || _modo_pagamento == "Debito"){
+  std::string modo;
+  modo = get_modo_pagamento();
+  if(modo == "Credito" || modo == "Debito"){
     std::string numero;
     do{
       char c;
@@ -107,8 +109,8 @@ void Pagamento::pagar(){
     }while(Pagamento::verificar_cartao(numero) != 0);
     std::cout << "Parabens! Compra realizada com sucesso!" << std::endl;
   }
-  if(_modo_pagamento == "Pix"){
-    std::cout << "O codigo de PIX e: " << gerar_codigo_PIX() << std::endl;
+  else if(modo == "PIX"){
+    std::cout << "O codigo de PIX e: " << Pagamento::gerar_codigo_PIX() << std::endl;
     char aux1;
     do{ 
     std::cout << "Digite 's' quando finalizar o pix. " << std::endl;

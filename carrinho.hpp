@@ -20,21 +20,6 @@ private:
 
 class Pagamento{
     private:
-      std::string _modo_pagamento;
-      std::string _numeroCartao;
-      
-    public:
-      Pagamento(std::string modo_pagamento, std::string numeroCartao){ 
-        this-> _modo_pagamento = modo_pagamento;
-        this-> _numeroCartao = numeroCartao;
-      } 
-        /// @brief Efetua o pagamento do cliente.
-        ///
-        /// Essa funcao recebe o metodo de pagamento e, a partir dele,
-        /// aplica a operacao de validacao do cartao ou de PIX.
-        ///
-        void pagar();
-
         /// @brief Gera um codigo aleatorio de PIX.
         ///
         ///   A partir de uma funcao rand(), presente na biblioteca <ctime>,
@@ -64,6 +49,16 @@ class Pagamento{
         ///
         /// @return 0 caso o numero seja validado; 1 caso o numero contenha letras; 2 caso o numero nao contenha exatamente 16 digitos.
         int verificar_cartao(std::string numeroCartao);
+    public:
+      Pagamento(){} 
+        /// @brief Efetua o pagamento do cliente.
+        ///
+        /// Essa funcao recebe o metodo de pagamento e, a partir dele,
+        /// aplica a operacao de validacao do cartao ou de PIX.
+        ///
+        void pagar();
+
+        
 };
 
 class Entrega{
