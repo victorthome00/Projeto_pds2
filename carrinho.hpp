@@ -19,15 +19,8 @@ private:
 };
 
 class Pagamento{
-    private:
-      std::string _modo_pagamento;
-      std::string _numeroCartao;
-      
     public:
-      Pagamento(std::string modo_pagamento, std::string numeroCartao){ 
-        this-> _modo_pagamento = modo_pagamento;
-        this-> _numeroCartao = numeroCartao;
-      } 
+      Pagamento(){} 
         /// @brief Efetua o pagamento do cliente.
         ///
         /// Essa funcao recebe o metodo de pagamento e, a partir dele,
