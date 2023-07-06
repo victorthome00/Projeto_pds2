@@ -7,7 +7,7 @@ bool Login::autenticarCliente(std::string nome, std::string senha) {
     senha = encrypit(senha);
     std::string linha;
     std::ifstream arquivo("usuariosClientes.txt", std::ios::binary | std::ios::in);
-     if (arquivo.is_open()) {
+    if (arquivo.is_open()) {
         std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo;
             while (getline(arquivo, linha)) {
                 nomeArquivo = linha;

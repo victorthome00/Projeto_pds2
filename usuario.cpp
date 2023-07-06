@@ -1,6 +1,6 @@
 #include "usuario.hpp"
 #include "produto.hpp"
-#include "carrinho.hpp"
+#include "carrinho.cpp"
 #include <fstream>
 #include <vector>
 
