@@ -7,7 +7,7 @@ bool Login::autenticarCliente(std::string nome, std::string senha) {
     senha = encrypit(senha);
     std::string linha;
     std::ifstream arquivo("usuariosClientes.txt", std::ios::binary | std::ios::in);
-     if (arquivo.is_open()) {
+    if (arquivo.is_open()) {
         std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo;
             while (getline(arquivo, linha)) {
                 nomeArquivo = linha;
@@ -25,11 +25,11 @@ bool Login::autenticarCliente(std::string nome, std::string senha) {
                 return true;
             }
             }
-    arquivo.close();
-    std::cout << "Falha na realizacao do login do cliente!" << std::endl;
-    std::cout << '\n';
+        arquivo.close();
+        std::cout << "Falha na realizacao do login do cliente!" << std::endl;
+        std::cout << '\n';
+    }
     return false;
-}
 }
 
 bool Login::autenticarLoja(std::string nome, std::string senha){
@@ -61,12 +61,13 @@ bool Login::autenticarLoja(std::string nome, std::string senha){
             }
     arquivo.close();
     std::cout << "Falha na realização do login do cliente!" << std::endl;
+    }
     return false;
-}
 }
 
 std::string Login::encrypit (std::string& senha) {
-    for(int i = 0; (i < 100 && senha[i] != '\0'); i++)
-    senha[i] = senha[i] + 2;
+    for(int i = 0; i < senha.size(); i++){
+        senha[i] = senha[i] + 2;
+    }
     return senha;
 }

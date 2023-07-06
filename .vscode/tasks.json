@@ -8,6 +8,9 @@
             "args": [
                 "produto.cpp",
                 "carrinho.cpp",
+                "login.cpp",
+                "registro.cpp",
+                "usuario.cpp",
                 "-o",
                 "output.exe"
             ],
