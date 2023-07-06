@@ -31,33 +31,62 @@ void cliente_main(std::string nome){
         exit(0);
     }
     if(comando_secundario == "1"){
-        std::string nome_loja, nome_produto, valor, codigo_produto, quantidade, descricao;
+        std::string nome_loja, nome_produto, codigo_produto, descricao;
         std::ifstream arquivo_produto("produto.txt", std::ios::in | std::ios::out);
-        if(arquivo.is_open()){
-            while(std::getline(arquivo_produtos, linha)){
+        if(arquivo_produto.is_open()){
+            while(std::getline(arquivo_produto, linha)){
                 linhas.push_back(linha);
             }
-            for(int l = 0; l < linhas.size(); l += 5){
-                nome_produto = linhas[l + 1];
-                Produto nome_produtos(linhas[l + 1], std::stof(linhas[l + 2]), linhas [l + 3], 
-                                    std::stoi(linhas[l + 4]), linhas[l + 5]);
-            }
-        visualizacao_produtos:
-            for(int m = 1; m <= (linhas.size()/6); m ++){
-                std::cout << "PAGINA " << m << std::string(3, '\n');
-                std::cout << "Para comprar um produto digite o número entre 1 e 5 que 
-                            corresponde ao produto desejado ou digite 'proxima pagina'.\n\n"; 
+            int k = 0;
+            Produto *nome_produtos = new Produto;
+                for(unsigned l = 0; l < linhas.size(); l += 5){
+                    //vetor da classe Produto *vec_prod
+                    nome_produto = linhas[l + 1];
+                    std::string valor_aux, quantidade_aux;
+                    valor_aux = linha[l+2];
+                    quantidade_aux = linha[l+5];
+                    float valor = std::stof(valor_aux);
+                    codigo_produto = linha[l+4];
+                    int quantidade = std::stoi(quantidade_aux);
+                    descricao = linha[l+3];
+                    Produto aux(nome_produto, valor, codigo_produto, quantidade, descricao);
+                    nome_produtos[k] = aux;
+                    k++;
+                }
+        //visualizacao_produtos:
+            for(unsigned m = 0; m < (linhas.size()/6); m ++){
+                std::cout << "PAGINA " << m + 1 << std::string(3, '\n');
+                std::cout << "Para comprar um produto digite o número entre 1 e 5 que corresponde ao produto desejado ou digite 'proxima pagina'.\n\n"; 
                 for(int n = 0; n < 5; n++){
-                    std::cout << n << ": " << nome_produtos[n] << std::endl;
+                    std::cout<<"n + 1"<< ": " << "nome_produtos[n]" << std::endl;
                 }
                 std::cin >> comando_secundario;
-                if(comando_secundario == 1){
-                    std::cout << nome_produtos[1].nome_produto << std::endl;
-                    std::cout << nome_produtos[1].valor << std::endl;
-                    std::cout << nome_produtos[1].codigo_produto << std::endl;
-                    std::cout << nome_produtos[1].quantidade_produto << std::endl;
-                    std::cout << nome_produtos[1].descricao << std::endl;
+                int c;
+                if (comando_secundario == "1")
+                {
+                    c = 1;
                 }
+                if (comando_secundario == "2")
+                {
+                    c = 2;
+                }                
+                if (comando_secundario == "3")
+                {
+                    c = 3;
+                }
+                if (comando_secundario == "4")
+                {
+                    c = 4;
+                }                
+                if (comando_secundario == "5")
+                {
+                    c = 5;
+                }
+                std::cout << nome_produtos[(m*5)+c].get_nome() << std::endl;
+                std::cout << nome_produtos[(m*5)+c].get_valor() << std::endl;
+                std::cout << nome_produtos[(m*5)+c].get_codigo() << std::endl;
+                std::cout << nome_produtos[(m*5)+c].get_quantidade() << std::endl;
+                std::cout << nome_produtos[(m*5)+c].get_descricao() << std::endl;
                 if(comando_secundario == "proxima pagina"){
                     break;
                 }
@@ -254,7 +283,7 @@ void loja_main(std::string nome){
     }
     std::cout << std::string(15, '\n');
     if(comando_secundario == "1"){
-    
+        
     }
     if(comando_secundario == "2"){
         std::ifstream arquivo("usuariosLoja.txt", std::ios::in | std::ios::out);
