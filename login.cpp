@@ -25,11 +25,11 @@ bool Login::autenticarCliente(std::string nome, std::string senha) {
                 return true;
             }
             }
-    arquivo.close();
-    std::cout << "Falha na realizacao do login do cliente!" << std::endl;
-    std::cout << '\n';
+        arquivo.close();
+        std::cout << "Falha na realizacao do login do cliente!" << std::endl;
+        std::cout << '\n';
+    }
     return false;
-}
 }
 
 bool Login::autenticarLoja(std::string nome, std::string senha){
@@ -61,8 +61,8 @@ bool Login::autenticarLoja(std::string nome, std::string senha){
             }
     arquivo.close();
     std::cout << "Falha na realização do login do cliente!" << std::endl;
+    }
     return false;
-}
 }
 
 std::string Login::encrypit (std::string& senha) {
