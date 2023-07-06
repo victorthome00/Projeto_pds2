@@ -66,7 +66,7 @@ class Pagamento{
         int verificar_cartao(std::string numeroCartao);
 };
 
-class Entrega
+class Entrega{
   public:
       void coletar_endereco();
       void entregar();
