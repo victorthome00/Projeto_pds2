@@ -11,7 +11,7 @@ class Estoque;
 class Produto{      
 public:
     friend class Estoque;
-        Produto(std::string nome_produto, float valor, std::string descricao, std::string codigo_produto, int quantidade){
+        Produto(std::string nome_produto, float valor, std::string codigo_produto, int quantidade, std::string descricao){
         _nome_produto = nome_produto;
         _valor = valor;
         _descricao = descricao;
