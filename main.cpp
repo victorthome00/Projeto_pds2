@@ -1,8 +1,8 @@
 #include "carrinho.hpp"
-#include "login.hpp"
-#include "produto.hpp"
-#include "registro.hpp"
-#include "usuario.hpp"
+#include "login.cpp"
+#include "produto.cpp"
+#include "registro.cpp"
+#include "usuario.cpp"
 #include <iostream>
 
 int main(){
@@ -41,9 +41,9 @@ int main(){
                             break;
                         }
                     std::cout << "Erro na autenticação" << '\n' << std::endl;
-
+                    
                 }
-                
+                std::cout<<"Autenticação concluida"<<std::endl;
             }
             if(comando_auxiliar == "não" || comando_auxiliar == "n" || comando_auxiliar == "nao"){
                 Registro novo_cliente;
