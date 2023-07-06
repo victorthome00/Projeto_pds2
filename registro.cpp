@@ -242,5 +242,5 @@ std::string Registro::validar_cep(){
         return cep;
     }
     std::cout << "CEP invalido, necessario ter 8 digitos" << std::endl;
- }
+}
 }
