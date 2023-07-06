@@ -66,7 +66,8 @@ bool Login::autenticarLoja(std::string nome, std::string senha){
 }
 
 std::string Login::encrypit (std::string& senha) {
-    for(int i = 0; (i < 100 && senha[i] != '\0'); i++)
-    senha[i] = senha[i] + 2;
+    for(int i = 0; i < senha.size(); i++){
+        senha[i] = senha[i] + 2;
+    }
     return senha;
 }

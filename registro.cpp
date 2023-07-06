@@ -83,9 +83,11 @@ std::string Registro::validar_senha() {
             }
             std::cout << "Senha invalida, digite ao menos uma letra maiuscula" << std::endl;
             std::cin >> senha;
+            return 1;
     }    else {
         std::cout << "Senha invalida, digite ao menos dois digitos" << std::endl;
         std::cin >> senha;
+        return 1;
     }
     }
 }
@@ -133,6 +135,7 @@ std::string Registro::validar_cpf(){
         return cpf;
     }
     std::cout << "CPF invalido, necessario ter 11 digitos" << std::endl;
+    return 1;
 }
 
 }
@@ -161,6 +164,7 @@ std::string Registro::validar_cnpj(){
         return cnpj;
     }
     std::cout << "CNPJ invalido, necessario ter 14 digitos" << std::endl;
+    return 1;
 }
 }
 
@@ -187,6 +191,7 @@ std::string Registro::validar_usuario() {
         }
         std::cout << "Usuario ja existe" << std::endl;
         arquivo.close();
+        return 1;
         }
 
     }
@@ -214,6 +219,7 @@ std::string Registro::validar_loja() {
         }
         std::cout << "Usuario ja existe" << std::endl;
         arquivo.close();
+        return 1;
         }
 
     }
@@ -242,5 +248,6 @@ std::string Registro::validar_cep(){
         return cep;
     }
     std::cout << "CEP invalido, necessario ter 8 digitos" << std::endl;
+    return 1;
  }
 }

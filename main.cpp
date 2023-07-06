@@ -12,12 +12,13 @@ int main(){
     std::cout << "Digite 'cliente' caso deseje entrar como cliente" << "\n" << "Digite 'gerente' para gerenciar seus produtos disponiveis" << std::endl;
     std::cin >> comando;
     std::cin.ignore();
-    std::string nome, senha;
+    std::string nome;
+    std::string senha;
     //comando = trata_string(comando);
     if(comando == "sair"){
         exit(0);
     }
-   if(comando == "cliente"){
+    if(comando == "cliente"){
 
         while(true){
             std::cout<<"ja possui cadastro?"<<std::endl;
@@ -31,9 +32,9 @@ int main(){
                 Login log;
 
                 while(true){
-                    std::cout << "Digite o nome de usuario: ";
+                    std::cout << "Digite o nome de usuario:\n ";
                     std::cin >> nome;
-                    std::cout << "Digite a senha: ";
+                    std::cout << "Digite a senha: \n";
                     std::cin >> senha;
 
                         if(log.autenticarCliente(nome, senha)){
@@ -72,9 +73,9 @@ int main(){
                 Login log;
 
                 while(true){
-                    std::cout << "Digite o nome da loja: ";
+                    std::cout << "Digite o nome da loja: \n";
                     std::cin >> nome;
-                    std::cout << "Digite a senha: ";
+                    std::cout << "Digite a senha:\n ";
                     std::cin >> senha;
 
                         if(log.autenticarLoja(nome, senha)){
