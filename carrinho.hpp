@@ -40,6 +40,7 @@ public:
     ///  Percorre todos os elementos da sacola,
     /// mostrando as informações de cada um deles.
     /// além disse mostra o valor total do carrinho.
+    ///
     void exibir_carrinho();
     
     /// @brief Calcula o valor total do carrinho
@@ -58,41 +59,43 @@ private:
 /// @brief A classe Pagamento efetua e valida o pagamento do cliente.
 class Pagamento{
     private:
-        /// @brief Gera um codigo aleatorio de PIX.
+        /// @brief Gera um código aleatório de PIX.
         ///
-        ///   A partir de uma funcao rand(), presente na biblioteca <ctime>,
+        ///   A partir de uma função rand(), presente na biblioteca <ctime>,
         /// x assume um valor de 1 a 20. A partir desse numero, com um switch-
-        /// -case, é escolhida um dos codigos ja escritos.
+        /// -case, é escolhido um dos códigos já escritos.
         ///
         /// @return um codigo PIX de 13 elementos.
         std::string gerar_codigo_PIX();
 
         /// @brief Recebe o modo de pagamento do cliente.
         ///
-        /// Pega o modo de pagamento do cliente, que escolhe entre: 
-        /// credito, debito e PIX. Tratando o caso de entradas diferentes com um do-while.
-        /// Esse do-while funciona repetindo a funcao ate que seja inserido algum dos metodos de pagamento disponiveis.
+        ///  Pega o modo de pagamento do cliente, que escolhe entre: 
+        /// crédito, débito e PIX. Tratando o caso de entradas diferentes com um do-while.
+        /// Esse do-while funciona repetindo a função ate que seja inserido algum dos métodos de pagamento disponíveis.
         ///
         /// @return O modo de pagamento escolhido (credito, debito ou PIX).
         std::string get_modo_pagamento();
 
-        /// @brief Valida o numero do cartao digitado.
+        /// @brief Valida o numero do cartão digitado.
         ///
-        ///   O metodo recebe o numero do cartao digitado e verifica se o mesmo:
-        ///  Possui alguma letra e/ou possui menos ou mais numeros que 8.
-        ///  Caso alguma das afirmacoes acima ocorram, o tratamento de erro e acionado,
+        ///   O método recebe o número do cartão digitado e verifica se o mesmo:
+        ///  Possui alguma letra e/ou possui menos ou mais números que 8.
+        ///  Caso alguma das afirmações acima ocorram, o tratamento de erro é acionado,
         ///  retornando 1 para o primeiro caso e 2 para o segundo. Caso a verificação passe nos dois casos é retornado 0.
         ///
-        /// @param numeroCartao Numero digitado para validacao pelo cliente.
+        /// @param numeroCartao Número digitado para validação pelo cliente.
         ///
-        /// @return 0 caso o numero seja validado; 1 caso o numero contenha letras; 2 caso o numero nao contenha exatamente 8 digitos.
+        /// @return Retorna 0 caso o número seja validado; 1 caso o número contenha letras; 2 caso o número nao contenha exatamente 8 dígitos.
         int verificar_cartao(std::string numeroCartao);
     public:
       Pagamento(){} 
+
         /// @brief Efetua o pagamento do cliente.
         ///
-        /// Essa funcao recebe o metodo de pagamento e, a partir dele,
-        /// aplica a operacao de validacao do cartao ou de PIX.
+        ///   Essa função recebe o método de pagamento e, a partir dele,
+        /// aplica a operação de pagamento pela validação do cartão ou pela
+        /// confirmação do código do PIX.
         ///
         void pagar();       
 };
@@ -107,6 +110,7 @@ class Entrega{
       /// certo e não contem letras. Caso as duas condições
       /// seja satisfeitas, o função é completa, e atribui um
       /// cep a classe.
+      ///
       void coletar_endereco();
 
       /// @brief É a função de mostrar os status de entrega do produto
@@ -115,6 +119,7 @@ class Entrega{
       /// mostra o status de entrega do produto. Como
       /// a função é ilustrativa, o status de entrega é atualizado
       /// a cada 3 segundos.
+      ///
       void entregar();
 
       /// @brief Uma função que bota atribui um cep diretamente
