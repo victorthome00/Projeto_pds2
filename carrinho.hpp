@@ -60,7 +60,7 @@ class Pagamento{
     private:
         /// @brief Gera um codigo aleatorio de PIX.
         ///
-        ///   A partir de uma funcao rand(), presente na biblioteca <ctime>,
+        /// A partir de uma funcao rand(), presente na biblioteca <ctime>,
         /// x assume um valor de 1 a 20. A partir desse numero, com um switch-
         /// -case, é escolhida um dos codigos ja escritos.
         ///
@@ -78,10 +78,10 @@ class Pagamento{
 
         /// @brief Valida o numero do cartao digitado.
         ///
-        ///   O metodo recebe o numero do cartao digitado e verifica se o mesmo:
-        ///  Possui alguma letra e/ou possui menos ou mais numeros que 8.
-        ///  Caso alguma das afirmacoes acima ocorram, o tratamento de erro e acionado,
-        ///  retornando 1 para o primeiro caso e 2 para o segundo. Caso a verificação passe nos dois casos é retornado 0.
+        ///  O metodo recebe o numero do cartao digitado e verifica se o mesmo:
+        ///  Possui alguma letra e/ou possui menos ou mais numeros que o padrao de 16.
+        ///  Caso alguma das afirmacoes acima ocorram, o tratamento de erro é acionado,
+        ///  retornando 1 para o primeiro caso e 2 para o segundo. Caso a verificação passe nos dois casos é reornado 0.
         ///
         /// @param numeroCartao Numero digitado para validacao pelo cliente.
         ///
