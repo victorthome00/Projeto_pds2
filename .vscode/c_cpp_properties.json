@@ -2,20 +2,27 @@
     "configurations": [
         {
             "name": "Win32",
+            "compilerPathInCppPropertiesJson": "C:\\MinGW\\bin\\gcc.exe",
             "includePath": [
-                "${workspaceFolder}/**",
-                "\Users\aurel\OneDrive\Área de Trabalho\sqlite3"
+                "c:\\Users\\gamer\\Documents\\GitHub\\Projeto_pds2/**"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
             ],
-            "windowsSdkVersion": "10.0.19041.0",
-            "compilerPath": "C:/mingw/bin/g++.exe",
             "cStandard": "c11",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "gcc-x64"
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "windows-gcc-x86",
+            "mergeConfigurations": false,
+            "compilerPath": "C:\\MinGW\\bin\\gcc.exe",
+            "configurationProvider": "ms-vscode.makefile-tools",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
         }
     ],
     "version": 4
