@@ -88,7 +88,7 @@ void Pagamento::pagar(){
     do{
       char c;
       do{
-      std::cout << "Digite os numeros do seu cartao: ";
+      std::cout << "Digite os primeiros 8 numeros do seu cartao: ";
       std::getline(std::cin, numero);
       std::cout << "Os numeros do seu cartao sao: " << numero << std::endl;
       std::cout << "Digite 's' para confirmar, para reescrever o numero digite qualquer botao diferente de 's': " << std::endl;
@@ -100,25 +100,29 @@ void Pagamento::pagar(){
       }
       }while(c != 's');
       std::cout << "verificando cartao..." << std::endl;
+      sleep(3);
       if(Pagamento::verificar_cartao(numero) == 1){
         std::cout << "Erro! Digite apenas numeros!" << std::endl;
       }
       else if(Pagamento::verificar_cartao(numero) == 2){
-        std::cout << "Erro! Digite todos os 16 numeros do cartao!" << std::endl;
+        std::cout << "Erro! Digite os primeiros 8 numeros do seu cartao!" << std::endl;
       }
     }while(Pagamento::verificar_cartao(numero) != 0);
     std::cout << "Parabens! Compra realizada com sucesso!" << std::endl;
+    sleep(1);
   }
   else if(modo == "PIX"){
     std::cout << "O codigo de PIX e: " << Pagamento::gerar_codigo_PIX() << std::endl;
     char aux1;
     do{ 
-    std::cout << "Digite 's' quando finalizar o pix. " << std::endl;
+    std::cout << "Digite 's' quando confirmar o pix. " << std::endl;
     std::cin >> aux1;
-    std::cin.ignore();
+    std::cin.ignore(); 
     }while(aux1!= 's');
-
+    std::cout << "Confirmando PIX..." << std::endl;
+    sleep(3);
     std::cout << "Parabens! Compra realizada com sucesso" << std::endl;
+    sleep(1);
   }
 }
 
@@ -127,6 +131,21 @@ void Pagamento::pagar(){
 
 std::string Pagamento::gerar_codigo_PIX(){
   int x = rand() % 20 + 1;
+  /*int y = x;
+    if(y == 10 || y == 20){
+      std::cout << "Oh nao! A geracao do codigo PIX encontrou um problema!\n";
+      sleep(2);
+      std::cout << "Jogue esse jogo da velha enquanto nossos programadores corrigem isso!\n";
+      sleep(2);
+      std::cout << "========================================\n";
+      std::cout << "============ Jogo da Velha =============\n";
+      std::cout << "========================================\n";
+      Jogo_espera a;
+      a.Jogo_da_velha();
+      std::cout << "\n=====Problema corrigido!=====\n";
+      std::cout << "Voltando ao codigo..." << std::endl;
+      sleep(2);
+    }*/
   switch(x){
       case 1:
         return "123A#&906YL0";
@@ -208,7 +227,7 @@ int Pagamento::verificar_cartao(std::string numeroCartao){
     }
   }
   int tamanho = numeroCartao.length();
-  if(tamanho != 16){
+  if(tamanho != 8){
     return 2;
   }
   return 0;
@@ -273,4 +292,115 @@ void Entrega::set_cep(std::string cep){
     }
   }while(i = -1);
 
+}*/
+/*
+void Jogo_espera::drawBoard(char *spaces){
+    std::cout << '\n';
+    std::cout << "     |     |     " << '\n';
+    std::cout << "  " << spaces[0] << "  |  " << spaces[1] << "  |  " << spaces[2] << "  " << '\n';
+    std::cout << "_____|_____|_____" << '\n';
+    std::cout << "     |     |     " << '\n';
+    std::cout << "  " << spaces[3] << "  |  " << spaces[4] << "  |  " << spaces[5] << "  " << '\n';
+    std::cout << "_____|_____|_____" << '\n';
+    std::cout << "     |     |     " << '\n';
+    std::cout << "  " << spaces[6] << "  |  " << spaces[7] << "  |  " << spaces[8] << "  " << '\n';
+    std::cout << "     |     |     " << '\n';
+    std::cout << '\n';
+}
+void Jogo_espera::playerMove(char *spaces, char player){
+    int number;
+    do{
+      std::cout << "Escolha uma posicao para o marcador (1-9): ";
+      std::cin >> number;
+      number--;
+      if(spaces[number] == ' '){
+        spaces[number] = player;
+        break;
+      }
+    }while(number < 0 || number > 8);
+}
+void Jogo_espera::computerMove(char *spaces, char computer){
+    int number;
+    srand(time(NULL));
+    sleep(1);
+    while(true){
+      number = rand() % 9;
+      if(spaces[number] == ' '){
+        spaces[number] = computer;
+        break;
+      }
+    }
+}
+bool Jogo_espera::checkWinner(char *spaces, char player){
+    if((spaces[0] != ' ') && (spaces[0] == spaces[1]) && (spaces[1] == spaces[2])){
+        spaces[0] == player ? std::cout << "VOCE GANHOU!\n" : std::cout << "VOCE PERDEU!\n";
+    }
+    else if((spaces[3] != ' ') && (spaces[3] == spaces[4]) && (spaces[4] == spaces[5])){
+        spaces[3] == player ? std::cout << "VOCE GANHOU!\n" : std::cout << "VOCE PERDEU!\n";
+    }
+    else if((spaces[6] != ' ') && (spaces[6] == spaces[7]) && (spaces[7] == spaces[8])){
+        spaces[6] == player ? std::cout << "VOCE GANHOU!\n" : std::cout << "VOCE PERDEU!\n";
+    }
+    else if((spaces[0] != ' ') && (spaces[0] == spaces[3]) && (spaces[3] == spaces[6])){
+        spaces[0] == player ? std::cout << "VOCE GANHOU!\n" : std::cout << "VOCE PERDEU!\n";
+    }
+    else if((spaces[1] != ' ') && (spaces[1] == spaces[4]) && (spaces[4] == spaces[7])){
+        spaces[1] == player ? std::cout << "VOCE GANHOU!\n" : std::cout << "VOCE PERDEU!\n";
+    }
+    else if((spaces[2] != ' ') && (spaces[2] == spaces[5]) && (spaces[5] == spaces[8])){
+        spaces[2] == player ? std::cout << "VOCE GANHOU!\n" : std::cout << "VOCE PERDEU!\n";
+    }
+    else if((spaces[0] != ' ') && (spaces[0] == spaces[4]) && (spaces[4] == spaces[8])){
+        spaces[0] == player ? std::cout << "VOCE GANHOU!\n" : std::cout << "VOCE PERDEU!\n";
+    }
+    else if((spaces[2] != ' ') && (spaces[2] == spaces[4]) && (spaces[4] == spaces[6])){
+        spaces[2] == player ? std::cout << "VOCE GANHOU!\n" : std::cout << "VOCE PERDEU!\n";
+    }
+    else{
+      return false;
+    }
+    return true;
+}
+bool Jogo_espera::checkTie(char *spaces){
+
+  for(int i = 0; i < 9; i++){
+    if(spaces[i] == ' '){
+      return false;
+    }
+  }
+    std::cout << "EMPATE!!" << std::endl;
+    return true;
+}
+void Jogo_espera::Jogo_da_velha(){
+  char spaces[9] = {' ',' ',' ',' ',' ',' ',' ',' ',' '};
+      char player = 'X';
+      char computer = 'O';
+      bool running = true;
+
+      drawBoard(spaces);
+
+      while(running){
+        playerMove(spaces, player);
+        drawBoard(spaces);
+        if(checkWinner(spaces, player)){
+          running = false;
+          break;
+        }
+        else if(checkTie(spaces)){
+          running = false;
+          break;
+        }
+
+        computerMove(spaces, computer);
+        drawBoard(spaces);
+        if(checkWinner(spaces, player)){
+          running = false;
+          break;
+        }
+        else if(checkTie(spaces)){
+          running = false;
+          break;
+        }
+
+      }
 }*/
