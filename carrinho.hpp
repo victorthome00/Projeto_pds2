@@ -53,13 +53,16 @@ public:
 private:
   std::vector <std::pair<Produto, int>> _sacola;
 }; 
+
+
+/// @brief A classe Pagamento efetua e valida o pagamento do cliente.
 class Pagamento{
     private:
         /// @brief Gera um codigo aleatorio de PIX.
         ///
         ///   A partir de uma funcao rand(), presente na biblioteca <ctime>,
         /// x assume um valor de 1 a 20. A partir desse numero, com um switch-
-        /// -case, é escolhida uma dos codigos ja escritos.
+        /// -case, é escolhida um dos codigos ja escritos.
         ///
         /// @return um codigo PIX de 13 elementos.
         std::string gerar_codigo_PIX();
@@ -76,13 +79,13 @@ class Pagamento{
         /// @brief Valida o numero do cartao digitado.
         ///
         ///   O metodo recebe o numero do cartao digitado e verifica se o mesmo:
-        ///  Possui alguma letra e/ou possui menos ou mais numeros que o padrao de 16.
-        ///  Caso alguma das afirmacoes acima ocorram, o tratamento de erro é acionado,
-        ///  retornando 1 para o primeiro caso e 2 para o segundo. Caso a verificação passe nos dois casos é reornado 0.
+        ///  Possui alguma letra e/ou possui menos ou mais numeros que 8.
+        ///  Caso alguma das afirmacoes acima ocorram, o tratamento de erro e acionado,
+        ///  retornando 1 para o primeiro caso e 2 para o segundo. Caso a verificação passe nos dois casos é retornado 0.
         ///
         /// @param numeroCartao Numero digitado para validacao pelo cliente.
         ///
-        /// @return 0 caso o numero seja validado; 1 caso o numero contenha letras; 2 caso o numero nao contenha exatamente 16 digitos.
+        /// @return 0 caso o numero seja validado; 1 caso o numero contenha letras; 2 caso o numero nao contenha exatamente 8 digitos.
         int verificar_cartao(std::string numeroCartao);
     public:
       Pagamento(){} 
@@ -91,10 +94,9 @@ class Pagamento{
         /// Essa funcao recebe o metodo de pagamento e, a partir dele,
         /// aplica a operacao de validacao do cartao ou de PIX.
         ///
-        void pagar();
-
-        
+        void pagar();       
 };
+
 /// @brief É a classe responsável pela entrega dos produtos em um cep específico.
 class Entrega{
   public:
@@ -126,6 +128,19 @@ class Entrega{
       void set_cep(std::string cep);
   private: 
       std::string _cep;
-
 };
+
+/*
+class Jogo_espera{
+  private:
+  void drawBoard(char *spaces);
+  void playerMove(char *spaces, char player);
+  void computerMove(char *spaces, char computer);
+  bool checkWinner(char *spaces, char player);
+  bool checkTie(char *spaces);
+  public:
+  Jogo_espera(){}
+  void Jogo_da_velha();
+};*/
+
 #endif
