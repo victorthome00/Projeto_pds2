@@ -62,6 +62,7 @@ public:
         float get_valor();
         std::string get_descricao();
         int get_quantidade();
+        void exibir_produto();
 
 private:
     std::string _nome_produto;
