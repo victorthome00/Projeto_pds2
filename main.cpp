@@ -73,9 +73,9 @@ int main(){
                 Login log;
 
                 while(true){
-                    std::cout << "Digite o nome da loja: \n";
+                    std::cout << "Digite o nome da loja: ";
                     std::cin >> nome;
-                    std::cout << "Digite a senha:\n ";
+                    std::cout << "Digite a senha: ";
                     std::cin >> senha;
 
                         if(log.autenticarLoja(nome, senha)){

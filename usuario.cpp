@@ -18,18 +18,51 @@ void cliente_main(std::string nome){
     Carrinho_de_compra carrinho;
     std::string comando_secundario;
     std::vector<std::string> lines;
+    std::vector<std::string> linhas;
+    std::string linha;
     std::string line;
     unsigned i = 0;
     //pagina_principal:
     std::cout << "1: Produtos \n2: Usuário \n3: Carrinho \n"<< std::endl;
     std::cout << "Digite o número referente ao que gostaria de prosseguir" << std::endl;
     std::cin >> comando_secundario;
-    std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    std::cout << std::string(15, '\n');
     if (comando_secundario == "sair" || comando_secundario == "Sair"){
         exit(0);
     }
     if(comando_secundario == "1"){
-        //adicionar arquivo dos produtos
+        std::string nome_loja, nome_produto, valor, codigo_produto, quantidade, descricao;
+        std::ifstream arquivo_produto("produto.txt", std::ios::in | std::ios::out);
+        if(arquivo.is_open()){
+            while(std::getline(arquivo_produtos, linha)){
+                linhas.push_back(linha);
+            }
+            for(int l = 0; l < linhas.size(); l += 5){
+                nome_produto = linhas[l + 1];
+                Produto nome_produtos(linhas[l + 1], std::stof(linhas[l + 2]), linhas [l + 3], 
+                                    std::stoi(linhas[l + 4]), linhas[l + 5]);
+            }
+        visualizacao_produtos:
+            for(int m = 1; m <= (linhas.size()/6); m ++){
+                std::cout << "PAGINA " << m << std::string(3, '\n');
+                std::cout << "Para comprar um produto digite o número entre 1 e 5 que 
+                            corresponde ao produto desejado ou digite 'proxima pagina'.\n\n"; 
+                for(int n = 0; n < 5; n++){
+                    std::cout << n << ": " << nome_produtos[n] << std::endl;
+                }
+                std::cin >> comando_secundario;
+                if(comando_secundario == 1){
+                    std::cout << nome_produtos[1].nome_produto << std::endl;
+                    std::cout << nome_produtos[1].valor << std::endl;
+                    std::cout << nome_produtos[1].codigo_produto << std::endl;
+                    std::cout << nome_produtos[1].quantidade_produto << std::endl;
+                    std::cout << nome_produtos[1].descricao << std::endl;
+                }
+                if(comando_secundario == "proxima pagina"){
+                    break;
+                }
+            }
+        }
     }
     if(comando_secundario == "2"){
         std::ifstream arquivo("usuariosClientes.txt", std::ios::in | std::ios::out);
