@@ -35,8 +35,6 @@ bool Login::autenticarCliente(std::string nome, std::string senha) {
 bool Login::autenticarLoja(std::string nome, std::string senha){
     senha = encrypit(senha);
     std::string linha;
-
-    int i = 0;
     std::ifstream arquivo("usuariosLoja.txt", std::ios::binary | std::ios::in);
     if (arquivo.is_open()) {
         std::string nomeArquivo, senhaArquivo, emailArquivo, cnpjArquivo, cepArquivo;
@@ -66,8 +64,9 @@ bool Login::autenticarLoja(std::string nome, std::string senha){
 }
 
 std::string Login::encrypit (std::string& senha) {
-    for(int i = 0; i < senha.size(); i++){
+    for(int i = 0; (i < 100 && senha[i] != '\0'); i++){
         senha[i] = senha[i] + 2;
     }
-    return senha;
+    return senha; //wddadad
 }
+
