@@ -1,6 +1,6 @@
 #include "usuario.hpp"
 #include "produto.hpp"
-#include "carrinho.cpp"
+#include "carrinho.hpp"
 #include <fstream>
 #include <vector>
 
@@ -34,7 +34,7 @@ void cliente_main(std::string nome){
     if(comando_secundario == "2"){
         std::ifstream arquivo("usuariosClientes.txt", std::ios::in | std::ios::out);
         if (arquivo.is_open()){
-            std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo, cepArquivo;
+            std::string nomeArquivo, senhaArquivo, emailArquivo, cpfArquivo;
             while(std::getline(arquivo, line)){
                 lines.push_back(line);
             }
@@ -48,7 +48,7 @@ void cliente_main(std::string nome){
             }
         visualizacao_perfil:
             std::cout << "Usuario:\n" << nomeArquivo << "\n\nSenha:\n" << "******" << "\n\nEmail:\n" << emailArquivo <<  "\n\nCpf:\n" 
-                      << cpfArquivo << "\n\nCep\n" << cepArquivo << std::endl;
+                      << cpfArquivo << std::endl;
             std::cout << "\nVoltar" << std::endl;
             std::cin >> comando_secundario;
             comando_secundario = trata_string(comando_secundario);
@@ -57,7 +57,7 @@ void cliente_main(std::string nome){
             if(comando_secundario == "usuario"){
                 alterar_nome:
                 std::cout << "Nome: " << nomeArquivo;
-                std::cout << "Gostaria de alterar o nome de usuario? \n" << "S/N" << std::endl;
+                std::cout << " " << "Gostaria de alterar o nome de usuario? \n" << "S/N" << std::endl;
                 std::cin >> comando_secundario;
                 if(comando_secundario == "s"){
                     verificar_nome:

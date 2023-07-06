@@ -1,8 +1,8 @@
 #include "carrinho.hpp"
-#include "login.cpp"
-#include "produto.cpp"
-#include "registro.cpp"
-#include "usuario.cpp"
+#include "login.hpp"
+#include "produto.hpp"
+#include "registro.hpp"
+#include "usuario.hpp"
 #include <iostream>
 
 int main(){
@@ -32,9 +32,9 @@ int main(){
                 Login log;
 
                 while(true){
-                    std::cout << "Digite o nome de usuario:\n ";
+                    std::cout << "Digite o nome de usuario: ";
                     std::cin >> nome;
-                    std::cout << "Digite a senha: \n";
+                    std::cout << "Digite a senha: ";
                     std::cin >> senha;
 
                         if(log.autenticarCliente(nome, senha)){
