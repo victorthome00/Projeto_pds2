@@ -5,7 +5,6 @@
 #include <utility>
 #include <map>
 #include "produto.hpp"
-
 /// @brief É a classe responsável por cuidar dos itens do carrinho.
 class Carrinho_de_compra{   //estoque n tem construtor;
 public:
@@ -54,14 +53,15 @@ public:
 
 private:
   std::vector <std::pair<Produto, int>> _sacola;
-};
+}; 
+
 
 /// @brief A classe Pagamento efetua e valida o pagamento do cliente.
 class Pagamento{
     private:
         /// @brief Gera um código aleatório de PIX.
         ///
-        ///   A partir de uma função rand(), presente na biblioteca <ctime>,
+        /// A partir de uma funcao rand(), presente na biblioteca <ctime>,
         /// x assume um valor de 1 a 20. A partir desse numero, com um switch-
         /// -case, é escolhido um dos códigos já escritos.
         ///
