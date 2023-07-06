@@ -34,7 +34,7 @@ void Carrinho_de_compra::remover_item(std::string codigo, int quantidade){
 }
 
 void Carrinho_de_compra::exibir_carrinho(){
-for (const auto& par : _sacola) {
+    for (const auto& par : _sacola){
         Produto produto = par.first;    
         int quantidade = par.second;
 
