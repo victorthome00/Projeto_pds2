@@ -44,6 +44,7 @@ int main(){
                     
                 }
                 std::cout<<"Autenticação concluida"<<std::endl;
+                std::cout <<'\n';
             }
             if(comando_auxiliar == "não" || comando_auxiliar == "n" || comando_auxiliar == "nao"){
                 Registro novo_cliente;
@@ -83,7 +84,8 @@ int main(){
                         }
                     std::cout << "Erro na autenticação" <<std::endl;
                 }
-                
+                std::cout<<"Autenticação concluida"<<std::endl;
+                std::cout <<'\n';
             }
             if(comando_auxiliar == "não" || comando_auxiliar == "n" || comando_auxiliar == "nao"){
                 Registro novo_cliente;

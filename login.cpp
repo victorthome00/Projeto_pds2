@@ -33,7 +33,7 @@ bool Login::autenticarCliente(std::string nome, std::string senha)
             }
             if(i == senha.size() - 1){
                 arquivo.close();
-                std::cout << "Login do cliente realizado com sucesso!" << std::endl;
+                //std::cout << "Login do cliente realizado com sucesso!" << std::endl;
                 return true;                
             }
             
