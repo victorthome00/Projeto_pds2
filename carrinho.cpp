@@ -1,47 +1,64 @@
 #include "carrinho.hpp"
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <vector>
+#include <cstring>
 #include <ctime>
 #include <cctype> 
 #include <sstream>
 #include <unistd.h>
 
 
-void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade, Estoque aux){
-    Produto escolha = aux.estoque_codigo[codigo];
-    int j = escolha.get_quantidade();
-    if( j >= quantidade){
-        _sacola.push_back(std::make_pair(escolha, quantidade));
+void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade){
+  std::ifstream produtos("produto.txt", std::ios::in | std::ios::out);
+  std::vector<std::string> linhas;
+  std::string linha;
+  std::string line;
+  while (std::getline(produtos, linha)){
+    linhas.push_back(linha);
+  }
+  for(std::size_t o = 0; o < linhas.size(); o++){
+    if(codigo == linhas[o]){
+      std::string nome, codigo, descricao;
+      float valor;
+      int quanti;
+      nome = linhas[o - 2];
+      codigo = linhas[o];
+      descricao = linhas[o + 2];
+      valor = std::stof(linhas[o - 1]);
+      quanti = std::stoi(linhas[0 + 1]);
+      Produto produto_aux(nome,valor,codigo,quanti,descricao);
+      std::pair<Produto, int> par(produto_aux,quantidade);
+      _sacola.push_back(par);
     }
-    else{
-        std::cout << "Poxa, nao temos essa quantidade no estoque!" << std::endl;
-    }
+  }
+  produtos.close();
 }
 
 void Carrinho_de_compra::remover_item(std::string codigo, int quantidade){
   for (auto it = _sacola.begin(); it != _sacola.end(); ++it) {
-        if (it->first.get_codigo() == codigo) {
-            it->second -= quantidade;
-            if (it->second <= 0) {
-                _sacola.erase(it);
-                break;
-            }
-        }
+    if (it->first.get_codigo() == codigo) {
+      it->second -= quantidade;
+      if (it->second <= 0) {
+        _sacola.erase(it);
+        break;
+      }
     }
+  }
 
 
 }
 
 void Carrinho_de_compra::exibir_carrinho(){
-    for (const auto& par : _sacola){
-        Produto produto = par.first;    
-        int quantidade = par.second;
+  for (const auto& par : _sacola){
+    Produto produto = par.first;    
+    int quantidade = par.second;
 
-        std::cout << "Nome: " << produto.get_nome() << ", Preco: " << produto.get_valor() << ", Quantidade: " << quantidade << std::endl;
-    }
-    std::cout << std::endl << std::endl;
-    std::cout << "Preco total: " << calcular_valor() << std::endl;
+    std::cout << "Nome: " << produto.get_nome() << ", Preco: " << produto.get_valor() << ", Quantidade: " << quantidade << std::endl;
+  }
+  std::cout << std::endl << std::endl;
+  std::cout << "Preco total: " << calcular_valor() << std::endl;
 }
 
 float Carrinho_de_compra::calcular_valor(){
