@@ -20,7 +20,7 @@ public:
     /// @param codigo é o codigo do produto referido
     /// @param quantidade é a quantidade que se deseja adicionar
     /// @param aux é o estoque onde se busca esse produto
-    void adicionar_item(std::string codigo, int quantidade, Estoque aux);
+    void adicionar_item(std::string codigo, int quantidade);
 
     /// @brief Remove um item do carrinho de compras
     ///

@@ -47,22 +47,42 @@ void Produto::remover_quantidade(int a){
 void Produto::exibir_produto(){
     std::cout<< _nome_produto << "\n" << _valor << "\n" << _codigo_produto<< "\n"<< _descricao << "\n" << _quantidade << std::endl;
 }
-bool Estoque::incluir_estoque(Produto produto){
-    if (estoque_codigo.find(produto._codigo_produto) != estoque_codigo.end()) {
-        std::cout<<"Produto ja existe"<<std::endl;
-        return false; // Produto já existe no estoque
-    }
+bool Estoque::incluir_estoque(std::string loja){
+    std::string nome, /*3*/ codigo, /*5*/descricao;
+    float valor; //2
+    int quantidade; //4
+    std::cout<<"Nome do produto: ";
+    std::cin>> nome;
+    std::cin.ignore();
+    std::cout<<"Valor do produto: ";
+    std::cin>> valor;
+    std::cin.ignore();    
+    std::cout<<"Codigo do produto: ";
+    std::cin>> codigo;
+    std::cin.ignore();
+    std::cout<<"Quantidade do produto: ";
+    std::cin>> quantidade;
+    std::cin.ignore();
+    std::cout<<"Breve descricao do produto: ";
+    std::cin>> descricao;
+    std::cin.ignore();    
+    Produto produto(nome, valor, codigo, quantidade, descricao);
     
-    // Adicionar o produto ao estoque
+/*    // Adicionar o produto ao estoque
     estoque_nome.insert(std::make_pair(produto._nome_produto, produto));
     estoque_valor.insert(std::make_pair(produto._valor, produto));
     estoque_codigo.insert(std::make_pair(produto._codigo_produto, produto));
     estoque_quantidade.insert(std::make_pair(produto._quantidade, produto));
-
-    if (estoque_codigo.find(produto._codigo_produto) != estoque_codigo.end()) {
-        std::cout<<"Produto inserido com sucesso"<<std::endl;
-        return true; //Produto inserido com sucesso
-    }
+*/
+    std::ifstream arquivo_produto("produto.txt", std::ios::app);
+    arquivo_produto.seekp(std::ios::end);
+    arquivo_produto <<loja<<std::endl;
+    arquivo_produto <<produto._nome_produto<<std::endl;
+    arquivo_produto <<produto._valor<<std::endl; 
+    arquivo_produto <<produto._codigo_produto<<std::endl;
+    arquivo_produto <<produto._quantidade<<std::endl;
+    arquivo_produto <<produto._descricao<<std::endl;  
+    arquivo_produto.close();
     return true;
 }
 bool Estoque::remover_produto(const std::string& codigo) {
