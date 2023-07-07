@@ -74,15 +74,35 @@ bool Estoque::incluir_estoque(std::string loja){
     estoque_codigo.insert(std::make_pair(produto._codigo_produto, produto));
     estoque_quantidade.insert(std::make_pair(produto._quantidade, produto));
 */
-    std::ifstream arquivo_produto("produto.txt", std::ios::app);
-    arquivo_produto.seekp(std::ios::end);
-    arquivo_produto <<loja<<std::endl;
+    std::vector<std::string> vetor;
+    std::string linha;
+    std::ifstream arquivo_produtos("produto.txt", std::ios::in | std::ios::out);
+    if (arquivo_produtos.is_open()){
+        while (std::getline(arquivo_produtos, linha)){
+            vetor.push_back(linha);
+        }
+        vetor.push_back(produto._nome_produto);
+        vetor.push_back(produto._valor);
+        vetor.push_back(produto._codigo_produto);
+        vetor.push_back(produto._quantidade);
+        vetor.push_back(produto._descricao);
+    }
+    arquivo_produto.close();
+    if (std::remove("produto.txt") != 0){
+            std::cout << "Erro no arquivo de usuario" << std::endl;
+            exit(1);
+    }
+    std::ofstream arquivo_produtos("produto.txt");
+    for (const std::string &element : vetor){
+        arquivo_produtos << element << std::endl;
+    }
+    arquivo_produto.close();
+    /*arquivo_produto << loja <<std::endl;
     arquivo_produto <<produto._nome_produto<<std::endl;
     arquivo_produto <<produto._valor<<std::endl; 
     arquivo_produto <<produto._codigo_produto<<std::endl;
     arquivo_produto <<produto._quantidade<<std::endl;
-    arquivo_produto <<produto._descricao<<std::endl;  
-    arquivo_produto.close();
+    arquivo_produto <<produto._descricao<<std::endl;*/  
     return true;
 }
 bool Estoque::remover_produto(const std::string& codigo) {
