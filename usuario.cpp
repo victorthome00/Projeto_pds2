@@ -3,6 +3,7 @@
 #include "carrinho.hpp"
 #include <fstream>
 #include <vector>
+#include <cstring>
 
 std::string trata_string(std::string &str){
     for (char c : str) {
@@ -15,6 +16,7 @@ std::string trata_string(std::string &str){
 }
 
 void cliente_main(std::string nome){
+    Estoque aux;
     Carrinho_de_compra carrinho;
     std::string comando_secundario;
     std::vector<std::string> lines;
@@ -23,7 +25,7 @@ void cliente_main(std::string nome){
     std::string linha;
     std::string line;
     int indice = 0;
-    int indice_secundario =0;
+    int indice_secundario = 0;
     unsigned i = 0;
     //pagina_principal:
     std::cout << "1: Produtos \n2: Usuário \n3: Carrinho \n"<< std::endl;
@@ -36,122 +38,131 @@ void cliente_main(std::string nome){
     if(comando_secundario == "1"){
         std::string nome_loja, nome_produto, valor, codigo_produto, quantidade, descricao;
         std::ifstream arquivo_produto("produto.txt", std::ios::in | std::ios::out);
-        if(arquivo.is_open()){
-            while(std::getline(arquivo_produtos, linha)){
+        if(arquivo_produto.is_open()){
+            while(std::getline(arquivo_produto, linha)){
                 linhas.push_back(linha);
             }
-            for(int l = 0; l < linhas.size(); l += 5){
+            for(unsigned l = 0; l < linhas.size(); l += 5){
                 nome_produto = linhas[l + 1];
-                Produto nome_produtos(linhas[l + 1], std::stof(linhas[l + 2]), linhas [l + 3], 
-                                    std::stoi(linhas[l + 4]), linhas[l + 5]);
+                Produto nome_produtos(linhas[l + 1], std::stof(linhas[l + 2]), linhas [l + 3], std::stoi(linhas[l + 4]), linhas[l + 5]);
                 product[indice] = nome_produtos;
             }
         visualizacao_produtos:
-            for(int m = 1; m <= (linhas.size()/6); m ++){
-                std::cout << "PAGINA " << m << std::string(3, '\n');
-                std::cout << "Para comprar um produto digite o número entre 1 e 5 que 
-                            corresponde ao produto desejado ou digite 'proxima pagina'.\n\n";
+
+            for(unsigned m = 0; m < (linhas.size()/5); m ++){
+                std::cout << "PAGINA " << m + 1 << std::string(3, '\n');
+                std::cout << "Para comprar um produto digite o número entre 1 e 5 que corresponde ao produto desejado ou digite 'proxima pagina'.\n\n";
                 for(int n = 0; n < 5; n++){
-                    std::cout << n << ": " << product[n +indice_secundario] << std::endl;
+                    std::cout << n + 1 << ": ";
+                    Produto aux = product[n + indice_secundario]; 
+                    aux.exibir_produto();
                 }
                 std::cin >> comando_secundario;
-                if(comando_secundario == 1){
+                if(comando_secundario == "1"){
                 produto_1:
-                    std::cout << product[1 + indice_secundario] << std::endl;
-                    Std::cout << "\n\n Digite 'adicionar' para adicionar ao carrinho" << std::endl;
+                    std::cout << product[1 + indice_secundario].get_nome() << std::endl;
+                    std::cout << product[1 + indice_secundario].get_valor() << std::endl;
+                    std::cout << product[1 + indice_secundario].get_codigo() << std::endl;
+                    std::cout << product[1 + indice_secundario].get_quantidade()<< std::endl;
+                    std::cout << product[1 + indice_secundario].get_descricao() << std::endl;
+                    std::cout << "\n\n Digite 'adicionar' para adicionar ao carrinho" << std::endl;
                     std::cout << "Voltar" << std::endl;
                     std::cin >> comando_secundario;
                     if(comando_secundario == "adicionar"){
-                        void Carrinho_de_compra::adicionar_item(product[1 + indice_secundario].codigo_produto, 
-                            product[1 + indice_secundario].quantidade, Estoque aux);
+                        std::cout << "Quantos gostaria?\n";
+                        std::cin >> comando_secundario;
+                        carrinho.adicionar_item(product[1 + indice_secundario].get_codigo(), std::stoi(comando_secundario), aux);
                         goto visualizacao_produtos;
                     }
-                    if(comando_secundario == voltar){
+                    if(comando_secundario == "voltar"){
                         goto visualizacao_produtos;
                     }
                     else std::cout << "Comando inválido" << std::endl;
                     goto produto_1;
                 }
-                if(comando_secundario == 1){
-                produto_1:
-                    std::cout << product[1 + indice_secundario] << std::endl;
-                    Std::cout << "\n\n Digite 'adicionar' para adicionar ao carrinho" << std::endl;
-                    std::cout << "Voltar" << std::endl;
-                    std::cin >> comando_secundario;
-                    if(comando_secundario == "adicionar"){
-                        void Carrinho_de_compra::adicionar_item(product[1 + indice_secundario].codigo_produto, 
-                            product[1 + indice_secundario].quantidade, Estoque aux);
-                        goto visualizacao_produtos;
-                    }
-                    if(comando_secundario == voltar){
-                        goto visualizacao_produtos;
-                    }
-                    else std::cout << "Comando inválido" << std::endl;
-                    goto produto_1;
-                }
-                if(comando_secundario == 2){
+                if(comando_secundario == "2"){
                 produto_2:
-                    std::cout << product[2 + indice_secundario] << std::endl;
-                    Std::cout << "\n\n Digite 'adicionar' para adicionar ao carrinho" << std::endl;
+                    std::cout << product[2 + indice_secundario].get_nome() << std::endl;
+                    std::cout << product[2 + indice_secundario].get_valor() << std::endl;
+                    std::cout << product[2 + indice_secundario].get_codigo() << std::endl;
+                    std::cout << product[2 + indice_secundario].get_quantidade() << std::endl;
+                    std::cout << product[2 + indice_secundario].get_descricao() << std::endl;
+                    std::cout << "\n\n Digite 'adicionar' para adicionar ao carrinho" << std::endl;
                     std::cout << "Voltar" << std::endl;
                     std::cin >> comando_secundario;
                     if(comando_secundario == "adicionar"){
-                        void Carrinho_de_compra::adicionar_item(product[2 + indice_secundario].codigo_produto, 
-                            product[2 + indice_secundario].quantidade, Estoque aux);
+                        std::cout << "Quantos gostaria?\n";
+                        std::cin >> comando_secundario;
+                        carrinho.adicionar_item(product[2 + indice_secundario].get_codigo(), std::stoi(comando_secundario), aux);
                         goto visualizacao_produtos;
                     }
-                    if(comando_secundario == voltar){
+                    if(comando_secundario == "voltar"){
                         goto visualizacao_produtos;
                     }
                     else std::cout << "Comando inválido" << std::endl;
                     goto produto_2;
                 }
-                if(comando_secundario == 3){
+                if(comando_secundario == "3"){
                 produto_3:
-                    std::cout << product[3 + indice_secundario] << std::endl;
-                    Std::cout << "\n\n Digite 'adicionar' para adicionar ao carrinho" << std::endl;
+                    std::cout << product[3 + indice_secundario].get_nome() << std::endl;
+                    std::cout << product[3 + indice_secundario].get_valor() << std::endl;
+                    std::cout << product[3 + indice_secundario].get_codigo() << std::endl;
+                    std::cout << product[3 + indice_secundario].get_quantidade() << std::endl;
+                    std::cout << product[3 + indice_secundario].get_descricao() << std::endl;
+                    std::cout << "\n\n Digite 'adicionar' para adicionar ao carrinho" << std::endl;
                     std::cout << "Voltar" << std::endl;
                     std::cin >> comando_secundario;
                     if(comando_secundario == "adicionar"){
-                        void Carrinho_de_compra::adicionar_item(product[3 + indice_secundario].codigo_produto, 
-                            product[3 + indice_secundario].quantidade, Estoque aux);
+                       std::cout << "Quantos gostaria?\n";
+                        std::cin >> comando_secundario;
+                        carrinho.adicionar_item(product[3 + indice_secundario].get_codigo(), std::stoi(comando_secundario), aux);
                         goto visualizacao_produtos;
                     }
-                    if(comando_secundario == voltar){
+                    if(comando_secundario == "voltar"){
                         goto visualizacao_produtos;
                     }
                     else std::cout << "Comando inválido" << std::endl;
                     goto produto_3;
                 }
-                if(comando_secundario == 4){
+                if(comando_secundario == "4"){
                 produto_4:
-                    std::cout << product[4 + indice_secundario] << std::endl;
-                    Std::cout << "\n\n Digite 'adicionar' para adicionar ao carrinho" << std::endl;
+                    std::cout << product[4 + indice_secundario].get_nome() << std::endl;
+                    std::cout << product[4 + indice_secundario].get_valor() << std::endl;
+                    std::cout << product[4 + indice_secundario].get_codigo() << std::endl;
+                    std::cout << product[4 + indice_secundario].get_quantidade() << std::endl;
+                    std::cout << product[4 + indice_secundario].get_descricao() << std::endl;
+                    std::cout << "\n\n Digite 'adicionar' para adicionar ao carrinho" << std::endl;
                     std::cout << "Voltar" << std::endl;
                     std::cin >> comando_secundario;
                     if(comando_secundario == "adicionar"){
-                        void Carrinho_de_compra::adicionar_item(product[4 + indice_secundario].codigo_produto, 
-                            product[4 + indice_secundario].quantidade, Estoque aux);
+                        std::cout << "Quantos gostaria?\n";
+                        std::cin >> comando_secundario;
+                        carrinho.adicionar_item(product[4 + indice_secundario].get_codigo(), std::stoi(comando_secundario), aux);
                         goto visualizacao_produtos;
                     }
-                    if(comando_secundario == voltar){
+                    if(comando_secundario == "voltar"){
                         goto visualizacao_produtos;
                     }
                     else std::cout << "Comando inválido" << std::endl;
                     goto produto_4;
                 }
-                if(comando_secundario == 5){
+                if(comando_secundario == "5"){
                 produto_5:
-                    std::cout << product[5 + indice_secundario] << std::endl;
-                    Std::cout << "\n\n Digite 'adicionar' para adicionar ao carrinho" << std::endl;
+                    std::cout << product[5 + indice_secundario].get_nome() << std::endl;
+                    std::cout << product[5 + indice_secundario].get_valor() << std::endl;
+                    std::cout << product[5 + indice_secundario].get_codigo() << std::endl;
+                    std::cout << product[5 + indice_secundario].get_quantidade() << std::endl;
+                    std::cout << product[5 + indice_secundario].get_descricao() << std::endl;
+                    std::cout << "\n\n Digite 'adicionar' para adicionar ao carrinho" << std::endl;
                     std::cout << "Voltar" << std::endl;
                     std::cin >> comando_secundario;
                     if(comando_secundario == "adicionar"){
-                        void Carrinho_de_compra::adicionar_item(product[5 + indice_secundario].codigo_produto, 
-                            product[5 + indice_secundario].quantidade, Estoque aux);
+                       std::cout << "Quantos gostaria?\n";
+                        std::cin >> comando_secundario;
+                        carrinho.adicionar_item(product[5 + indice_secundario].get_codigo(), std::stoi(comando_secundario), aux);
                         goto visualizacao_produtos;
                     }
-                    if(comando_secundario == voltar){
+                    if(comando_secundario == "voltar"){
                         goto visualizacao_produtos;
                     }
                     else std::cout << "Comando inválido" << std::endl;
@@ -161,8 +172,18 @@ void cliente_main(std::string nome){
                     indice_secundario = indice_secundario + 5;
                     break;
                 }
-            }
+            }    
         }
+        arquivo_produto.close();
+        if (std::remove("produto.txt") != 0){
+            std::cout << "Erro no arquivo de usuario" << std::endl;
+            exit(1);
+        }
+        std::ofstream file_product("produto.txt");
+        for (const std::string &element : linhas){
+            file_product << element << std::endl;
+        }
+        file_product.close();
     }
     if(comando_secundario == "2"){
         std::ifstream arquivo("usuariosClientes.txt", std::ios::in | std::ios::out);
@@ -337,15 +358,21 @@ void cliente_main(std::string nome){
 
     }
 }
+
 void loja_main(std::string nome){
     std::string comando_secundario;
     std::vector<std::string> lines;
-    std::vector<std::string> produtos; 
+    std::vector<std::string> produtos;
+    std::vector<std::string> linhas;
+    std::vector<std::string> produto_loja;
+    std::string linha;
     std::string line;
+    //int indice = 0;
+    //int indice_secundario = 0;
     unsigned i = 0;
+    unsigned p = 0;
     pagina_principal:
     std::cout << "1: Produtos \n2: Usuário \n"<<std::endl;
-    //std::cout<<"3: Vendas" << std::endl;  //função ianda não desenvolvida
     std::cout << "Digite o número referente ao que gostaria de prosseguir." << std::endl;
     std::cin >> comando_secundario;
     comando_secundario = trata_string(comando_secundario);
@@ -354,7 +381,159 @@ void loja_main(std::string nome){
     }
     std::cout << std::string(15, '\n');
     if(comando_secundario == "1"){
-    
+        //std::cout<<"OPÇÃO SELECIONADA: 1"<<std::endl;
+        std::string nome_loja, nome_produto, valor, codigo_produto, quantidade, descricao;
+        std::ifstream arquivo_produto("produto.txt", std::ios::in | std::ios::out);
+        //std::cout<<"abertura do arquivo..."<<std::endl;
+        if (arquivo_produto.is_open()){
+            //std::cout<<"arquivo aberto"<<std::endl;
+            while (std::getline(arquivo_produto, linha)){
+                linhas.push_back(linha);
+                //std::cout<<"Linha lida e armazenada"<<std::endl;
+            }
+            for(unsigned o = 0; o < linhas.size(); o++){
+                std::cout<<"Procurando produto. Iteração Número: "<< o+1<<std::endl;
+                if(nome == linhas[o]){
+                    std::cout<<"Produto encontrado"<<std::endl;
+                    std::cout<<linhas[o]<<std::endl;
+                    for(int q = 0; q < 6; q++){
+                        std::cout<<"entrou no for"<<std::endl;
+                        std::string str_aux;
+                        std::cout<<"auxiliar criado"<<std::endl;
+                        str_aux = linhas[o];
+                        std::cout<<"aux recebeu: "<<str_aux<<std::endl;
+                        produto_loja[0] = str_aux;
+                        std::cout<<"copiou para produto_loja"<<std::endl;
+                        p++;
+                        o++;
+                        std::cout<<"."<<std::endl;
+                    } 
+                    std::cout<<"Produto copiado"<<std::endl;
+                }
+            }
+            int num_prod = 1;
+            for(unsigned r = 0; r < produto_loja.size(); r+=6){
+                std::cout<<"Produto "<<num_prod<<":"<<std::endl;
+                std::cout << produto_loja[r + 1] << std::endl;
+                std::cout << produto_loja[r + 2] << std::endl;
+                std::cout << produto_loja[r + 3] << std::endl;
+                std::cout << produto_loja[r + 4] << std::endl;
+                std::cout << produto_loja[r + 5] << std::endl;
+                num_prod++;
+            }
+            visualizacao_produtos:
+            std::cout << "Digite o nome do produto que voce gostaria de vizualizar ou digite sair" << std::endl;
+            std::cin >> comando_secundario;
+            for(unsigned s = 0; s < produto_loja.size(); s++){
+                if(comando_secundario == produto_loja[s]){
+                produto_escolhido:
+                    std::cout << "Nome: " << produto_loja[s + 1] << std::endl;
+                    std::cout << "Valor: " << produto_loja[s + 2] << std::endl;
+                    std::cout << "Codigo: " << produto_loja[s + 3] << std::endl;
+                    std::cout << "Quantidade: " << produto_loja[s + 4] << std::endl;
+                    std::cout << "Descrição: " << produto_loja[s + 5] << std::endl;
+                    std::cin >> comando_secundario;
+                    if(comando_secundario == "nome"){
+                    alterar_nome_produto:
+                        std::cout << "Gostaria de alterar o nome?\nS/N" << std::endl;
+                        std::cin >> comando_secundario;
+                        if(comando_secundario == "s"){
+                            std::cout << "Digite o novo nome para o produto?" << std::endl;
+                            std::cin >> produto_loja[s + 1];
+                            goto produto_escolhido;
+                        }
+                        if(comando_secundario == "n"){
+                            goto produto_escolhido;
+                        }else 
+                        std::cout << "Comando inválido." << std::endl;
+                        goto alterar_nome_produto;
+                    }
+                    if(comando_secundario == "valor"){
+                    alterar_valor_produto:
+                        std::cout << "Gostaria de alterar o valor do produto?\nS/N" << std::endl;
+                        std::cin >> comando_secundario;
+                        if (comando_secundario == "s"){
+                        std::cout << "Digite o novo valor para o produto?" << std::endl;
+                        std::cin >> produto_loja[s + 2];
+                        goto produto_escolhido;
+                        }
+                        if (comando_secundario == "n"){
+                        goto produto_escolhido;
+                        }
+                        else
+                        std::cout << "Comando inválido." << std::endl;
+                        goto alterar_valor_produto;
+                    }
+                    if(comando_secundario == "codigo"){
+                    alterar_codigo_produto:
+                        std::cout << "Gostaria de alterar o codigo?\nS/N" << std::endl;
+                        std::cin >> comando_secundario;
+                        if(comando_secundario == "s"){
+                        std::cout << "Digite o novo codigo para o produto?" << std::endl;
+                        std::cin >> produto_loja[s + 1];
+                        goto produto_escolhido;
+                        }
+                        if (comando_secundario == "n"){
+                        goto produto_escolhido;
+                        }
+                        else
+                        std::cout << "Comando inválido." << std::endl;
+                        goto alterar_codigo_produto;
+                    }
+                    if (comando_secundario == "quantidade"){
+                    alterar_quantidade_produto:
+                        std::cout << "Gostaria de alterar a quantidade do produto?\nS/N" << std::endl;
+                        std::cin >> comando_secundario;
+                        if (comando_secundario == "s"){
+                        std::cout << "Digite a nova quantidade para o produto?" << std::endl;
+                        std::cin >> produto_loja[s + 1];
+                        goto produto_escolhido;
+                        }
+                        if (comando_secundario == "n"){
+                        goto produto_escolhido;
+                        }
+                        else
+                        std::cout << "Comando inválido." << std::endl;
+                        goto alterar_quantidade_produto;
+                    }
+                    if (comando_secundario == "descricao"){
+                    alterar_descricao_produto:
+                        std::cout << "Gostaria de alterar a descricao?\nS/N" << std::endl;
+                        std::cin >> comando_secundario;
+                        if (comando_secundario == "s"){
+                        std::cout << "Digite a nova descricao para o produto?" << std::endl;
+                        std::cin >> produto_loja[s + 1];
+                        goto produto_escolhido;
+                        }
+                        if (comando_secundario == "n"){
+                        goto produto_escolhido;
+                        }
+                        else
+                        std::cout << "Comando inválido." << std::endl;
+                        goto alterar_descricao_produto;
+                    }
+                    else{
+                        std::cout << "Comando inválido" << std::endl;
+                        goto produto_escolhido;
+                    }
+                }
+                if(comando_secundario == "sair"){
+                    goto pagina_principal;
+                }else
+                std::cout << "Produto inexistente" << std::endl;
+                goto visualizacao_produtos;
+            }
+        }
+        arquivo_produto.close();
+        if (std::remove("produto.txt") != 0){
+            std::cout << "Erro no arquivo de usuario" << std::endl;
+            exit(1);
+        }
+        std::ofstream file_product("produto.txt");
+        for (const std::string &element : linhas){
+            file_product << element << std::endl;
+        }
+        file_product.close();
     }
     if(comando_secundario == "2"){
         std::ifstream arquivo("usuariosLoja.txt", std::ios::in | std::ios::out);
