@@ -31,6 +31,7 @@ void cliente_main(std::string nome){
     std::size_t indice = 0;
     int indice_secundario;
     unsigned i = 0;
+    int quant = 0;
     pagina_principal:
     std::cout << "1: Produtos \n2: Usuário \n3: Carrinho \nsair\n"<< std::endl;
     std::cout << "Digite o numero referente ao que gostaria de prosseguir ou digite sair." << std::endl;
@@ -73,6 +74,7 @@ void cliente_main(std::string nome){
                 std::cin >> aux1;
                 if(aux1 != "sair"){
                 produto_1:
+                    std::isspace(indice_secundario);
                     indice_secundario = std::stoi(aux1);
                     std::cout << product[indice_secundario].get_nome() << std::endl;
                     std::cout << product[indice_secundario].get_valor() << std::endl;
@@ -84,8 +86,9 @@ void cliente_main(std::string nome){
                     std::cin >> comando_secundario;
                     if(comando_secundario == "adicionar"){
                         std::cout << "Quantos gostaria?\n";
-                        std::cin >> comando_secundario;
-                        carrinho.adicionar_item(product[indice_secundario].get_codigo(), std::stoi(comando_secundario));
+                        std::cin >> quant;
+                        std::cout << quant << std::endl;
+                        carrinho.adicionar_item(product[indice_secundario].get_codigo(), quant);
                         goto visualizacao_produtos;
                     }
                     if(comando_secundario == "voltar"){
