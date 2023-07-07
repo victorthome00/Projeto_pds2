@@ -27,7 +27,7 @@ bool Login::autenticarCliente(std::string nome, std::string senha)
             senhaArquivo = linha;
         }
 
-        for(int i  = 0; i < senha.size(); i++){
+        for(unsigned i  = 0; i < senha.size(); i++){
             if(senha[i] != senhaArquivo[i]){
                 break;
             }
@@ -76,7 +76,7 @@ bool Login::autenticarLoja(std::string nome, std::string senha)
             }
         }
 
-        for(int i  = 0; i < senha.size(); i++){
+        for(unsigned i  = 0; i < senha.size(); i++){
             if(senha[i] != senhaArquivo[i]){
                 break;
             }
@@ -96,7 +96,7 @@ bool Login::autenticarLoja(std::string nome, std::string senha)
 
 std::string Login::encrypit(std::string &senha)
 {
-    for (int i = 0; (i < 100 && senha[i] != '\0'); i++)
+    for (unsigned i = 0; (i < 100 && senha[i] != '\0'); i++)
     {
         senha[i] = senha[i] + 2;
     }
