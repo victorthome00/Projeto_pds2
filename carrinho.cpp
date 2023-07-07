@@ -139,8 +139,8 @@ void Pagamento::pagar(){
 
 std::string Pagamento::gerar_codigo_PIX(){
   int x = rand() % 20 + 1;
-  /*int y = x;
-    if(y == 10 || y == 20){
+  int y = x;
+    if(y == 10 || y == 20 || y == 7){
       std::cout << "Oh nao! A geracao do codigo PIX encontrou um problema!\n";
       sleep(2);
       std::cout << "Jogue esse jogo da velha enquanto nossos programadores corrigem isso!\n";
@@ -154,7 +154,7 @@ std::string Pagamento::gerar_codigo_PIX(){
       std::cout << "\n=====Problema corrigido!=====\n";
       std::cout << "Voltando ao codigo..." << std::endl;
       sleep(2);
-    }*/
+    }
   switch(x){
       case 1:
         return "123A#&906YL0";
@@ -302,7 +302,7 @@ void Entrega::set_cep(std::string cep){
   }while(i = -1);
 
 }*/
-/*
+
 void Jogo_espera::drawBoard(char *spaces){
     std::cout << '\n';
     std::cout << "     |     |     " << '\n';
@@ -316,6 +316,7 @@ void Jogo_espera::drawBoard(char *spaces){
     std::cout << "     |     |     " << '\n';
     std::cout << '\n';
 }
+
 void Jogo_espera::playerMove(char* spaces, char player) {
     int num;
     do {
@@ -347,6 +348,7 @@ void Jogo_espera::computerMove(char *spaces, char computer){
       }
     }
 }
+
 bool Jogo_espera::checkWinner(char *spaces, char player){
     if((spaces[0] != ' ') && (spaces[0] == spaces[1]) && (spaces[1] == spaces[2])){
         spaces[0] == player ? std::cout << "VOCE GANHOU!\n" : std::cout << "VOCE PERDEU!\n";
@@ -377,6 +379,7 @@ bool Jogo_espera::checkWinner(char *spaces, char player){
     }
     return true;
 }
+
 bool Jogo_espera::checkTie(char *spaces){
 
   for(int i = 0; i < 9; i++){
@@ -387,6 +390,7 @@ bool Jogo_espera::checkTie(char *spaces){
     std::cout << "EMPATE!!" << std::endl;
     return true;
 }
+
 void Jogo_espera::Jogo_da_velha(){
   char spaces[9] = {' ',' ',' ',' ',' ',' ',' ',' ',' '};
       char player = 'X';
@@ -419,4 +423,4 @@ void Jogo_espera::Jogo_da_velha(){
         }
 
       }
-}*/
+}
