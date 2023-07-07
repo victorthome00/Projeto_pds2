@@ -20,7 +20,7 @@ public:
     /// @param codigo é o codigo do produto referido
     /// @param quantidade é a quantidade que se deseja adicionar
     /// @param aux é o estoque onde se busca esse produto
-    void adicionar_item(std::string codigo, int quantidade, Estoque aux);
+    void adicionar_item(std::string codigo, int quantidade);
 
     /// @brief Remove um item do carrinho de compras
     ///
@@ -135,17 +135,63 @@ class Entrega{
       std::string _cep;
 };
 
-/*
+/// @brief Uma brincadeira do tipo 'Easter egg', com um jogo da velha para casos específicos.
 class Jogo_espera{
   private:
+
+  /// @brief Desenha o jogo da velha.
+  ///
+  ///  Recebe se as casas tao ocupadas e imprime as que estão e as que não estão.
+  /// Atualizando o jogo a cada lance.
+  ///
+  /// @param spaces Recebe se os espaços estão ocupaos ou não.
   void drawBoard(char *spaces);
+
+  /// @brief Registra o lance do player.
+  ///
+  /// Verifica se o espaço desejado está livre e, caso esteja, registra o lance.
+  ///
+  /// @param spaces Recebe se os espaços estão vazios ou não.
+  /// @param player Recebe o X do player para registrá-lo na board.
   void playerMove(char *spaces, char player);
+
+  /// @brief Registra o lace do computador.
+  ///
+  ///  Assim como a função que registra o lance do player, essa também o faz,
+  /// porém ele utiliza números randomizados para definir o lance escolhido pela máquina.
+  /// Verifica se o número randomizado caiu em um espaço vago e, caso sim, registra o lance.
+  ///
+  /// @param spaces Recebe se os espaços estão vazios ou não.
+  /// @param computer Recebe o O do computador para registrá-lo na board.
   void computerMove(char *spaces, char computer);
+
+  /// @brief Checa, a cada rodada, se alguém ganhou.
+  ///
+  ///  Verifica as condições de vitória, caso alguma ocorra, verifica 
+  /// se ocorreu para o player ou para o computador. Essa verificação é
+  /// feita com o X do player, já que se não foi o X, com certeza foi o O.
+  ///
+  /// @param spaces Recebe os espaços ocupados e vazios.
+  /// @param player Recebe o X do player para fazer a verificação.
+  /// @return Retorna true se alguém ganhou.
   bool checkWinner(char *spaces, char player);
+
+  /// @brief Verifica se ocorreu empate.
+  ///
+  ///  Se todas as casas estão ocupadas e a função de verificar ganhador não retornou true,
+  /// é trivial concluir que não houveram ganhadores.
+  ///
+  /// @param spaces Recebe se os espaços estão todos ocupados.
+  /// @return Retorna true caso empate.
   bool checkTie(char *spaces);
   public:
   Jogo_espera(){}
+
+  /// @brief Junta todas as funções executando o jogo.
+  ///
+  ///  Printa o desenho da board e registra os lances do player e do computador
+  /// a cada rodada. Repetindo o processo até ter um ganhador ou empate.
   void Jogo_da_velha();
-};*/
+};
 
 #endif
