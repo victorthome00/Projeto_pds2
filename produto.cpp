@@ -93,7 +93,7 @@ bool Estoque::exibir_estoque_nome() {
     for (const auto& item : estoque_nome) {
         std::cout << "Nome: " << item.first << std::endl;
         std::cout << "Valor: R$" << item.second._valor << std::endl;
-        std::cout << "Descrição: " << item.second._descricao << std::endl;
+        std::cout << "Descricao: " << item.second._descricao << std::endl;
         std::cout << "Codigo: " << item.second._codigo_produto << std::endl;
         std::cout << "Quantidade: " << item.second._quantidade << std::endl;
         std::cout << "---------------------" << std::endl;
