@@ -97,6 +97,6 @@ int main(){
     //if(comando != "gerente" || comando != "cliente"){
     //    std::cout << "Erro! Escolha somente entre 'gerente' ou 'cliente'!" << std::endl;
     //}
-    
+    return 0;
 }
 }
