@@ -83,7 +83,7 @@ void cliente_main(std::string nome){
                     if(comando_secundario == "adicionar"){
                         std::cout << "Quantos gostaria?\n";
                         std::cin >> comando_secundario;
-                        carrinho.adicionar_item(product[indice_secundario].get_codigo(), std::stoi(comando_secundario), aux);
+                        carrinho.adicionar_item(product[indice_secundario].get_codigo(), std::stoi(comando_secundario));
                         goto visualizacao_produtos;
                     }
                     if(comando_secundario == "voltar"){
@@ -320,43 +320,6 @@ void cliente_main(std::string nome){
                     goto alterar_email;
                 }
             } 
-            /*if (comando_secundario == "cep" || comando_secundario == "Cep" || comando_secundario == "CEP"){
-            alterar_cep:
-                std::cout << "Cep: " << cepArquivo;
-                std::cout << "Gostaria de alterar o seu CEP? \n" << "S/N" << std::endl;
-                std::cin >> comando_secundario;
-                if (comando_secundario == "s" || comando_secundario == "S"){
-                    verificar_cep:
-                    std::cout << "Qual será o novo cep?" << std::endl;
-                    std::cin >> cepArquivo >> std::endl;
-                    if(cepArquivo
-                    )
-                    std::cout << "O novo cep será " << cepArquivo << "?" << std::endl;
-                    std::cout << "S/N?\n";
-                    std::cin >> comando_secundario;
-                    if (comando_secundario == "s" || comando_secundario == "S"){
-                        lines[i + 4] = cepArquivo;
-                        goto visualizacao_perfil;
-                    }
-                    if (comando_secundario == "n" || comando_secundario == "N"){
-                        goto verificar_cep;
-                    }
-                    else{
-                        std::cout << "Comando inválido" << std::endl;
-                        goto verificar_cep;
-                    }
-                }
-                if (comando_secundario == "n" || comando_secundario == "N"){
-                    goto visualizacao_perfil;
-                }
-                else{
-                    std::cout << "Comando inválido." << std::endl;
-                    goto alterar_cep;
-                }
-            }
-            if(comando_secundario == "voltar"){
-                goto pagina_principal;
-            }*/
         }
         arquivo.close();
         if (std::remove("usuariosClientes.txt") != 0){

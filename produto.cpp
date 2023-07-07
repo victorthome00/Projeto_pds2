@@ -4,6 +4,7 @@
 #include <vector>
 #include <ctime>
 #include <cctype>
+#include <fstream>
 
 void Produto::alterar_valor(float valor_novo){
    _valor = valor_novo;
@@ -67,34 +68,27 @@ bool Estoque::incluir_estoque(std::string loja){
     std::cin>> descricao;
     std::cin.ignore();    
     Produto produto(nome, valor, codigo, quantidade, descricao);
-    
-/*    // Adicionar o produto ao estoque
-    estoque_nome.insert(std::make_pair(produto._nome_produto, produto));
-    estoque_valor.insert(std::make_pair(produto._valor, produto));
-    estoque_codigo.insert(std::make_pair(produto._codigo_produto, produto));
-    estoque_quantidade.insert(std::make_pair(produto._quantidade, produto));
-*/
     std::vector<std::string> vetor;
     std::string linha;
-    std::ifstream arquivo_produtos("produto.txt", std::ios::in | std::ios::out);
+    std::ifstream arquivo_produtos("produto.txt");
     if (arquivo_produtos.is_open()){
         while (std::getline(arquivo_produtos, linha)){
             vetor.push_back(linha);
         }
         vetor.push_back(produto._nome_produto);
-        vetor.push_back(produto._valor);
+        vetor.push_back(std::to_string(produto._valor));
         vetor.push_back(produto._codigo_produto);
-        vetor.push_back(produto._quantidade);
+        vetor.push_back(std::to_string(produto._quantidade));
         vetor.push_back(produto._descricao);
     }
-    arquivo_produto.close();
+    arquivo_produtos.close();
     if (std::remove("produto.txt") != 0){
             std::cout << "Erro no arquivo de usuario" << std::endl;
             exit(1);
     }
-    std::ofstream arquivo_produtos("produto.txt");
+    std::ofstream arquivo_produto("produto.txt");
     for (const std::string &element : vetor){
-        arquivo_produtos << element << std::endl;
+        arquivo_produto << element << std::endl;
     }
     arquivo_produto.close();
     /*arquivo_produto << loja <<std::endl;
