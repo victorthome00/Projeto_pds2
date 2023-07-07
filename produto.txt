@@ -11,68 +11,14 @@ toalha
 140
 branca
 lacerda
-tv samsung 4k 74"
-3699.90
-234163
-42
-grande
+carne
+150.899994
+102030
+100
+picanha
 lacerda
-iphone 14 pro max
-11500.00
-381123
-13
-moderno
-lacerda
-carrinho de bebe
-587.99
-938223
-51
-para carregar bebes
-lacerda
-prato
-24.99
-322333
-432
-de ceramica
-lacerda
-garrafa termica
-79.90
-331123
-328
-500ml
-lacerda
-violao fender
-4999.99
-443567
-1
-fender delux edition 1976
-lacerda
-geladeira
-2300.00
-657482
-45
-240 litros
-lacerda
-chocolate
-6.00
-112123
-498
-laka
-americanas
-hot weels
-30.00
-423222
-122
-muito rapido
-americanas
-oreo
-13.00
-333332
-234
-com recheio branco
-americanas
-blusa
-34.00
-232233
-187
-xl
+maquita
+1100.000000
+302010
+10
+corta
