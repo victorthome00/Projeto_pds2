@@ -1,177 +1,23 @@
 # Projeto_pds2
 
-O objetivo desse repositório é expor o projeto em desenvolvimento de um sistema de e-commerce, para a diciplina "Programação e Desenvolvimento de Software 2".
+## Site de e-commerce
+ 
+ ### INTRODUÇÃO
 
-Inicialmente, as funcionalidades desse sistema são:
+  * O grande avanço da internet nas últimas décadas reformulou por completo as relações interpessoais, incrementando a globalização e intensificando o acesso à informação. Seguindo nessa logica, as relações comerciais foram inovadas, com o surgimento de sites, propagandas pop-ups, pagamentos PIX e muito mais. Consequentemente, nos dias atuais, é cada vez mais importante manter uma relação próxima e eficiente entre o vendedor e o público alvo. A partir desse pretexto, nosso grupo optou por desenvolver um site de e-commerce, que estreita a relação cliente e lojista, beneficiando ambos os usuários.
 
-(Gestor)
+  ### FUNCIONAMENTO GERAL
 
-Adicionar novos produtos{
+  * No site teremos dois tipos de usuários, o cliente e o lojista. Aquele faz o seu cadastro e login e a partir disso escolhe entre os produtos disponíveis adicionando-os ao carrinho. Ao concluir suas compras é calculado o valor total a ser pago, efetuando o pagamento escolhendo o modo de pagamento e, caso credito ou debito validando cartão e, caso PIX, confirmando o código gerado. Esse por sua vez, cadastra sua loja no site adicionando seus produtos, podendo também modificá-los conforme vontade.
 
-	-Descrição do Produto;
-	
-	-Valor do produto;
-	
-	-Imagem ilustrativa;
-	
-	-Informar o estoque de cada produto;
-	
-	}
-	
-Alterar o valor do produto{
+  ### OBSERVAÇÕES / DESAFIOS
 
-	-Aplicar desconto por porcentagem; 
-
-	-Aplicar desconto por valor absoluto; 
-	
-	-Aplicar desconto por quantidade de produtos; 
-	
-	-Aplicar desconto baseado no método de pagamento;
-	
-	-Aumentar o preço para reajustar ao preço de mercado;
-	
-	}
-	
-Visualizar os pedidos{
-	
-	-Verificar os itens do pedido;
-	
-	-Verificar a quantidade de cada item; 
-	
-	-Verificar o cliente que realizou o pedido; 
-	
-	-Verificar o código do pedido;
-	
-	}
-	
-Gerenciar os produtos{
-	
-	-Deletar produto;
-	
-	-Alterar quem pode visualizar o produto;
-	
-	-Alterar a quantidade disponível no estoque;
-	
-	-Visualizar a quantidade de cada produto;
-	
-	}
-	
-Cadastro_gerente{
-
-	-Cadastrar o CNPJ e o nome; 
-
-	-Ramo da loja; 
-
-	-Adicionar endereço físico da loja;  
-
-	-Fornecer conta bancária;
-	
-	}
-
-(cliente)
-
-Visualizar o carrinho{
-
-	-Valor parcial a pagar;
-
-	-Visualizar os itens no carrinho; 
-
-	-Alterar a quantidade de cada item;  
-
-	-Verificar a taxa de entrega;
-	
-	}
-	
-Pesquisar produtos{
-
-	-Filtrar por tipo; 
-
-	-Pesquisar nominalmente; 
-
-	-Adicionar ao carrinho; 
-
-	-Verificar se tem estoque do produto; 
-
-	-Verificar o valor do produto;
-	
-	}
-	
-Avaliar os produtos{
-
-	-Avaliar com estrelas; 
-
-	-Fazer descrição da experiência; 
-
-	-Fazer sugestões; 
-
-	-Adicionar fotos;
-
-	}
-	
-Realizar o login{
-
-	-Ter acesso aos dados da conta; 
-
-	-Mostrar uma mensagem de erro caso o login não tenha sido efetuado; 
-
-	-Redirecionar para a troca de senha, caso tenha esquecido; 
-
-	-Redirecionar para página anterior, caso o login seja realizado com sucesso;
-	
-	}
-	
-Comunicar com o vendedor{
-
-	-Visualizar meios de contato com o vendedor; 
-
-	-Visualizar endereço físico do vendedor; 
-
-	-Quadro de perguntas frequentes;
-	
-	}
-	
-Gerenciar forma de pagamento{
-	
-	-Cadastrar uma forma de pagamento; 
-
-	-Mensagem de confirmação caso o cartão for efetivado; 
-
-	-Remover forma de pagamento; 
-
-	-Mensagem de erro caso os dados do cartão estiverem errados;
-	
-	}
-
-Gerenciar carrinho{
-
-	-Remover produto do carrinho; 
-
-	-Adicionar produto no carrinho; 
-
-	-Ver o valor total; 
-
-	-Ver os produtos; 
-
-	-Exibir o código do pedido;
-
-	}
-
-Confirmar o pagamento{
-
-	-Recolher dados pessoais do cliente; 
-
-	-Escolher a forma de pagamento; 
-
-	-Botar o logradouro; 
-
-	-Visualizar valor do frete; 
-
-	-Mensagem de efetivação da compra; 
-
-	-Mensagem de dados incompletos;
-
-	}
+  - A implementação de testes utilizando o doctest foi um grande desafio, primeiro porque o própio file doctest apresentava erros nos computadores da maioria dos integrantes do grupo. No caso, no computador do Arthur conseguimos trabalhá-lo. Em segundo lugar, algumas classes já tratavam os erros com do-whiles e os testes de erros ficavam ineficazes. Além disso tudo, classes que recebiam os dados com cin, ou seja, tinham a entrada efetuada pelo usuário, e classes que retornavam void também apresentaram um alto grau de dificuldade para nós.
+  - Outra dificuldade enfrentada pelo grupo foi a implementação de um banco de dados que facilitaria a implementação do código. A falta de conhecimento sobre do grupo, e a dificuldade de tirar um tempo específico para o estudo disso, impossibilitou a implementação. Com isso, partimos para o uso de arquivos de txt, como definidos pelo integrante Aurélio, como uma "gambiarra", pelo Maarten, como "rataria" e pelo Arthur...
+  - A configuração do github e do vscode foi outra dificuldade enfrentada pelo grupo.
+  - O arquivo usuario.cpp foi o de maior desafio também ao grupo, apresentando ao longo da elaboração do trabalho, inúmeros erros de compilação que atrasaram o desenvolvimento do projeto e requisitaram uma grande doação do grupo como um todo. 
+  - A manipulação de arquivos em txt também gerou muita dor de cabeça. Primeiro com a dificuldade de lê-los, depois com a adição involuntária de elementos no arquivo e também na dificuldade de adicioná-los posteriormente.
+  - Eventuais conflitos no github conjuntamente com branches atualizadas e também desatualizadas em comparação com a main(ao mesmo tempo).
+  - O tratamento de entrada também foi outra dificuldade, uma vez que são inúmeras entradas possíveis que poderiam ocasionar inúmeros erros e, mesmo tratando várias entradas, sempre surgem novas que ocasionam o erro.
 
 
-
-### *novas funções podem ser criadas durante o desenvolvimento do projeto* 
