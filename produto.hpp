@@ -85,7 +85,7 @@ public:
         /// @param produto é o produto adicionado ao estoque.
         ///
         /// @return Se o produto foi adicionado corretamente. 
-        bool incluir_estoque(Produto produto);
+        bool incluir_estoque(std::string loja);
 
         /// @brief Remove um produto do estoque.
         ///

@@ -31,7 +31,7 @@ void cliente_main(std::string nome){
     unsigned i = 0;
     pagina_principal:
     std::cout << "1: Produtos \n2: Usuário \n3: Carrinho \nsair\n"<< std::endl;
-    std::cout << "Digite o número referente ao que gostaria de prosseguir ou digite sair." << std::endl;
+    std::cout << "Digite o numero referente ao que gostaria de prosseguir ou digite sair." << std::endl;
     std::cin >> comando_secundario;
     std::cout << std::string(15, '\n');
     if (comando_secundario == "sair" || comando_secundario == "Sair"){
@@ -89,7 +89,7 @@ void cliente_main(std::string nome){
                     if(comando_secundario == "voltar"){
                         goto visualizacao_produtos;
                     }
-                    else std::cout << "Comando inválido" << std::endl;
+                    else std::cout << "Comando invalido" << std::endl;
                     goto produto_1;
                 }
               /*  if(comando_secundario == "2"){
@@ -133,7 +133,7 @@ void cliente_main(std::string nome){
                     if(comando_secundario == "voltar"){
                         goto visualizacao_produtos;
                     }
-                    else std::cout << "Comando inválido" << std::endl;
+                    else std::cout << "Comando invalido" << std::endl;
                     goto produto_3;
                 }
                 if(comando_secundario == "4"){
@@ -155,7 +155,7 @@ void cliente_main(std::string nome){
                     if(comando_secundario == "voltar"){
                         goto visualizacao_produtos;
                     }
-                    else std::cout << "Comando inválido" << std::endl;
+                    else std::cout << "Comando invalido" << std::endl;
                     goto produto_4;
                 }
                 if(comando_secundario == "5"){
@@ -233,7 +233,7 @@ void cliente_main(std::string nome){
                     verificar_nome:
                     std::cout << "Qual nome você gostaria?" << std::endl;
                     std::cin >> nomeArquivo;
-                    std::cout << "\nO novo nome será " << nomeArquivo << "?" << std::endl;
+                    std::cout << "\nO novo nome sera " << nomeArquivo << "?" << std::endl;
                     std::cout << "S/N?\n";
                     std::cin >> comando_secundario;
                     if (comando_secundario == "s"){
@@ -244,7 +244,7 @@ void cliente_main(std::string nome){
                         goto verificar_nome;
                     }
                     else{
-                        std::cout << "Comando inválido" << std::endl;
+                        std::cout << "Comando invalido" << std::endl;
                         goto verificar_nome;
                     }
                 }
@@ -252,7 +252,7 @@ void cliente_main(std::string nome){
                     goto visualizacao_perfil;
                 }
                 else{
-                    std::cout << "Comando inválido" << std::endl;
+                    std::cout << "Comando invalido" << std::endl;
                     goto alterar_nome;
                 }
             }
@@ -263,7 +263,7 @@ void cliente_main(std::string nome){
                 std::cin >> comando_secundario;
                 if (comando_secundario == "s"){
                 verificar_senha:
-                    std::cout << "Qual será a nova senha?" << std::endl;
+                    std::cout << "Qual sera a nova senha?" << std::endl;
                     std::cin >> senhaArquivo;
                     std::cout << "\nA nova senha será " << senhaArquivo << "?" << std::endl;
                     std::cout << "S/N?\n";
@@ -276,7 +276,7 @@ void cliente_main(std::string nome){
                         goto verificar_senha;
                     }
                     else{
-                        std::cout << "Comando inválido" << std::endl;
+                        std::cout << "Comando invalido" << std::endl;
                         goto verificar_senha;
                     }
                 }
@@ -284,7 +284,7 @@ void cliente_main(std::string nome){
                     goto visualizacao_perfil;
                 }
                 else{
-                    std::cout << "Comando inválido" << std::endl;
+                    std::cout << "Comando invalido" << std::endl;
                     goto alterar_senha;
                 }
             }
@@ -297,7 +297,7 @@ void cliente_main(std::string nome){
                     verificar_email:
                     std::cout << "Qual o novo email?" << std::endl;
                     std::cin >> emailArquivo;
-                    std::cout << "\nO novo email será " << emailArquivo << "?" << std::endl;
+                    std::cout << "\nO novo email sera " << emailArquivo << "?" << std::endl;
                     std::cout << "S/N?\n";
                     std::cin >> comando_secundario;
                     if (comando_secundario == "s"){
@@ -308,7 +308,7 @@ void cliente_main(std::string nome){
                         goto verificar_email;
                     }
                     else{
-                        std::cout << "Comando inválido" << std::endl;
+                        std::cout << "Comando invalido" << std::endl;
                         goto verificar_email;
                     }
                 }
@@ -316,7 +316,7 @@ void cliente_main(std::string nome){
                     goto visualizacao_perfil;
                 }
                 else{
-                    std::cout << "Comando inválido" << std::endl;
+                    std::cout << "Comando invalido" << std::endl;
                     goto alterar_email;
                 }
             } 
@@ -389,8 +389,8 @@ void loja_main(std::string nome){
     unsigned i = 0;
     std::size_t p = 0;
     pagina_principal:
-    std::cout << "1: Produtos \n2: Usuário \nsair\n" <<std::endl;
-    std::cout << "Digite o número referente ao que gostaria de prosseguir ou digite sair." << std::endl;
+    std::cout << "1: Produtos \n2: Usuario \n3: Adicionar novo produto \nsair\n" <<std::endl;
+    std::cout << "Digite o numero referente ao que gostaria de prosseguir ou digite sair." << std::endl;
     std::cin >> comando_secundario;
     comando_secundario = trata_string(comando_secundario);
     if (comando_secundario == "sair"){
@@ -452,6 +452,9 @@ void loja_main(std::string nome){
                     std::cout << "Digite o que deseja alterar: nome, valor, codigo, quantidade ou descricao ou digite sair ";
                     std::cout << '\n';
                     std::cin >> comando_secundario;
+                    if(comando_secundario == "sair"){
+                        goto pagina_principal;
+                    }
                     if(comando_secundario == "nome"){
                     alterar_nome_produto:
                         std::cout << '\n';
@@ -466,7 +469,7 @@ void loja_main(std::string nome){
                         if(comando_secundario == "n"){
                             goto produto_escolhido;
                         }else 
-                        std::cout << "Comando inválido." << std::endl;
+                        std::cout << "Comando invalido." << std::endl;
                         goto alterar_nome_produto;
                     }
                     if(comando_secundario == "valor"){
@@ -484,7 +487,7 @@ void loja_main(std::string nome){
                         goto produto_escolhido;
                         }
                         else
-                        std::cout << "Comando inválido." << std::endl;
+                        std::cout << "Comando invalido." << std::endl;
                         goto alterar_valor_produto;
                     }
                     if(comando_secundario == "codigo"){
@@ -502,7 +505,7 @@ void loja_main(std::string nome){
                         goto produto_escolhido;
                         }
                         else
-                        std::cout << "Comando inválido." << std::endl;
+                        std::cout << "Comando invalido." << std::endl;
                         goto alterar_codigo_produto;
                     }
                     if (comando_secundario == "quantidade"){
@@ -520,7 +523,7 @@ void loja_main(std::string nome){
                         goto produto_escolhido;
                         }
                         else
-                        std::cout << "Comando inválido." << std::endl;
+                        std::cout << "Comando invalido." << std::endl;
                         goto alterar_quantidade_produto;
                     }
                     if (comando_secundario == "descricao"){
@@ -538,26 +541,25 @@ void loja_main(std::string nome){
                         goto produto_escolhido;
                         }
                         else
-                        std::cout << "Comando inválido." << std::endl;
+                        std::cout << "Comando invalido." << std::endl;
                         goto alterar_descricao_produto;
                     }
                     if(comando_secundario == "sair"){
                             goto pagina_principal;
                         }
                     else{
-                        std::cout << "Comando inválido" << std::endl;
+                        std::cout << "Comando invalido" << std::endl;
                         goto produto_escolhido;
                     }
                 }
             }
-                if(comando_secundario == "sair"){
-                    goto pagina_principal;
-                }
-
-                else {
-                    std::cout << "Produto inexistente" << std::endl;
-                    goto visualizacao_produtos;
-                }
+            if(comando_secundario == "sair"){
+                goto pagina_principal;
+            }
+            else {
+                std::cout << "Produto inexistente" << std::endl;
+                goto visualizacao_produtos;
+            }
         }
         arquivo_produto.close();
         if (std::remove("produto.txt") != 0){   //caso arquivo n abrir
@@ -602,7 +604,7 @@ void loja_main(std::string nome){
                         verificar_nome:
                         std::cout << "Qual o novo nome da loja?" << std::endl;
                         std::cin >> nomeArquivo;
-                        std::cout << "\nO novo nome será " << nomeArquivo << "?" << std::endl;
+                        std::cout << "\nO novo nome sera " << nomeArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
                         if (comando_secundario == "s"){
@@ -614,7 +616,7 @@ void loja_main(std::string nome){
                             goto verificar_nome;
                         }
                         else{
-                            std::cout << "Comando inválido" << std::endl;
+                            std::cout << "Comando invalido" << std::endl;
                             goto verificar_nome;
                         }
                     }    
@@ -622,14 +624,14 @@ void loja_main(std::string nome){
                         goto visualizacao_perfil;
                     }
                     else{
-                        std::cout << "Comando inválido" << std::endl;
+                        std::cout << "Comando invalido" << std::endl;
                         goto alterar_nome;
                     }
                 }
                 
                 if (comando_secundario == "senha"){
                 alterar_senha:
-                    std::cout << "A senha é: " << senhaArquivo;
+                    std::cout << "A senha a: " << senhaArquivo;
                     std::cout << ", gostaria de alterar a sua senha? \n"
                               << "S/N" << std::endl;
                     std::cin >> comando_secundario;
@@ -637,7 +639,7 @@ void loja_main(std::string nome){
                     verificar_senha:
                         std::cout << "Qual será a nova senha?" << std::endl;
                         std::cin >> senhaArquivo;
-                        std::cout << "\nA nova senha será " << senhaArquivo << "?" << std::endl;
+                        std::cout << "\nA nova senha sera " << senhaArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
                         if (comando_secundario == "s"){
@@ -649,7 +651,7 @@ void loja_main(std::string nome){
                             goto verificar_senha;
                         }
                         else{
-                            std::cout << "Comando inválido" << std::endl;
+                            std::cout << "Comando invalido" << std::endl;
                             goto verificar_senha;
                         }
                     }
@@ -657,20 +659,20 @@ void loja_main(std::string nome){
                         goto visualizacao_perfil;
                     }
                     else{
-                        std::cout << "Comando inválido" << std::endl;
+                        std::cout << "Comando invalido" << std::endl;
                         goto alterar_senha;
                     }
                 }
                 if(comando_secundario == "email"){
                     alterar_email:
-                    std::cout << "O email é: " << emailArquivo;
+                    std::cout << "O email e: " << emailArquivo;
                     std::cout << ", gostaria de alterar o email? \n" << "S/N" << std::endl;
                     std::cin >> comando_secundario;             
                     if(comando_secundario == "s"){
                     verificar_email:
                         std::cout << "Qual o novo email?" << std::endl;
                         std::cin >> emailArquivo;
-                        std::cout << "\nO novo email será " << emailArquivo << "?" << std::endl;
+                        std::cout << "\nO novo email sera " << emailArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
                         if (comando_secundario == "s"){
@@ -682,7 +684,7 @@ void loja_main(std::string nome){
                             goto verificar_email;
                         }
                         else{
-                            std::cout << "Comando inválido" << std::endl;
+                            std::cout << "Comando invalido" << std::endl;
                             goto verificar_email;
                         }
                     }
@@ -690,20 +692,20 @@ void loja_main(std::string nome){
                         goto visualizacao_perfil;
                     }
                     else{
-                        std::cout << "Comando inválido" << std::endl;
+                        std::cout << "Comando invalido" << std::endl;
                         goto alterar_email;
                     }
                 }
                 if (comando_secundario == "cnpj"){
                 alterar_cnpj:
-                    std::cout << "O cnpj é: " << cnpjArquivo;
+                    std::cout << "O cnpj e: " << cnpjArquivo;
                     std::cout << ", gostaria de alterar o seu Cnpj? \n" << "S/N" << std::endl;
                     std::cin >> comando_secundario;
                     if (comando_secundario == "s"){
                     verificar_cnpj:
                         std::cout << "Qual o novo cnpj?" << std::endl;
                         std::cin >> cnpjArquivo;
-                        std::cout << "\nO novo cnpj será " << cnpjArquivo << "?" << std::endl;
+                        std::cout << "\nO novo cnpj sera " << cnpjArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
                         if (comando_secundario == "s"){
@@ -715,7 +717,7 @@ void loja_main(std::string nome){
                             goto verificar_cnpj;
                         }
                         else{
-                            std::cout << "Comando inválido" << std::endl;
+                            std::cout << "Comando invalido" << std::endl;
                             goto verificar_cnpj;
                         }
                     }
@@ -723,20 +725,20 @@ void loja_main(std::string nome){
                         goto visualizacao_perfil;
                     }
                     else{
-                        std::cout << "Comando inválido." << std::endl;
+                        std::cout << "Comando invalido." << std::endl;
                         goto alterar_cnpj;
                     }
                 }
                 if(comando_secundario == "cep"){
                     alterar_cep:
-                    std::cout << "O cep é: " << cepArquivo;
+                    std::cout << "O cep e: " << cepArquivo;
                     std::cout << ", gostaria de alterar o seu Cep? \n" << "S/N" << std::endl;
                     std::cin >> comando_secundario;                
                     if (comando_secundario == "s"){
                     verificar_cep:
-                        std::cout << "Qual será o novo cep?" << std::endl;
+                        std::cout << "Qual sera o novo cep?" << std::endl;
                         std::cin >> cepArquivo;
-                        std::cout << "\nO novo cep será " << cepArquivo << "?" << std::endl;
+                        std::cout << "\nO novo cep sera " << cepArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
                         if (comando_secundario == "s"){
@@ -748,7 +750,7 @@ void loja_main(std::string nome){
                             goto verificar_cep;
                         }
                         else{
-                            std::cout << "Comando inválido" << std::endl;
+                            std::cout << "Comando invalido" << std::endl;
                             goto verificar_cep;
                         }
                     }
@@ -756,14 +758,14 @@ void loja_main(std::string nome){
                         goto visualizacao_perfil;
                     }
                     else{
-                        std::cout << "Comando inválido." << std::endl;
+                        std::cout << "Comando invalido." << std::endl;
                         goto alterar_cep;
                     }
                 }
                 if(comando_secundario == "voltar"){
                     goto pagina_principal;
                 } else{
-                std::cout << "Comando inválido." << std::endl;
+                std::cout << "Comando invalido." << std::endl;
                 goto visualizacao_perfil;
                 }
             }
@@ -778,12 +780,16 @@ void loja_main(std::string nome){
             }
             file.close();
         }
-     /*if(comando_secundario == "3"){
+    if(comando_secundario == "3"){
         Estoque estoque_aux;
-        estoque_aux.incluir_estoque(nome);
-    }*/
+        estoque_aux.incluir_estoque(nome);    
+    }
+    /*
+    if(comando_secundario == "4"){
+        //adicionar historico de compras
+    */
     else{
-        std::cout << "Comando inválido\n" << "Tente novamente" << std::endl;
+        std::cout << "Comando invalido\n" << "Tente novamente" << std::endl;
         goto pagina_principal;
     }
 }

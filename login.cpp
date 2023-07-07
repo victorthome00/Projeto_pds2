@@ -89,7 +89,7 @@ bool Login::autenticarLoja(std::string nome, std::string senha)
         }
     }
         arquivo.close();
-        std::cout << "Falha na realização do login da loja!" << std::endl;
+        std::cout << "Falha na realizacao do login da loja!" << std::endl;
     
     return false;
 }

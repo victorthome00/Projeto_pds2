@@ -1,47 +1,64 @@
 #include "carrinho.hpp"
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <vector>
+#include <cstring>
 #include <ctime>
 #include <cctype> 
 #include <sstream>
 #include <unistd.h>
 
 
-void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade, Estoque aux){
-    Produto escolha = aux.estoque_codigo[codigo];
-    int j = escolha.get_quantidade();
-    if( j >= quantidade){
-        _sacola.push_back(std::make_pair(escolha, quantidade));
+void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade){
+  std::ifstream produtos("produto.txt", std::ios::in | std::ios::out);
+  std::vector<std::string> linhas;
+  std::string linha;
+  std::string line;
+  while (std::getline(produtos, linha)){
+    linhas.push_back(linha);
+  }
+  for(std::size_t o = 0; o < linhas.size(); o++){
+    if(codigo == linhas[o]){
+      std::string nome, codigo, descricao;
+      float valor;
+      int quanti;
+      nome = linhas[o - 2];
+      codigo = linhas[o];
+      descricao = linhas[o + 2];
+      valor = std::stof(linhas[o - 1]);
+      quanti = std::stoi(linhas[0 + 1]);
+      Produto produto_aux(nome,valor,codigo,quanti,descricao);
+      std::pair<Produto, int> par(produto_aux,quantidade);
+      _sacola.push_back(par);
     }
-    else{
-        std::cout << "Poxa, nao temos essa quantidade no estoque!" << std::endl;
-    }
+  }
+  produtos.close();
 }
 
 void Carrinho_de_compra::remover_item(std::string codigo, int quantidade){
   for (auto it = _sacola.begin(); it != _sacola.end(); ++it) {
-        if (it->first.get_codigo() == codigo) {
-            it->second -= quantidade;
-            if (it->second <= 0) {
-                _sacola.erase(it);
-                break;
-            }
-        }
+    if (it->first.get_codigo() == codigo) {
+      it->second -= quantidade;
+      if (it->second <= 0) {
+        _sacola.erase(it);
+        break;
+      }
     }
+  }
 
 
 }
 
 void Carrinho_de_compra::exibir_carrinho(){
-    for (const auto& par : _sacola){
-        Produto produto = par.first;    
-        int quantidade = par.second;
+  for (const auto& par : _sacola){
+    Produto produto = par.first;    
+    int quantidade = par.second;
 
-        std::cout << "Nome: " << produto.get_nome() << ", Preco: " << produto.get_valor() << ", Quantidade: " << quantidade << std::endl;
-    }
-    std::cout << std::endl << std::endl;
-    std::cout << "Preco total: " << calcular_valor() << std::endl;
+    std::cout << "Nome: " << produto.get_nome() << ", Preco: " << produto.get_valor() << ", Quantidade: " << quantidade << std::endl;
+  }
+  std::cout << std::endl << std::endl;
+  std::cout << "Preco total: " << calcular_valor() << std::endl;
 }
 
 float Carrinho_de_compra::calcular_valor(){
@@ -139,8 +156,8 @@ void Pagamento::pagar(){
 
 std::string Pagamento::gerar_codigo_PIX(){
   int x = rand() % 20 + 1;
-  /*int y = x;
-    if(y == 10 || y == 20){
+  int y = x;
+    if(y == 10 || y == 20 || y == 7){
       std::cout << "Oh nao! A geracao do codigo PIX encontrou um problema!\n";
       sleep(2);
       std::cout << "Jogue esse jogo da velha enquanto nossos programadores corrigem isso!\n";
@@ -154,7 +171,7 @@ std::string Pagamento::gerar_codigo_PIX(){
       std::cout << "\n=====Problema corrigido!=====\n";
       std::cout << "Voltando ao codigo..." << std::endl;
       sleep(2);
-    }*/
+    }
   switch(x){
       case 1:
         return "123A#&906YL0";
@@ -302,7 +319,7 @@ void Entrega::set_cep(std::string cep){
   }while(i = -1);
 
 }*/
-/*
+
 void Jogo_espera::drawBoard(char *spaces){
     std::cout << '\n';
     std::cout << "     |     |     " << '\n';
@@ -316,6 +333,7 @@ void Jogo_espera::drawBoard(char *spaces){
     std::cout << "     |     |     " << '\n';
     std::cout << '\n';
 }
+
 void Jogo_espera::playerMove(char* spaces, char player) {
     int num;
     do {
@@ -347,6 +365,7 @@ void Jogo_espera::computerMove(char *spaces, char computer){
       }
     }
 }
+
 bool Jogo_espera::checkWinner(char *spaces, char player){
     if((spaces[0] != ' ') && (spaces[0] == spaces[1]) && (spaces[1] == spaces[2])){
         spaces[0] == player ? std::cout << "VOCE GANHOU!\n" : std::cout << "VOCE PERDEU!\n";
@@ -377,6 +396,7 @@ bool Jogo_espera::checkWinner(char *spaces, char player){
     }
     return true;
 }
+
 bool Jogo_espera::checkTie(char *spaces){
 
   for(int i = 0; i < 9; i++){
@@ -387,6 +407,7 @@ bool Jogo_espera::checkTie(char *spaces){
     std::cout << "EMPATE!!" << std::endl;
     return true;
 }
+
 void Jogo_espera::Jogo_da_velha(){
   char spaces[9] = {' ',' ',' ',' ',' ',' ',' ',' ',' '};
       char player = 'X';
@@ -419,4 +440,4 @@ void Jogo_espera::Jogo_da_velha(){
         }
 
       }
-}*/
+}

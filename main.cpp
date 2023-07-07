@@ -40,7 +40,7 @@ int main(){
                     if(log.autenticarCliente(nome,senha)){
                         break;
                     }
-                    std::cout << "Erro na autenticação" << '\n' << std::endl;
+                    std::cout << "Erro na autenticacao" << '\n' << std::endl;
                     
                 }
                 std::cout<<"Autenticação concluida"<<std::endl;
@@ -82,7 +82,7 @@ int main(){
                         if(log.autenticarLoja(nome, senha)){
                             break;
                         }
-                    std::cout << "Erro na autenticação" <<std::endl;
+                    std::cout << "Erro na autenticacao" <<std::endl;
                 }
                 std::cout<<"Autenticação concluida"<<std::endl;
                 std::cout <<'\n';
