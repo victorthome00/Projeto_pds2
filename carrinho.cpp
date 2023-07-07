@@ -84,6 +84,13 @@ void Pagamento::pagar(){
   std::string modo;
   modo = get_modo_pagamento();
   if(modo == "Credito" || modo == "Debito"){
+    if(modo == "Credito"){
+      std::cout << "O modo de pagamento escolhido foi Credito!!" << std::endl;
+    }
+    else if(modo == "Debito"){
+      std::cout << "O modo de pagamento escolhido foi Debito!!" << std::endl;
+    }
+    sleep(1);
     std::string numero;
     do{
       char c;
@@ -112,6 +119,7 @@ void Pagamento::pagar(){
     sleep(1);
   }
   else if(modo == "PIX"){
+    std::cout << "O modo de pagamento escolhido foi PIX!!" << std::endl;
     std::cout << "O codigo de PIX e: " << Pagamento::gerar_codigo_PIX() << std::endl;
     char aux1;
     do{ 
@@ -140,6 +148,7 @@ std::string Pagamento::gerar_codigo_PIX(){
       std::cout << "========================================\n";
       std::cout << "============ Jogo da Velha =============\n";
       std::cout << "========================================\n";
+      std::cout << "Digite somente numeros de 1 a 9, correspondentes a posicao que deseja jogar!" << std::endl;
       Jogo_espera a;
       a.Jogo_da_velha();
       std::cout << "\n=====Problema corrigido!=====\n";
@@ -307,18 +316,25 @@ void Jogo_espera::drawBoard(char *spaces){
     std::cout << "     |     |     " << '\n';
     std::cout << '\n';
 }
-void Jogo_espera::playerMove(char *spaces, char player){
-    int number;
-    do{
-      std::cout << "Escolha uma posicao para o marcador (1-9): ";
-      std::cin >> number;
-      number--;
-      if(spaces[number] == ' '){
-        spaces[number] = player;
-        break;
-      }
-    }while(number < 0 || number > 8);
+void Jogo_espera::playerMove(char* spaces, char player) {
+    int num;
+    do {
+        std::string number;
+        std::cout << "Escolha uma posicao para o marcador (1-9): ";
+        std::getline(std::cin, number);
+
+        if (number.length() == 1 && std::isdigit(number[0])) {
+            num = number[0] - '0';
+            num--;
+            if (num >= 0 && num <= 8 && spaces[num] == ' ') {
+                spaces[num] = player;
+                break;
+            }
+        }
+        std::cout << "Entrada invalida. Tente novamente." << std::endl;
+    } while (true);
 }
+
 void Jogo_espera::computerMove(char *spaces, char computer){
     int number;
     srand(time(NULL));
