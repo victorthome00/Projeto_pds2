@@ -304,27 +304,6 @@ void Entrega::set_cep(std::string cep){
     this->_cep = cep;
 }
 
-/*void Entrega::coletar_endereco(){
-  int i = 0, j = 0;
-  do{
-    std::cout << "Digite o seu cep: " << std::endl;
-    std::getline(std::cin, _cep);
-    for(char c : _cep){
-      j++;
-      if(std::isdigit(c)){
-        i = -1;
-        _cep = nullptr;
-        std::cout << "Cep invalido! " << std::endl;
-      }
-    }
-    if(j != 8){
-      std::cout << "Cep invalido! " << std::endl;
-      i = -1;
-      j = 0;
-    }
-  }while(i = -1);
-
-}*/
 
 void Jogo_espera::drawBoard(char *spaces){
     std::cout << '\n';

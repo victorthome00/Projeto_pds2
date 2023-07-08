@@ -1,14 +1,13 @@
-#include "carrinho.hpp"
-#include "login.hpp"
-#include "produto.hpp"
-#include "registro.hpp"
-#include "usuario.hpp"
+#include "carrinho.cpp"
+#include "login.cpp"
+#include "produto.cpp"
+#include "registro.cpp"
+#include "usuario.cpp"
 #include <iostream>
 
 int main(){
     std::string comando,comando_auxiliar;
    // do{
-    main_pagina:
     std::cout << "Digite 'sair' a qualquer momento para encerrar a sessao" << std::endl;
     std::cout << "Digite 'cliente' caso deseje entrar como cliente" << "\n" << "Digite 'gerente' para gerenciar seus produtos disponiveis" << std::endl;
     std::cin >> comando;
@@ -44,7 +43,7 @@ int main(){
                     std::cout << "Erro na autenticacao" << '\n' << std::endl;
                     
                 }
-                std::cout<<"Autenticação concluida"<<std::endl;
+                std::cout<<"Autenticacao concluida"<<std::endl;
                 std::cout <<'\n';
             }
             if(comando_auxiliar == "não" || comando_auxiliar == "n" || comando_auxiliar == "nao"){
@@ -52,13 +51,9 @@ int main(){
                 novo_cliente.cadastrarCliente();
             }
             break;
-            //}while(comando_auxiliar != "sim" || comando_auxiliar != "s" || comando_auxiliar != "não" || comando_auxiliar != "n" || comando_auxiliar != "nao");
     }
-            goto main_pagina;
+            cliente_main(nome);
     
-    //if(comando != "gerente" || comando != "cliente"){
-    //    std::cout << "Erro! Escolha somente entre 'gerente' ou 'cliente'!" << std::endl;
-    //}
     
 }
     if(comando == "gerente"){
@@ -93,13 +88,9 @@ int main(){
                 novo_cliente.cadastrarLoja();
             }
             break;
-            //}while(comando_auxiliar != "sim" || comando_auxiliar != "s" || comando_auxiliar != "não" || comando_auxiliar != "n" || comando_auxiliar != "nao");
     }
-            goto main_pagina;
+            loja_main(nome);
     
-    //if(comando != "gerente" || comando != "cliente"){
-    //    std::cout << "Erro! Escolha somente entre 'gerente' ou 'cliente'!" << std::endl;
-    //}
     return 0;
 }
 }
