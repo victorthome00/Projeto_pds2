@@ -75,28 +75,24 @@ bool Estoque::incluir_estoque(std::string loja){
         while (std::getline(arquivo_produtos, linha)){
             vetor.push_back(linha);
         }
+        vetor.push_back(loja);
         vetor.push_back(produto._nome_produto);
         vetor.push_back(std::to_string(produto._valor));
         vetor.push_back(produto._codigo_produto);
         vetor.push_back(std::to_string(produto._quantidade));
         vetor.push_back(produto._descricao);
     }
-    arquivo_produtos.close();
+    arquivo_produtos.close();/*
     if (std::remove("produto.txt") != 0){
-            std::cout << "Erro no arquivo de usuario" << std::endl;
-            exit(1);
-    }
+        std::cout << "teste" << std::endl;
+        std::cout << "Erro no arquivo de usuario" << std::endl;
+        exit(1);
+    }*/
     std::ofstream arquivo_produto("produto.txt");
     for (const std::string &element : vetor){
         arquivo_produto << element << std::endl;
     }
     arquivo_produto.close();
-    /*arquivo_produto << loja <<std::endl;
-    arquivo_produto <<produto._nome_produto<<std::endl;
-    arquivo_produto <<produto._valor<<std::endl; 
-    arquivo_produto <<produto._codigo_produto<<std::endl;
-    arquivo_produto <<produto._quantidade<<std::endl;
-    arquivo_produto <<produto._descricao<<std::endl;*/  
     return true;
 }
 bool Estoque::remover_produto(const std::string& codigo) {
