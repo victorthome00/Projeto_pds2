@@ -19,5 +19,5 @@
   - A manipulação de arquivos em txt também gerou muita dor de cabeça. Primeiro com a dificuldade de lê-los, depois com a adição involuntária de elementos no arquivo e também na dificuldade de adicioná-los posteriormente.
   - Eventuais conflitos no github conjuntamente com branches atualizadas e também desatualizadas em comparação com a main(ao mesmo tempo).
   - O tratamento de entrada também foi outra dificuldade, uma vez que são inúmeras entradas possíveis que poderiam ocasionar inúmeros erros e, mesmo tratando várias entradas, sempre surgem novas que ocasionam o erro.
-
+  - Durante o trabalho final desse semestre, uma das dificuldades foi os testes de software sob o DocTest, devido ao passo que a maioria das novas função são alto retroativas visto que os while, durante nossa implementação, já pede para o cliente(usuario) botar um comando válido e repete a execução até que a saída esteja válida. Ademais, as funções sem retorno(void) e que não exigem parâmetros, exigem complexidade a mais para ter consecução nos testes.
 
