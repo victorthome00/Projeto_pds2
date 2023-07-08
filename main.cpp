@@ -8,6 +8,7 @@
 int main(){
     std::string comando,comando_auxiliar;
    // do{
+    main_pagina:
     std::cout << "Digite 'sair' a qualquer momento para encerrar a sessao" << std::endl;
     std::cout << "Digite 'cliente' caso deseje entrar como cliente" << "\n" << "Digite 'gerente' para gerenciar seus produtos disponiveis" << std::endl;
     std::cin >> comando;
@@ -53,7 +54,7 @@ int main(){
             break;
             //}while(comando_auxiliar != "sim" || comando_auxiliar != "s" || comando_auxiliar != "não" || comando_auxiliar != "n" || comando_auxiliar != "nao");
     }
-            cliente_main(nome);
+            goto main_pagina;
     
     //if(comando != "gerente" || comando != "cliente"){
     //    std::cout << "Erro! Escolha somente entre 'gerente' ou 'cliente'!" << std::endl;
@@ -94,7 +95,7 @@ int main(){
             break;
             //}while(comando_auxiliar != "sim" || comando_auxiliar != "s" || comando_auxiliar != "não" || comando_auxiliar != "n" || comando_auxiliar != "nao");
     }
-            loja_main(nome);
+            goto main_pagina;
     
     //if(comando != "gerente" || comando != "cliente"){
     //    std::cout << "Erro! Escolha somente entre 'gerente' ou 'cliente'!" << std::endl;
