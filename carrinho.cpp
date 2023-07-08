@@ -20,6 +20,7 @@ void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade){
   }
   for(std::size_t o = 0; o < linhas.size(); o++){
     if(codigo == linhas[o]){
+      std::cout << "entro" << std::endl;
       std::string nome, codigo, descricao;
       float valor;
       int quanti;
@@ -27,7 +28,7 @@ void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade){
       codigo = linhas[o];
       descricao = linhas[o + 2];
       valor = std::stof(linhas[o - 1]);
-      quanti = std::stoi(linhas[0 + 1]);
+      quanti = std::stoi(linhas[o + 1]);
       Produto produto_aux(nome,valor,codigo,quanti,descricao);
       std::pair<Produto, int> par(produto_aux,quantidade);
       _sacola.push_back(par);

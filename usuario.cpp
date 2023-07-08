@@ -4,6 +4,8 @@
 #include <fstream>
 #include <vector>
 #include <cstring>
+#include <string>
+
 
 std::string trata_string(std::string &str){
     for (char c : str) {
@@ -29,6 +31,7 @@ void cliente_main(std::string nome){
     std::size_t indice = 0;
     int indice_secundario;
     unsigned i = 0;
+    int quant = 0;
     pagina_principal:
     std::cout << "1: Produtos \n2: Usuário \n3: Carrinho \nsair\n"<< std::endl;
     std::cout << "Digite o numero referente ao que gostaria de prosseguir ou digite sair." << std::endl;
@@ -71,6 +74,7 @@ void cliente_main(std::string nome){
                 std::cin >> aux1;
                 if(aux1 != "sair"){
                 produto_1:
+                    std::isspace(indice_secundario);
                     indice_secundario = std::stoi(aux1);
                     std::cout << product[indice_secundario].get_nome() << std::endl;
                     std::cout << product[indice_secundario].get_valor() << std::endl;
@@ -82,8 +86,9 @@ void cliente_main(std::string nome){
                     std::cin >> comando_secundario;
                     if(comando_secundario == "adicionar"){
                         std::cout << "Quantos gostaria?\n";
-                        std::cin >> comando_secundario;
-                        carrinho.adicionar_item(product[indice_secundario].get_codigo(), std::stoi(comando_secundario));
+                        std::cin >> quant;
+                        std::cout << quant << std::endl;
+                        carrinho.adicionar_item(product[indice_secundario].get_codigo(), quant);
                         goto visualizacao_produtos;
                     }
                     if(comando_secundario == "voltar"){
@@ -200,6 +205,7 @@ void cliente_main(std::string nome){
             file_product << element << std::endl;
         }
         file_product.close();
+        goto pagina_principal;
     }
     if(comando_secundario == "2"){
         std::ifstream arquivo("usuariosClientes.txt", std::ios::in | std::ios::out);
@@ -331,10 +337,27 @@ void cliente_main(std::string nome){
             file << element << std::endl;
         }
         file.close();
+        goto  pagina_principal;
     }
     if(comando_secundario == "3"){
+        carrinho_usuario:
         carrinho.exibir_carrinho();
-
+        Pagamento aux_pagamento;
+        std::cout << "Gostaria de finalizar a compra?\n" << "S|N" << std::endl;
+        std::cin >> comando_secundario;
+        comando_secundario = trata_string(comando_secundario);
+        if (comando_secundario == "sim" || comando_secundario == "s"){
+            aux_pagamento.pagar();
+            goto pagina_principal;
+        }
+        if (comando_secundario == "nao" || comando_secundario == "não" || comando_secundario == "n"){
+            goto pagina_principal;
+        }
+        else{
+            std::cout<< "Comando não reconhecido" << std::endl;
+            goto carrinho_usuario;
+        }
+        goto pagina_principal;
     }
 }
 
@@ -524,7 +547,7 @@ void loja_main(std::string nome){
                 goto visualizacao_produtos;
             }
         }
-        arquivo_produto.close();
+        arquivo_produto.close();/*
         if (std::remove("produto.txt") != 0){   //caso arquivo n abrir
             std::cout << "Erro no arquivo de usuario" << std::endl;
             exit(1);
@@ -533,7 +556,7 @@ void loja_main(std::string nome){
         for (const std::string &element : linhas){
             file_product << element << std::endl;
         }
-        file_product.close();
+        file_product.close();*/
     }
     if(comando_secundario == "2"){
         std::ifstream arquivo("usuariosLoja.txt", std::ios::in | std::ios::out);
@@ -744,8 +767,22 @@ void loja_main(std::string nome){
             file.close();
         }
     if(comando_secundario == "3"){
+        add_estoque:
         Estoque estoque_aux;
-        estoque_aux.incluir_estoque(nome);    
+        estoque_aux.incluir_estoque(nome);
+        std::cout<<"Gostaria de adicionar outro produto?" << "\n S/N" << std::endl;
+        std::cin >> comando_secundario;
+        comando_secundario = trata_string(comando_secundario);
+        if (comando_secundario == "sim" || comando_secundario == "s"){
+            goto add_estoque;
+        }
+        if (comando_secundario == "nao" || comando_secundario == "não" || comando_secundario == "n"){
+            goto pagina_principal;
+        }
+        else{
+            std::cout<< "Comando não reconhecido" << std::endl;
+            goto add_estoque;
+        }
     }
     /*
     if(comando_secundario == "4"){
