@@ -9,6 +9,13 @@
 class Carrinho_de_compra{   //estoque n tem construtor;
 public:
   friend class Estoque;
+
+    /// @brief Limpa o carrinho de compras.
+    ///
+    ///   Após o pagamento o carrinho de compras é liberado.
+    ///
+    void limpar_sacola();
+
     /// @brief Adiciona um item ao carrinho de compras
     ///
     ///  A partir de um código e uma quantidade passados na função,

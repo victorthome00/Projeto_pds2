@@ -72,6 +72,10 @@ for(const auto& par : _sacola){
     return aux;
 }
 
+void Carrinho_de_compra::limpar_sacola(){
+  _sacola.clear();
+}
+
 std::string Pagamento::get_modo_pagamento(){
     std::string _modo_pagamento;
     std::string forma_pagamento;
@@ -280,7 +284,7 @@ void Entrega::coletar_endereco(){
 
     if (i == 8 && j == i) {
         
-       // return 0;
+        set_cep(cep);
         break;
     }
     std::cout << "CEP invalido, necessario ter 8 digitos" << std::endl;
@@ -288,6 +292,7 @@ void Entrega::coletar_endereco(){
 }
 
 void Entrega::entregar(){
+  coletar_endereco();
   std::cout << "Preparando o seu pedido!" << std::endl;
     sleep(3);
     std::cout << "Pedido a caminho!" << std::endl;
