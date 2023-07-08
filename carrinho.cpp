@@ -442,3 +442,7 @@ void Jogo_espera::Jogo_da_velha(){
 
       }
 }
+
+void Carrinho_de_compra::limpar_sacola(){
+  _sacola.clear();
+}

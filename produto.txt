@@ -22,3 +22,15 @@ maquita
 302010
 10
 corta
+
+bola
+12.000000
+1234
+12
+redonda
+
+pipa
+43.000000
+233454
+234
+losangula

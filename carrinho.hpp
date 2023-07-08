@@ -9,6 +9,13 @@
 class Carrinho_de_compra{   //estoque n tem construtor;
 public:
   friend class Estoque;
+  
+    /// @brief Limpa o carrinho de compras.
+    ///
+    ///   Após o pagamento o carrinho de compras é liberado.
+    ///
+    void limpar_sacola();
+
     /// @brief Adiciona um item ao carrinho de compras
     ///
     ///  A partir de um código e uma quantidade passados na função,
@@ -19,7 +26,6 @@ public:
     ///
     /// @param codigo é o codigo do produto referido
     /// @param quantidade é a quantidade que se deseja adicionar
-    /// @param aux é o estoque onde se busca esse produto
     void adicionar_item(std::string codigo, int quantidade);
 
     /// @brief Remove um item do carrinho de compras

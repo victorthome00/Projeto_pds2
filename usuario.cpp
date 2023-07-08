@@ -348,6 +348,7 @@ void cliente_main(std::string nome){
         comando_secundario = trata_string(comando_secundario);
         if (comando_secundario == "sim" || comando_secundario == "s"){
             aux_pagamento.pagar();
+            carrinho.limpar_sacola();
             goto pagina_principal;
         }
         if (comando_secundario == "nao" || comando_secundario == "não" || comando_secundario == "n"){
