@@ -17,6 +17,44 @@ std::string trata_string(std::string &str){
     return str;
 }
 
+std::string validar_senha() {
+    std::string senha;
+    int contnumber;
+    std::cout << '\n';
+    std::cout << "Digite uma senha valida contendo os requisitos:" << std::endl;
+    std::cout << "- No minimo 4 algarismos" << std::endl;
+    std::cout << "- No minimo 2 digitos" << std::endl;
+    std::cout << "- No minimo 1 letra maiuscula" << std::endl;
+
+    while (true){
+        std::cin >> senha;
+        if(senha.size() >= 4) break;
+
+        std::cout << "Digite uma senha com no minimo 4 algarismos: ";
+    }
+
+    while (true) {
+     
+     contnumber = 0;
+        for (char c : senha)    {
+            if (std::isdigit (c)) contnumber++;
+        }
+
+        if (contnumber >= 2) {
+            for (char c : senha){
+                 if (isupper(c)) {
+                  return senha;
+                }
+            }
+            std::cout << "Senha invalida, digite ao menos uma letra maiuscula" << std::endl;
+            std::cin >> senha;
+    }    else {
+        std::cout << "Senha invalida, digite ao menos dois digitos" << std::endl;
+        std::cin >> senha;
+    }
+    }
+}
+
 void cliente_main(std::string nome){
     Estoque aux;
     Carrinho_de_compra carrinho;
@@ -270,7 +308,7 @@ void cliente_main(std::string nome){
                 if (comando_secundario == "s"){
                 verificar_senha:
                     std::cout << "Qual sera a nova senha?" << std::endl;
-                    std::cin >> senhaArquivo;
+                    senhaArquivo = validar_senha();
                     std::cout << "\nA nova senha será " << senhaArquivo << "?" << std::endl;
                     std::cout << "S/N?\n";
                     std::cin >> comando_secundario;
@@ -343,11 +381,19 @@ void cliente_main(std::string nome){
         carrinho_usuario:
         carrinho.exibir_carrinho();
         Pagamento aux_pagamento;
+        Entrega entrega;
+
         std::cout << "Gostaria de finalizar a compra?\n" << "S|N" << std::endl;
         std::cin >> comando_secundario;
         comando_secundario = trata_string(comando_secundario);
+
         if (comando_secundario == "sim" || comando_secundario == "s"){
             aux_pagamento.pagar();
+            std::cout << '\n';
+            std::cout << "Você irá receber a entrega..." << std::endl;
+            entrega.entregar();
+            std::cout << '\n';
+            carrinho.limpar_sacola();
             goto pagina_principal;
         }
         if (comando_secundario == "nao" || comando_secundario == "não" || comando_secundario == "n"){
@@ -357,6 +403,10 @@ void cliente_main(std::string nome){
             std::cout<< "Comando não reconhecido" << std::endl;
             goto carrinho_usuario;
         }
+
+        std::cout << "Você irá receber a entrega..." << std::endl;
+        entrega.entregar();
+        
         goto pagina_principal;
     }
 }
