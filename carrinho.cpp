@@ -20,7 +20,7 @@ void Carrinho_de_compra::adicionar_item(std::string codigo, int quantidade){
   }
   for(std::size_t o = 0; o < linhas.size(); o++){
     if(codigo == linhas[o]){
-      std::cout << "entro" << std::endl;
+      //std::cout << "entro" << std::endl;
       std::string nome, codigo, descricao;
       float valor;
       int quanti;
@@ -160,6 +160,7 @@ void Pagamento::pagar(){
 //principal metodo da classe
 
 std::string Pagamento::gerar_codigo_PIX(){
+  srand(time(NULL));
   int x = rand() % 20 + 1;
   int y = x;
     if(y == 10 || y == 20 || y == 7){
