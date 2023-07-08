@@ -65,7 +65,6 @@ void cliente_main(std::string nome){
     std::string linha = "";
     std::string line;
     std::string aux1;
-    std::size_t indice = 0;
     int indice_secundario;
     unsigned i = 0;
     int quant = 0;
@@ -86,7 +85,6 @@ void cliente_main(std::string nome){
         if(arquivo_produto.is_open()){
             while(std::getline(arquivo_produto, linha)){
                 linhas.push_back(linha);
-                //std::cout << linha << std::endl;
             }
             for(unsigned l = 0; l < linhas.size(); l += 6){
                 nome_produto = linhas[l + 1];
@@ -97,7 +95,7 @@ void cliente_main(std::string nome){
 
             for(unsigned m = 0; m < (linhas.size()/5); m ++){
                 std::cout << "Para comprar um produto digite o numero que corresponde ao produto desejado ou digite 'sair'.\n\n";
-                for(int n = 0; n < product.size() ; n++){
+                for(unsigned n = 0; n < product.size() ; n++){
                     std::cout << n << ": ";
                     Produto aux = product[n]; 
                     aux.exibir_produto();
@@ -106,7 +104,6 @@ void cliente_main(std::string nome){
                 std::cin >> aux1;
                 if(aux1 != "sair"){
                 produto_1:
-                    std::isspace(indice_secundario);
                     indice_secundario = std::stoi(aux1);
                     std::cout << product[indice_secundario].get_nome() << std::endl;
                     std::cout << product[indice_secundario].get_valor() << std::endl;
@@ -118,15 +115,15 @@ void cliente_main(std::string nome){
                     if(comando_secundario == "adicionar"){
                         std::cout << "Quantos gostaria?\n";
                         std::cin >> quant;
-                        std::cout << quant << std::endl;
                         carrinho.adicionar_item(product[indice_secundario].get_codigo(), quant);
                         goto visualizacao_produtos;
                     }
                     if(comando_secundario == "voltar"){
                         goto visualizacao_produtos;
                     }
-                    else std::cout << "Comando invalido" << std::endl;
-                    goto produto_1;
+                    else {
+                    std::cout << "Comando invalido" << std::endl;
+                    goto produto_1;}
                 }
                 if(aux1 == "sair") {
                         goto pagina_principal;
@@ -143,6 +140,7 @@ void cliente_main(std::string nome){
             file_product << element << std::endl;
         }
         file_product.close();
+        linhas.clear();
         goto pagina_principal;
     }
     if(comando_secundario == "2"){
