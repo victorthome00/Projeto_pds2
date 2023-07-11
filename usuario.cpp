@@ -1,12 +1,13 @@
 #include "usuario.hpp"
 #include "produto.hpp"
 #include "carrinho.hpp"
+#include "registro.hpp"
 #include <fstream>
 #include <vector>
 #include <cstring>
 #include <string>
 
-
+Registro r;
 std::string trata_string(std::string &str){
     for (char c : str) {
         if (!std::isalpha(c)) {
@@ -17,43 +18,7 @@ std::string trata_string(std::string &str){
     return str;
 }
 
-std::string validar_senha() {
-    std::string senha;
-    int contnumber;
-    std::cout << '\n';
-    std::cout << "Digite uma senha valida contendo os requisitos:" << std::endl;
-    std::cout << "- No minimo 4 algarismos" << std::endl;
-    std::cout << "- No minimo 2 digitos" << std::endl;
-    std::cout << "- No minimo 1 letra maiuscula" << std::endl;
 
-    while (true){
-        std::cin >> senha;
-        if(senha.size() >= 4) break;
-
-        std::cout << "Digite uma senha com no minimo 4 algarismos: ";
-    }
-
-    while (true) {
-     
-     contnumber = 0;
-        for (char c : senha)    {
-            if (std::isdigit (c)) contnumber++;
-        }
-
-        if (contnumber >= 2) {
-            for (char c : senha){
-                 if (isupper(c)) {
-                  return senha;
-                }
-            }
-            std::cout << "Senha invalida, digite ao menos uma letra maiuscula" << std::endl;
-            std::cin >> senha;
-    }    else {
-        std::cout << "Senha invalida, digite ao menos dois digitos" << std::endl;
-        std::cin >> senha;
-    }
-    }
-}
 
 void cliente_main(std::string nome){
     Estoque aux;
@@ -79,6 +44,9 @@ void cliente_main(std::string nome){
         exit(0);
     }
     if(comando_secundario == "1"){
+        product.clear();
+        linhas.clear();
+        std::cout << "tamanho vector: " << product.size() << '\n';
         std::string nome_loja, nome_produto, valor, codigo_produto, quantidade, descricao;
         
         std::ifstream arquivo_produto("produto.txt");
@@ -159,9 +127,10 @@ void cliente_main(std::string nome){
                 }
             }
         visualizacao_perfil:
+            std::cout << '\n';
             std::cout << "Usuario:\n" << nomeArquivo << "\n\nSenha:\n" << "**" << "\n\nEmail:\n" << emailArquivo <<  "\n\nCpf:\n" 
                       << cpfArquivo << std::endl;
-            std::cout << "\nDigite o que deseja mudar ou digite voltar: usuario, senha, email, cpf: " << std::endl;
+            std::cout << "\nDigite o que deseja mudar ou digite voltar: usuario, senha, email: " << std::endl;
             std::cin >> comando_secundario;
             comando_secundario = trata_string(comando_secundario);
             std::cout << std::string(15, '\n');
@@ -174,7 +143,7 @@ void cliente_main(std::string nome){
                 if(comando_secundario == "s"){
                     verificar_nome:
                     std::cout << "Qual nome você gostaria?" << std::endl;
-                    std::cin >> nomeArquivo;
+                    nomeArquivo = r.validar_usuario();
                     std::cout << "\nO novo nome sera " << nomeArquivo << "?" << std::endl;
                     std::cout << "S/N?\n";
                     std::cin >> comando_secundario;
@@ -206,7 +175,7 @@ void cliente_main(std::string nome){
                 if (comando_secundario == "s"){
                 verificar_senha:
                     std::cout << "Qual sera a nova senha?" << std::endl;
-                    senhaArquivo = validar_senha();
+                    senhaArquivo = r.validar_senha();
                     std::cout << "\nA nova senha sera " << senhaArquivo << "?" << std::endl;
                     std::cout << "S/N?\n";
                     std::cin >> comando_secundario;
@@ -346,10 +315,8 @@ void loja_main(std::string nome){
                         produto_loja[p] = linhas[o];
                         p++;
                         o++;
-                       std::cout<<"."<<std::endl;
                     } 
                     --o;
-                    std::cout<<"Produto copiado"<<std::endl;
                 }
             }
             int num_prod = 1;
@@ -521,7 +488,7 @@ void loja_main(std::string nome){
                     if(comando_secundario == "s"){
                         verificar_nome:
                         std::cout << "Qual o novo nome da loja?" << std::endl;
-                        std::cin >> nomeArquivo;
+                        nomeArquivo = r.validar_loja();
                         std::cout << "\nO novo nome sera " << nomeArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
@@ -556,7 +523,7 @@ void loja_main(std::string nome){
                     if (comando_secundario == "s"){
                     verificar_senha:
                         std::cout << "Qual sera a nova senha?" << std::endl;
-                        std::cin >> senhaArquivo;
+                        senhaArquivo = r.validar_senha();
                         std::cout << "\nA nova senha sera " << senhaArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
@@ -622,7 +589,7 @@ void loja_main(std::string nome){
                     if (comando_secundario == "s"){
                     verificar_cnpj:
                         std::cout << "Qual o novo cnpj?" << std::endl;
-                        std::cin >> cnpjArquivo;
+                        cnpjArquivo = r.validar_cnpj();
                         std::cout << "\nO novo cnpj sera " << cnpjArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
@@ -655,7 +622,7 @@ void loja_main(std::string nome){
                     if (comando_secundario == "s"){
                     verificar_cep:
                         std::cout << "Qual sera o novo cep?" << std::endl;
-                        std::cin >> cepArquivo;
+                        cepArquivo = r.validar_cep();
                         std::cout << "\nO novo cep sera " << cepArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
