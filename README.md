@@ -23,7 +23,7 @@
 
   ###MAKE FILE
 
-  - Para rodar o make file é necessario o compilador de c++ GNU.
+  - Para rodar o make file é necessario o compilador de c++ GNU: g++.
   - O make file foi criado para funcionar no sistema operacional Linux.
   - Para rodar o make test, basta digitar "make test" na pasta do projeto.
   - Para criar o make run, basta digitar "make run" na pasta do projeto.
