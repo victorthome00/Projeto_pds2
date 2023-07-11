@@ -62,13 +62,15 @@ void cliente_main(std::string nome){
         visualizacao_produtos:
 
             for(unsigned m = 0; m < (linhas.size()/5); m ++){
-                std::cout << "Para comprar um produto digite o numero que corresponde ao produto desejado ou digite 'sair'.\n\n";
+                //std::cout << "Para comprar um produto digite o numero que corresponde ao produto desejado ou digite 'sair'.\n\n";
                 for(unsigned n = 0; n < product.size() ; n++){
                     std::cout << n << ": ";
                     Produto aux = product[n]; 
                     aux.exibir_produto();
                     std::cout << '\n';
                 }
+
+                std::cout << "\nPara comprar um produto digite o numero que corresponde ao produto desejado ou digite 'sair\n";
                 std::cin >> aux1;
                 if(aux1 != "sair"){
                 produto_1:
@@ -143,7 +145,7 @@ void cliente_main(std::string nome){
                 if(comando_secundario == "s"){
                     verificar_nome:
                     std::cout << "Qual nome você gostaria?" << std::endl;
-                    nomeArquivo = r.validar_usuario();
+                    std::cin >> nomeArquivo;
                     std::cout << "\nO novo nome sera " << nomeArquivo << "?" << std::endl;
                     std::cout << "S/N?\n";
                     std::cin >> comando_secundario;
@@ -488,7 +490,7 @@ void loja_main(std::string nome){
                     if(comando_secundario == "s"){
                         verificar_nome:
                         std::cout << "Qual o novo nome da loja?" << std::endl;
-                        nomeArquivo = r.validar_loja();
+                        std::cin >> nomeArquivo;
                         std::cout << "\nO novo nome sera " << nomeArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
@@ -523,7 +525,7 @@ void loja_main(std::string nome){
                     if (comando_secundario == "s"){
                     verificar_senha:
                         std::cout << "Qual sera a nova senha?" << std::endl;
-                        senhaArquivo = r.validar_senha();
+                        std::cin >> senhaArquivo;
                         std::cout << "\nA nova senha sera " << senhaArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
@@ -589,7 +591,7 @@ void loja_main(std::string nome){
                     if (comando_secundario == "s"){
                     verificar_cnpj:
                         std::cout << "Qual o novo cnpj?" << std::endl;
-                        cnpjArquivo = r.validar_cnpj();
+                        std::cin >> cnpjArquivo;
                         std::cout << "\nO novo cnpj sera " << cnpjArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
@@ -622,7 +624,7 @@ void loja_main(std::string nome){
                     if (comando_secundario == "s"){
                     verificar_cep:
                         std::cout << "Qual sera o novo cep?" << std::endl;
-                        cepArquivo = r.validar_cep();
+                        std::cin >> cepArquivo;
                         std::cout << "\nO novo cep sera " << cepArquivo << "?" << std::endl;
                         std::cout << "S/N?\n";
                         std::cin >> comando_secundario;
