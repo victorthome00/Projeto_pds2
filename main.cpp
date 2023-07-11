@@ -21,7 +21,7 @@ int main(){
     if(comando == "cliente"){
 
         while(true){
-            std::cout<<"ja possui cadastro?"<<std::endl;
+            std::cout<<"ja possui cadastro? (sim/nao)"<<std::endl;
             std::cin >> comando_auxiliar;
 
             if(comando_auxiliar == "sair"){
@@ -45,21 +45,41 @@ int main(){
                 }
                 std::cout<<"Autenticacao concluida"<<std::endl;
                 std::cout <<'\n';
+                cliente_main(nome);
             }
             if(comando_auxiliar == "não" || comando_auxiliar == "n" || comando_auxiliar == "nao"){
                 Registro novo_cliente;
                 novo_cliente.cadastrarCliente();
+
+                Login log;
+                    while(true){
+                    std::cout << "Faca o login para a confirmação da conta.\n";
+                    std::cout << "Digite o nome de usuario: " << std::endl;
+                    std::cin >>nome;
+                    std::cout << "Digite a senha: " << std::endl;
+                    std::cin >>senha;
+
+                    if(log.autenticarCliente(nome,senha)){
+                        break;
+                    }
+                    std::cout << "Erro na autenticacao" << '\n' << std::endl;
+                    
+                }
+                std::cout<<"Autenticacao concluida"<<std::endl;
+                std::cout <<'\n';
+                cliente_main(nome);
+
             }
             break;
     }
-            cliente_main(nome);
+            
     
     
 }
     if(comando == "gerente"){
 
         while(true){
-            std::cout<<"ja possui cadastro?"<<std::endl;
+            std::cout<<"ja possui cadastro? (sim/nao)"<<std::endl;
             std::cin >> comando_auxiliar;
 
             if(comando_auxiliar == "sair"){
@@ -82,14 +102,33 @@ int main(){
                 }
                 std::cout<<"Autenticação concluida"<<std::endl;
                 std::cout <<'\n';
+                loja_main(nome);
             }
             if(comando_auxiliar == "não" || comando_auxiliar == "n" || comando_auxiliar == "nao"){
                 Registro novo_cliente;
                 novo_cliente.cadastrarLoja();
+
+                Login log;
+                     while(true){
+                    std::cout << "Faca o login para a confirmação da conta.\n";
+                    std::cout << "Digite o nome da loja: ";
+                    std::cin >> nome;
+                    std::cout << "Digite a senha: ";
+                    std::cin >> senha;
+
+                        if(log.autenticarLoja(nome, senha)){
+                            break;
+                        }
+                    std::cout << "Erro na autenticacao" <<std::endl;
+                }
+                std::cout<<"Autenticação concluida"<<std::endl;
+                std::cout <<'\n';
+                loja_main(nome);
+
             }
             break;
     }
-            loja_main(nome);
+            
     
     return 0;
 }
