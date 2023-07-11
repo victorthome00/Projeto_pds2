@@ -9,6 +9,7 @@
   ### FUNCIONAMENTO GERAL
 
   * No site teremos dois tipos de usuários, o cliente e o lojista. Aquele faz o seu cadastro e login e a partir disso escolhe entre os produtos disponíveis adicionando-os ao carrinho. Ao concluir suas compras é calculado o valor total a ser pago, efetuando o pagamento escolhendo o modo de pagamento e, caso credito ou debito validando cartão e, caso PIX, confirmando o código gerado. Esse por sua vez, cadastra sua loja no site adicionando seus produtos, podendo também modificá-los conforme vontade.
+  * Na interface do gerente, quando for adicionar o produto, atente-se para colocar o valor do produto com duas casas decimais (ex: 10.99) e que o número do código do produto difere-se do número de quantidade do mesmo.
 
   ### OBSERVAÇÕES / DESAFIOS
 
@@ -21,3 +22,9 @@
   - O tratamento de entrada também foi outra dificuldade, uma vez que são inúmeras entradas possíveis que poderiam ocasionar inúmeros erros e, mesmo tratando várias entradas, sempre surgem novas que ocasionam o erro.
   - Durante o trabalho final desse semestre, uma das dificuldades foi os testes de software sob o DocTest, devido ao passo que a maioria das novas função são alto retroativas visto que os while, durante nossa implementação, já pede para o cliente(usuario) botar um comando válido e repete a execução até que a saída esteja válida. Ademais, as funções sem retorno(void) e que não exigem parâmetros, exigem complexidade a mais para ter consecução nos testes.
 
+  ### MAKE FILE
+
+  - Para rodar o make file é necessario o compilador de c++ GNU: g++.
+  - O make file foi criado para funcionar no sistema operacional Linux.
+  - Para rodar o make test, basta digitar "make test" na pasta do projeto.
+  - Para criar o make run, basta digitar "make run" na pasta do projeto.

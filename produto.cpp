@@ -46,7 +46,11 @@ void Produto::remover_quantidade(int a){
     }
 }
 void Produto::exibir_produto(){
-    std::cout<< _nome_produto << "\n" << _valor << "\n" << _codigo_produto<< "\n"<< _descricao << "\n" << _quantidade << std::endl;
+    std::cout<< "Produto: " << _nome_produto << "\n" 
+        << "Valor: " <<  _valor << "\n"
+        << "Codigo: " << _codigo_produto<< "\n" 
+        << "Quantidade: " << _quantidade << "\n" 
+        << "Descricao: " << _descricao << std::endl;
 }
 bool Estoque::incluir_estoque(std::string loja){
     std::string nome, /*3*/ codigo, /*5*/descricao;
@@ -55,7 +59,7 @@ bool Estoque::incluir_estoque(std::string loja){
     std::cout<<"Nome do produto: ";
     std::cin>> nome;
     std::cin.ignore();
-    std::cout<<"Valor do produto: ";
+    std::cout<<"Valor do produto (duas casas decimais): ";
     std::cin>> valor;
     std::cin.ignore();    
     std::cout<<"Codigo do produto: ";
