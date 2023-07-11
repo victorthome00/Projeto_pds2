@@ -4,6 +4,8 @@
 #include "produto.hpp"
 #include "carrinho.hpp"
 #include "login.hpp"
+#include <sstream>
+#include <iostream>
 
 Registro r;
 
@@ -80,12 +82,12 @@ TEST_CASE("(carrinho.hpp) adicao e remocao") {
     }
 
 
-
-
-TEST_CASE("Teste da classe Estoque") {  //necessario escrever
+TEST_CASE("Teste da classe Estoque") {
     Estoque estoque;
 
     SUBCASE("Teste do método incluir_estoque") {
+        std::istringstream iss("maca 3.50 4321 30 argentina");
+        std::cin.rdbuf(iss.rdbuf());
         CHECK(estoque.incluir_estoque("Loja 1") == true);
     }
 }
@@ -120,7 +122,6 @@ TEST_CASE("Teste da classe Estoque Vazia") {
         CHECK(estoque.exibir_estoque_nome() == true);
 
 }*/
-
 
 
 /*TEST_CASE("(carrinho.cpp) verificar_cartao") { ////// privado, sem possbilidade de ser testado;
