@@ -1,8 +1,8 @@
-#include "carrinho.cpp"
-#include "login.cpp"
-#include "produto.cpp"
-#include "registro.cpp"
-#include "usuario.cpp"
+#include "carrinho.hpp"
+#include "login.hpp"
+#include "produto.hpp"
+#include "registro.hpp"
+#include "usuario.hpp"
 #include <iostream>
 
 int main(){
