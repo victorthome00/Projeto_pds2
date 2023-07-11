@@ -46,7 +46,7 @@ void cliente_main(std::string nome){
     if(comando_secundario == "1"){
         product.clear();
         linhas.clear();
-        std::cout << "tamanho vector: " << product.size() << '\n';
+        //std::cout << "tamanho vector: " << product.size() << '\n';
         std::string nome_loja, nome_produto, valor, codigo_produto, quantidade, descricao;
         
         std::ifstream arquivo_produto("produto.txt");
